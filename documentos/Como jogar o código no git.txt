@@ -1,0 +1,19 @@
+# 1. Inicializar o repositório local
+git init
+
+# 2. Criar .gitignore antes de commitar
+# 3. Adicionar arquivos e commit inicial
+git add .
+git commit -m "Initial commit"
+
+# 4. Criar branch principal como main (opcional)
+git branch -M main
+
+# 5. Adicionar o remote (SSH recomendado)
+git remote add origin git@github.com:SEU_USUARIO/SEU_REPO.git
+
+# 6. Subir para o GitHub
+git push -u origin main
+
+Após finalizado, para cada vez que vc fizer uma alteração no código e quiser subir no git:
+git commit -m "Descrição desse commit"
