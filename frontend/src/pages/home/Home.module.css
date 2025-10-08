@@ -1,0 +1,158 @@
+:root {
+  --corum: #1E8449;
+  --cordois: #444444;
+  --cortres: #171717;
+  --corquatro: #1CC206;
+  --corcinco: #FFFFFF;
+}
+
+
+body {
+  background-color: var(--cortres);
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+.boxhome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--cordois);
+  width: 100%;
+  max-width: 1100px;
+  margin: 10rem auto;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 0 3px rgba(255, 239, 239, 0.3);
+  box-sizing: border-box;
+}
+
+
+.campo {
+  width: 100%;
+  max-width: 650px;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  position: relative;
+  left: 11rem;
+  top: 3rem;
+}
+
+
+h2 {
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: var(--corcinco);
+  margin-bottom: 1rem;
+  text-align: center;
+  position: relative;
+  top: -16rem;
+  left: -25rem;
+}
+
+
+.society {
+  display: flex;
+  gap: 8px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: rgb(219, 214, 214);
+  margin-bottom: 2rem;
+  position: relative;
+  top: -16rem;
+  left: -20rem;
+}
+
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 2rem;
+}
+
+.info p {
+  margin: 0;
+  font-size: 1.6rem;
+  color: rgb(219, 214, 214);
+  position: relative;
+  left: -20rem;
+  top: -14rem;
+}
+
+
+button {
+  width: 220px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(33, 53, 28);
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+  margin-bottom: 2rem;
+  position: relative;
+  left: 28rem;
+  top: -9rem;
+}
+
+button:hover {
+  background-color: var(--corquatro);
+  transform: scale(1.05);
+}
+
+
+@media (max-width: 430px) {
+  .boxhome {
+    width: 90%;
+    margin: 5rem auto;
+    padding: 1.5rem;
+  }
+
+  .campo {
+    max-width: 100%;
+    height: auto;
+    position: relative;
+    left: 0rem;
+    top: -0.1rem;
+  }
+
+  h2 {
+    font-size: 2.4rem;
+    position: relative;
+    top: -2rem;
+    left: 0rem;
+  }
+
+  .society {
+    font-size: 1.7rem;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    left: -1rem;
+    top: -2rem;
+  }
+
+  .info p {
+    font-size: 1.2rem;
+    text-align: center;
+    position: relative;
+    top: -2rem;
+    left: 0rem;
+  }
+
+  button {
+    width: 100%;
+    max-width: 300px;
+    font-size: 0.95rem;
+    position: relative;
+    top: -8rem;
+    left: 3rem;
+  }
+}

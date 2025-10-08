@@ -1,0 +1,144 @@
+/* 🌈 Paleta de Cores */
+:root {
+  --corum: #1E8449;
+  --cordois: #444444;
+  --cortres: #171717;
+  --corquatro: #1CC206;
+  --corcinco: #FFFFFF;
+}
+
+/* 🔠 Tipografia moderna */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: url('/img.png') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* 📦 Container principal */
+.inicioContainer {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* 🧊 Box com efeito vidro fosco */
+.inicioBox {
+  background: rgba(68, 68, 68, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  color: var(--corcinco);
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  width: 100%;
+  max-width: 800px;
+  height: 500px;
+}
+
+/* 📝 Títulos */
+.titulo {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  color: var(--corcinco);
+  position: relative;
+  top: 3rem;
+}
+
+.subtitulo {
+  font-size: 1.4rem;
+  margin-bottom: 30px;
+  color: #b9bbbe;
+  position: relative;
+  top: 7rem;
+}
+
+/* 🔘 Botões */
+.botoes {
+  display: flex;
+  gap: 15px;
+  position: relative;
+  top: 16rem;
+}
+
+.btn {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 400px;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Botão entrar com gradiente */
+.entrar {
+  background-color: var(--cortres);
+  color: var(--corcinco);
+}
+span{
+  color: var(--corquatro);
+}
+
+.entrar:hover {
+  transform: scale(1.03);
+  background: linear-gradient(135deg, var(--corum), var(--corquatro));
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Botão cadastrar */
+.cadastrar {
+  background-color: var(--cortres);
+  color: var(--corcinco);
+
+}
+
+.cadastrar:hover {
+
+  background: linear-gradient(135deg, var(--corum), var(--corquatro));
+  transform: scale(1.03);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* 📱 Responsividade */
+@media (max-width: 430px) {
+  .titulo {
+    font-size: 1.8rem;
+    position: relative;
+    top: 0rem;
+  }
+
+  .subtitulo {
+    font-size: 0.95rem;
+    position: relative;
+    top: 0rem;
+  }
+
+  .inicioBox {
+    padding: 20px;
+    height: auto;
+    height: 250px;
+  }
+  .botoes{
+    position: relative;
+    top: 1rem;
+  }
+
+  .btn {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+}
