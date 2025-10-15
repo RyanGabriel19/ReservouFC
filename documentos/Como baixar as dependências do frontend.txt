@@ -1,5 +1,0 @@
-entre na pasta do frontend que mateus mandou
-
-dê um "npm ci" pelo terminal
-
-e dê um npm run dev para iniciar

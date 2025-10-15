@@ -87,4 +87,4 @@ export async function deleteUsuario(req, res) {
     console.error('Erro ao deletar o usuário: ', err);
     res.status(500).json({ error: 'Erro interno ao tentar deletar o usuário.'})
   }
-} teste
+}
