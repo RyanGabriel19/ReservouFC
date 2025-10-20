@@ -1,0 +1,24 @@
+.slider {
+  position: relative;
+  top: -20rem;
+  width: 100%;
+  height: 60rem;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 0;
+}
+
+.active {
+  opacity: 1;
+  z-index: 0;
+}

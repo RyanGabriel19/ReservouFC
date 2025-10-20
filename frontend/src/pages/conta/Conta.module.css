@@ -1,0 +1,88 @@
+:root {
+  /* ... suas variáveis existentes ... */
+  --corum: #1E8449;
+  --cordois: #444444;
+  --cortres: #171717;
+  --corquatro: #1CC206;
+  --corcinco: #FFFFFF;
+  --lemonade: #B8FB3C; /* Verde Neon Claro */
+  --electric: #03045E; /* Azul Escuro / Marinho */
+}
+
+/* Container flexível */
+/* Container flexível */
+.container {
+  display: flex;
+  min-height: calc(100vh - 120px); 
+}
+
+/* 1. Conteúdo principal (LADO ESQUERDO) */
+.content {
+  flex: 1;
+  padding: 20px;
+  /* GARANTIDO: Fundo do lado esquerdo é o AZUL ESCURO */
+  background-color: var(--electric); 
+  color: var(--corcinco); 
+}
+
+/* 2. Sidebar direita (Onde está o menu) */
+.sidebar {
+  width: 250px;
+  /* Fundo da Sidebar é o VERDE NEON */
+  background-color: var(--lemonade); 
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.4); 
+  border-left: 3px solid var(--electric); 
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  /* Usamos PADDING nas laterais para dar espaço para o HOVER/ACTIVE */
+  padding: 15px 10px;
+  cursor: pointer;
+  color: var(--electric); 
+  font-weight: 700;
+  border-radius: 8px;
+  margin-bottom: 10px; 
+  transition: all 0.3s ease;
+  /* Garante que o item seja renderizado como bloco */
+  display: block; 
+}
+
+/* Efeito hover (no item normal) */
+.sidebar li:hover {
+  /* Fundo sutilmente mais escuro */
+  background-color: #A4FF1A; /* Neon um pouco mais claro */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  /* Sem transformação, sem problemas de sobreposição */
+}
+
+/* 3. Item ativo (OPÇÃO SELECIONADA) */
+.active {
+  /* **FUNDO DO ITEM SELECIONADO:** AZUL ESCURO (Electric) */
+  background-color: var(--electric); 
+  
+  /* Texto do item selecionado: NEON */
+  color: var(--lemonade); 
+  font-weight: 800;
+  
+  /* Borda Neon para o destaque */
+  border: 2px solid var(--lemonade); 
+  box-shadow: 0 0 10px var(--lemonade); 
+  
+  /* **TÉCNICA DE FIX:** Removemos TRANSFORMS e Z-INDEX desnecessários */
+  position: static;
+  z-index: auto;
+}
+
+.sidebar li {
+  margin-bottom: 12px;
+}

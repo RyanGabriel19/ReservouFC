@@ -1,0 +1,44 @@
+.container {
+  max-width: 600px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background-color: var(--corcinco);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.etapa {
+  margin-top: 2rem;
+}
+
+button {
+  margin: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  background-color: var(--lemonade);
+  color: var(--electric);
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--corquatro);
+  color: var(--corcinco);
+}
+
+input[type="date"] {
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.confirmado {
+  margin-top: 2rem;
+  background-color: var(--lemonade);
+  padding: 2rem;
+  border-radius: 10px;
+  color: var(--electric);
+}

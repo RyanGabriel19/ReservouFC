@@ -80,7 +80,7 @@
   cursor: pointer;
   transition: transform 0.3s ease;
   position: relative;
-  left: 5rem;
+  left: 0.35rem;
   top: 0rem;
     height: 40px;
 }
@@ -108,6 +108,44 @@
   color: var(--corquatro);
 }
 
+.alerta {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 16px 24px;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 500;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  animation: aparecer 0.3s ease-in-out;
+  z-index: 1000;
+  max-width: 90%;
+  word-wrap: break-word;
+  text-align: center;
+}
+
+/* Verde (sucesso) */
+.sucesso {
+  background-color: #28a745;
+}
+
+/* Vermelho (erro) */
+.erro {
+  background-color: #dc3545;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
 
 @media (max-width: 430px) {
   .cadastroBox {
@@ -131,5 +169,15 @@
 
   .linkcadastro {
     font-size: 0.85rem;
+  }
+  .alerta {
+    bottom: 15px;
+    right: 10px;
+    left: 10px;
+    padding: 12px 16px;
+    font-size: 14px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: calc(100% - 20px);
   }
 }

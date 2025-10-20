@@ -1,0 +1,32 @@
+/* Sobre.module.css */
+:root {
+  --corum: #1E8449 ;
+  --cordois: #444444;
+  --cortres: #171717;
+  --corquatro: #1CC206;
+  --corcinco: #FFFFFF;
+  --lemonade: #b8ff00;
+  --electric: #03045E;
+ 
+}
+
+.societyBox {
+    background-color: var(--lemonade); /* Cor cinza claro */
+    width: 100%;
+    padding: 20px; /* Espaço interno */
+    position: relative;
+    top: 10rem;
+}
+h1{
+    color: var(--corcinco);
+    position: relative;
+    top: -2rem;
+}
+
+.societyBox p {
+    font-size: 1rem;
+    color: var(--electric); /* Cor do texto */
+    line-height: 1.6; /* Espaçamento entre linhas */
+    text-align: justify; /* Justifica o texto */
+    font-weight: bold;
+}

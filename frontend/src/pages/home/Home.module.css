@@ -4,155 +4,193 @@
   --cortres: #171717;
   --corquatro: #1CC206;
   --corcinco: #FFFFFF;
+  --lemonade: #B8FB3C;
+  --electric: #03045E;
 }
 
-
-body {
-  background-color: var(--cortres);
+/* === ESTILO GERAL === */
+* {
   margin: 0;
   padding: 0;
-  font-family: 'Poppins', sans-serif;
-}
-
-
-.boxhome {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: var(--cordois);
-  width: 100%;
-  max-width: 1100px;
-  margin: 10rem auto;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 0 0 3px rgba(255, 239, 239, 0.3);
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
+body {
+  background-color: var(--corum);
+  overflow-x: hidden;
+}
 
-.campo {
+/* === IMAGEM === */
+img {
   width: 100%;
-  max-width: 650px;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 2rem;
-  position: relative;
-  left: 11rem;
-  top: 3rem;
+  height: 30rem;
 }
 
-
-h2 {
-  font-size: 2.8rem;
-  font-weight: bold;
-  color: var(--corcinco);
-  margin-bottom: 1rem;
-  text-align: center;
+.img1 {
   position: relative;
-  top: -16rem;
-  left: -25rem;
 }
 
-
-.society {
+/* === LINK HOME === */
+.linkhome {
   display: flex;
-  gap: 8px;
-  font-size: 2rem;
+  justify-content: center;
+  align-items: center;
+  width: 15rem;
+  height: 5rem;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--lemonade);
+  font-size: 20px;
   font-weight: bold;
-  color: rgb(219, 214, 214);
-  margin-bottom: 2rem;
+  color: var(--electric);
   position: relative;
-  top: -16rem;
-  left: -20rem;
+  left: 44%;
+  top: -9rem;
+  transition: 0.3s ease;
 }
 
+.linkhome:hover {
+  background-color: rgb(183, 223, 8);
+  color: var(--corcinco);
+  cursor: pointer;
+}
 
-.info {
+/* === SEÇÃO HOME === */
+.home-container {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  overflow: hidden;
+}
+
+.home-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(70%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  transition: 0.3s ease;
+}
+
+.h1home {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: var(--lemonade);
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.3em;
+  text-shadow: 2px 2px 10px #000;
+  z-index: 1;
+}
+
+.btn-home {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--corquatro);
+  color: var(--corcinco);
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  z-index: 2;
+  transition: background-color 0.3s;
+}
+
+.btn-home:hover {
+  background-color: #1aa605;
+}
+
+/* === SEÇÃO QUEM SOMOS NÓS === */
+.sobrehome {
+  position: relative;
+  top: 10rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
-  margin-bottom: 2rem;
+  transition: 0.5s;
+}
+.sobrehome:hover{
+  transform:  scale(1.01);
 }
 
-.info p {
-  margin: 0;
-  font-size: 1.6rem;
-  color: rgb(219, 214, 214);
-  position: relative;
-  left: -20rem;
-  top: -14rem;
-}
-
-
-button {
-  width: 220px;
-  height: 40px;
-  border: none;
-  border-radius: 10px;
-  background-color: rgb(33, 53, 28);
-  color: white;
-  font-size: 1rem;
+.h2home {
+  text-align: center;
+  color: var(--corcinco);
+  font-size: 2.5rem;
   font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease;
   margin-bottom: 2rem;
-  position: relative;
-  left: 28rem;
-  top: -9rem;
+  text-shadow: 1px 1px 4px var(--electric);
 }
 
-button:hover {
-  background-color: var(--corquatro);
-  transform: scale(1.05);
+.textobox {
+  background-color: var(--lemonade);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  max-width: 900px;
+  width: 100%;
 }
 
+.phome {
+  color: var(--electric);
+  font-size: 1.4rem;
+  line-height: 1.8;
+  text-align: justify;
+}
+
+/* === RESPONSIVIDADE === */
+@media (max-width: 768px) {
+  .h1home {
+    position: relative;
+    font-size: 2.2rem;
+    line-height: 1.2em;
+    top: 20rem;
+  }
+
+  .btn-home {
+    top: 70%;
+    padding: 0.8rem 1.6rem;
+    font-size: 0.9rem;
+  }
+
+  .h2home {
+    font-size: 2rem;
+  }
+
+  .phome {
+    font-size: 1.1rem;
+  }
+}
 
 @media (max-width: 430px) {
-  .boxhome {
-    width: 90%;
-    margin: 5rem auto;
-    padding: 1.5rem;
+  .home-container {
+    height: 60vh;
   }
 
-  .campo {
-    max-width: 100%;
-    height: auto;
-    position: relative;
-    left: 0rem;
-    top: -0.1rem;
-  }
-
-  h2 {
-    font-size: 2.4rem;
-    position: relative;
-    top: -2rem;
-    left: 0rem;
-  }
-
-  .society {
-    font-size: 1.7rem;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    left: -1rem;
-    top: -2rem;
-  }
-
-  .info p {
+  .linkhome {
+    top: 65%;
+    padding: 30px;
     font-size: 1.2rem;
-    text-align: center;
-    position: relative;
-    top: -2rem;
-    left: 0rem;
+    left: 4.5rem;
   }
 
-  button {
-    width: 100%;
-    max-width: 300px;
-    font-size: 0.95rem;
-    position: relative;
-    top: -8rem;
-    left: 3rem;
+  .home-container img {
+    filter: brightness(65%);
+  }
+
+  .phome {
+    font-size: 1rem;
   }
 }
