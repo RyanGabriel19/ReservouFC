@@ -32,4 +32,3 @@ export async function LoginUsuario(dados){
       throw err;
   }
 }
-oko
