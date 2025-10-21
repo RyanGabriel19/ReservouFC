@@ -5,7 +5,10 @@ import styles from './Conta.module.css';
 
 const Conta = () => {
 
+  
+
 const [active, setActive] = useState("Perfil");
+
 
   const menuItems = ["Perfil", "Configurações", "Segurança", "Notificações"];
 
