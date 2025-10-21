@@ -57,7 +57,7 @@ export default function Agendamento() {
         <div className={styles.etapa}>
           <h3>1️⃣ Escolha a quadra</h3>
           {quadrasDisponiveis.map((q) => (
-            <button key={q} onClick={() => { setQuadra(q); setEtapa(2); }}>
+            <button key={q} onClick={() => { setQuadra(q); setEtapa(2); } }>
               {q}
             </button>
           ))}
@@ -70,8 +70,7 @@ export default function Agendamento() {
           <input
             type="date"
             value={data}
-            onChange={(e) => setData(e.target.value)}
-          />
+            onChange={(e) => setData(e.target.value)} />
           <button disabled={!data} onClick={() => setEtapa(3)}>Avançar</button>
         </div>
       )}
@@ -80,7 +79,7 @@ export default function Agendamento() {
         <div className={styles.etapa}>
           <h3>⏰ Escolha o horário</h3>
           {horariosDisponiveis.map((h) => (
-            <button key={h} onClick={() => { setHorario(h); setEtapa(4); }}>
+            <button key={h} onClick={() => { setHorario(h); setEtapa(4); } }>
               {h}
             </button>
           ))}

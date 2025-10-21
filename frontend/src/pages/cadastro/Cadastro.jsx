@@ -114,7 +114,7 @@ function Cadastro() {
             )}
 
         <Link to="/login" className={styles.linkcadastro}>
-          <i>Faça seu login</i>
+          <i>já tem cadastro? faça seu login</i>
         </Link>
       </div>
     </div>
