@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import Header from "../../components/header/Header";
 import styles from "./Cadastro.module.css";
 import { cadastroUsuario } from "../../services/UsuarioService";
 
@@ -47,6 +47,9 @@ function Cadastro() {
   };
 
   return (
+    <>
+    
+     <Header />
     <div className={styles.cadastroContainer}>
       <div className={styles.cadastroBox}>
         <h1 className={styles.titlecadastro}>Cadastro do usuário</h1>
@@ -115,6 +118,7 @@ function Cadastro() {
         </Link>
       </div>
     </div>
+    </>
   );
 }
 

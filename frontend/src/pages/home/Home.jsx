@@ -2,6 +2,7 @@ import styles from './Home.module.css'
 import Header from "../../components/header/Header";
 import { Link } from "react-router-dom";
 import Footer from '../../components/footer/Footer';
+import FieldCarousel from '../../components/carrossel/Carss';
 import ImageSlider from '../../components/imageslider/ImageSlider';
 
 
@@ -16,9 +17,11 @@ function Home () {
         <div className={styles.imghome}>
        <ImageSlider/>
         </div>
+        <FieldCarousel />
         <div className={styles.ahome}>
          <div className={styles.linkhome}><Link to="/Agendamento">Faça sua reserva</Link></div> 
         </div>
+
       </div>
 <div className={styles.sobrehome}>
   <h2 className={styles.h2home}>QUEM SOMOS NÓS</h2>
