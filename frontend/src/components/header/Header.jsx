@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom"; // CORREÇÃO: Importe 'NavLink' e não 'NavLinkLink'
+ // CORREÇÃO: Importe 'NavLink' e não 'NavLinkLink'
 
 import styles from './Header.module.css';
 

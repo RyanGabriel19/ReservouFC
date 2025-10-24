@@ -1,0 +1,64 @@
+:root {
+  --corum: #1E8449;
+  --cordois: #444444;
+  --cortres: #171717;
+  --corquatro: #1CC206;
+  --corcinco: #FFFFFF;
+  --lemonade: #B8FB3C;
+  --electric: #03045E;
+}
+.painel_controle{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: -5rem;
+}
+
+h1{
+    margin-bottom: 10px;
+    padding: 10px;
+    position: relative;
+    top: 9rem;
+    color: var(--lemonade);
+    border-bottom: solid 2px #fff;
+    font-size: 40px;
+    
+}
+
+.option_painel{
+    width: 65rem;
+    height: 40rem;
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--lemonade);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+.option_painel{
+    position: relative;
+    top: 9rem;
+}
+.usercount{
+    position: relative;
+    top: 17rem;
+    left: -24rem;
+    font-size: 20px;
+    margin-top: 10px;
+    z-index: 1;
+}
+
+.numberuser{
+    position: relative;
+    left: 5.5rem;
+    color: var(--electric);
+}
+.textuser{
+    font-weight: bold;
+    color: var(--electric);
+}

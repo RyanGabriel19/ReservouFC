@@ -1,0 +1,63 @@
+.campos_adm_btn{
+    background-color: var(--electric);
+    color: white;
+    padding: 0.8rem 1.6rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.campos_adm_btn:hover{
+    background-color: #023E8A;
+}
+.campos_adm_btn{
+    position: relative;
+    top: 20rem;
+    left: 6.2rem;
+}
+
+.agendamento_adm_btn{
+   background-color: var(--electric);
+    color: white;
+    padding: 0.8rem 1.6rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.agendamento_adm_btn:hover{
+   
+    background-color: #023E8A;
+}
+.agendamento_adm_btn{
+    position: relative;
+    top: 20rem;
+    left: 3rem;
+}
+
+.gerenciar_adm_btn{
+    background-color: var(--electric);
+    color: white;
+    padding: 0.8rem 1.6rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.gerenciar_adm_btn:hover{
+    background-color: #023E8A;
+
+    
+}
+.gerenciar_adm_btn{
+    position: relative;
+    top: 20rem;
+    left: 0rem;
+}

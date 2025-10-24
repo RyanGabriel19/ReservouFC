@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Header from "../../components/header/Header";
 import styles from "./Cadastro.module.css";
 import { cadastroUsuario } from "../../services/UsuarioService";
 

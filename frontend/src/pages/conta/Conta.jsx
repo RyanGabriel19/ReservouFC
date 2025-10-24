@@ -15,12 +15,11 @@ const [active, setActive] = useState("Perfil");
   return (
     <>
     <Header />
-      <div className={styles.container}>
+    <div className={styles.container}>
         <main className={styles.content}>
           <h2>Conta</h2>
-          <p>Aqui você poderá gerenciar sua conta.</p>
-          {/* Futuras funcionalidades */}
-        </main>
+         
+         </main>
         <aside className={styles.sidebar}>
           <ul>
             {menuItems.map(item => (
@@ -34,7 +33,8 @@ const [active, setActive] = useState("Perfil");
             ))}
           </ul>
         </aside>
-      </div>
+      </div> 
+
       <Footer />
     </>
   )
