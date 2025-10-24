@@ -8,6 +8,7 @@
   --electric: #03045E;
 }
 
+
 /* === ESTILO GERAL === */
 * {
   margin: 0;
@@ -108,6 +109,7 @@ img {
   font-weight: 600;
   z-index: 2;
   transition: background-color 0.3s;
+  
 }
 
 .btn-home:hover {
@@ -123,6 +125,7 @@ img {
   flex-direction: column;
   align-items: center;
   transition: 0.5s;
+  margin-bottom: 150px;
 }
 .sobrehome:hover{
   transform:  scale(1.01);
@@ -151,6 +154,7 @@ img {
   font-size: 1.4rem;
   line-height: 1.8;
   text-align: justify;
+  
 }
 
 /* === RESPONSIVIDADE === */

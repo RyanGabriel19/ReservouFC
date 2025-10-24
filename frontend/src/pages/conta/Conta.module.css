@@ -5,7 +5,8 @@
   --corquatro: #1CC206;
   --corcinco: #FFFFFF;
   --lemonade: #B8FB3C; /* Verde Neon Claro */
-  --electric: #03045E /* Azul Escuro / Marinho */
+  --electric: #03045E;
+  --azulEscuro:#0b0c2a;
 }
 
 /* Container flexível */
@@ -20,7 +21,7 @@
 .content {
   flex: 1;
   padding: 20px;
-  background-color: var(--electric);
+  background-color: var(--azulEscuro);
   color: var(--corcinco);
   z-index: 1;
 }

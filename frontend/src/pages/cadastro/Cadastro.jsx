@@ -49,7 +49,7 @@ function Cadastro() {
   return (
     <>
     
-     <Header />
+     
     <div className={styles.cadastroContainer}>
       <div className={styles.cadastroBox}>
         <h1 className={styles.titlecadastro}>Cadastro do usuário</h1>

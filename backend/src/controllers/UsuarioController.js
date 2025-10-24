@@ -1,10 +1,9 @@
-<<<<<<< HEAD
 
-=======
->>>>>>> 9cdc9f23306b23c41baa6d78c3f0b3c31514e1cf
 import jwt from 'jsonwebtoken';
 import bcrypt from "bcrypt";
+import dotenv from 'dotenv';
 
+dotenv.config();
 
 import {
   selectUsuarios,
@@ -29,10 +28,10 @@ export async function LoginUsuario(req, res){
     if(!senhaValida){
       return res.status(401).json({error: "senha incorreta"})
     }
-
+    const JWT_SECRET = process.env.JWT_SECRET;
     const token = jwt.sign(
       {id:usuario.id, email:usuario.email},
-      "ryan", //key
+      JWT_SECRET, //key
       {expiresIn:"2h"}
     ); 
     return res.status(200).json({
