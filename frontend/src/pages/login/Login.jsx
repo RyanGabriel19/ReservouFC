@@ -80,7 +80,7 @@ function Login() {
         )}
 
         <Link to="/cadastro" className={styles.linklogin}>
-          <i>Não tem cadastro??</i>
+          <i>Não tem conta? Cadastre-se</i>
         </Link>
       </div>
     </div>
