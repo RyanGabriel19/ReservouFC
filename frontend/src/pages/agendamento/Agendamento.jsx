@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Agendamento.module.css';
-import Footer from "../../components/footer/Footer";
-import Header from "../../components/header/Header";
-
+import Header from '../../components/header/Header';
+import Footer from '../../components/footer/Footer';
 
 const quadrasDisponiveis = ['Quadra 1', 'Quadra 2', 'Quadra Coberta'];
 const horariosDisponiveis = [
@@ -50,7 +49,8 @@ export default function Agendamento() {
 
   return (
     <>
-    <Header /><div className={styles.container}>
+    <Header />
+    <div className={styles.container}>
       <h2>Reservar Quadra</h2>
 
       {etapa === 1 && (
@@ -104,7 +104,9 @@ export default function Agendamento() {
           <p>Nos vemos em campo, craque!</p>
         </div>
       )}
-    </div><Footer /></>
+    </div>
+    <Footer />
+    </>
   );
 }
 

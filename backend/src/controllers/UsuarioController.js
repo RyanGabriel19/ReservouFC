@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9cdc9f23306b23c41baa6d78c3f0b3c31514e1cf
 import jwt from 'jsonwebtoken';
 import bcrypt from "bcrypt";
 
