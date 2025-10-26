@@ -1,4 +1,4 @@
- // CORREÇÃO: Importe 'NavLink' e não 'NavLinkLink'
+import { NavLink } from 'react-router-dom';
 
 import styles from './Header.module.css';
 
@@ -27,7 +27,7 @@ function Header() {
           </NavLink>
           
           <NavLink 
-            to="/conta" 
+            to="/perfil" 
             className={({ isActive }) => (isActive ? styles.active : "")}
           >
             Conta

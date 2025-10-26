@@ -30,7 +30,7 @@ export async function LoginUsuario(req, res){
     }
     const JWT_SECRET = process.env.JWT_SECRET;
     const token = jwt.sign(
-      {id:usuario.id, email:usuario.email},
+      {id:usuario.id, email:usuario.email, nome: usuario.nome,},
       JWT_SECRET, //key
       {expiresIn:"2h"}
     ); 
