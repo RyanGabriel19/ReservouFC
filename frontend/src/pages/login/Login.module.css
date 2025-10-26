@@ -22,11 +22,11 @@
 /* 📦 Caixa de login */
 .loginBox {
   background-color: rgba(68, 68, 68, 0.85);
-  padding: 30px;
+  padding: 40px;
   border-radius: 20px;
   width: 100%;
   max-width: 400px;
-  height: 350px;
+  height: 390px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   color: var(--corcinco);
   

@@ -8,6 +8,7 @@ import Login from './pages/login/Login'
 import Inicio from './pages/inicio/Inicio'
 import Admin from './admin/Admin'
 import Perfil from './pages/conta/perfil/Perfil'
+import Campo from './admin/campos/Campos'
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
         <Route path='/func' element={<Funcionalidade/>}></Route>
         <Route path='/perfil' element={<Perfil/>}></Route>
         <Route path='/admin' element={<Admin/>}></Route>
+        <Route path='/campo' element={<Campo/>}></Route>
       </Routes>
     </BrowserRouter>
     </>
