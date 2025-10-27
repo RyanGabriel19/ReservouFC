@@ -37,16 +37,16 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 15rem;
-  height: 5rem;
-  border-radius: 8px;
+  width: 14rem;
+  height: 4rem;
+  border-radius: 15px;
   border: none;
-  background-color: var(--lemonade);
+  background-color: var(--electric);
   font-size: 20px;
   font-weight: bold;
-  color: var(--electric);
+  color: var(--lemonade);
   position: relative;
-  top: -9rem;
+  /* top: -50rem; */
   transition: 0.3s ease;
   margin: 0 auto; /* Centraliza horizontalmente */
   text-align: center;
@@ -54,7 +54,7 @@ img {
 
 .linkhome:hover {
   background-color: rgb(183, 223, 8);
-  color: var(--corcinco);
+  color: var(--electric);
   cursor: pointer;
 }
 
@@ -187,12 +187,12 @@ img {
     height: 60vh;
   }
 
-  .linkhome {
+  /* .linkhome {
     top: 65%;
     padding: 30px;
     font-size: 1.2rem;
     left: 4.5rem;
-  }
+  } */
 
   .home-container img {
     filter: brightness(65%);

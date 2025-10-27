@@ -29,7 +29,7 @@ function Home () {
         <div className={styles.ahome}>
          
           <button className={styles.linkhome} onClick={handleAgendamentoClick}>
-            Ir para Agendamento
+            Reservar agora
           </button>
         </div>
       </div>
