@@ -21,12 +21,12 @@ export async function LoginUsuario(req, res){
   try{
     const usuario = await buscarUsuarioPorEmail(email);
     if(!usuario){
-      return res.status(404).json({error: "usuario nao encontrado"});
+      return res.status(404).json({error: "E-mail e/ou senha incorreto(s)."});
     }
     const senhaValida = await bcrypt.compare(senha, usuario.senha);
 
     if(!senhaValida){
-      return res.status(401).json({error: "senha incorreta"})
+      return res.status(401).json({error: "E-mail e/ou senha incorreto(s)."})
     }
     const JWT_SECRET = process.env.JWT_SECRET;
     const token = jwt.sign(
@@ -36,7 +36,7 @@ export async function LoginUsuario(req, res){
       {expiresIn:"2h"}
     ); 
     return res.status(200).json({
-      message: "login realizado com sucesso",
+      message: "Login realizado com sucesso!",
       token,
       usuario : {
         id: usuario.id,
@@ -48,7 +48,7 @@ export async function LoginUsuario(req, res){
   });
 }catch(err){
   console.error("error no login", err);
-  return res.status(500).json({ error: "error interno ao realizar o login"})
+  return res.status(500).json({ error: "Erro interno ao realizar o login."})
 }
 }
 
@@ -58,8 +58,8 @@ export async function getUsuarios(req, res) {
     const usuarios = await selectUsuarios();
     res.status(200).json(usuarios);
   } catch (err) {
-    console.error('Erro ao buscar usuários:', err);
-    res.status(500).json({ error: 'Erro ao buscar usuários.' });
+    console.error('Erro ao buscar os usuários:', err);
+    res.status(500).json({ error: 'Erro ao buscar os usuários.' });
   }
 }
 
@@ -92,7 +92,7 @@ export async function postUsuario(req, res) {
   const { nome, telefone, email, senha } = req.body;
 
   if (!nome || !telefone || !email || !senha) {
-    return res.status(400).json({ error: "Todos os campos são obrigatórios" });
+    return res.status(400).json({ error: "Todos os campos são obrigatórios." });
   }
 
   try {
@@ -113,7 +113,7 @@ export async function postUsuario(req, res) {
 
       if (match) {
         const valorDuplicado = match[1];
-        mensagem = `O "${valorDuplicado}" já está cadastrado.`;
+        mensagem = `"${valorDuplicado}" já cadastrado.`;
       }
 
       return res.status(400).json({ error: mensagem });
