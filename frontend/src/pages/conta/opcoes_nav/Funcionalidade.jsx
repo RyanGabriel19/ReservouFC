@@ -4,7 +4,7 @@ import styles from './funcionalidade.module.css'
 
 function Funcionalidade(){
 
-    const [active, setActive] = useState("perfil"); 
+    const [active, setActive] = useState("/conta"); 
     
     return(
         <div className={styles.container}> 
@@ -17,8 +17,9 @@ function Funcionalidade(){
                    
                     <li className={styles.listItem}>
                         <NavLink 
-                            to="/perfil" 
+                            to="/conta" 
                             className={({ isActive }) => (isActive ? styles.active : "")}
+                            end={true}
                         >
                             Perfil
                         </NavLink>
@@ -26,8 +27,9 @@ function Funcionalidade(){
                         
                     <li className={styles.listItem}>
                         <NavLink 
-                            to="/configuracoes" // Rota preenchida
+                            to="/conta/configuracoes" // Rota preenchida
                             className={({ isActive }) => (isActive ? styles.active :"")}
+                            end={true}
                         >
                             Configurações
                         </NavLink>
@@ -35,8 +37,9 @@ function Funcionalidade(){
                         
                     <li className={styles.listItem}>
                         <NavLink 
-                            to="/seguranca" // Rota preenchida
+                            to="/conta/seguranca" // Rota preenchida
                             className={({ isActive }) => (isActive ? styles.active : "")}
+                            end={true}
                         >
                             Segurança
                         </NavLink>
@@ -44,8 +47,9 @@ function Funcionalidade(){
 
                     <li className={styles.listItem}>
                         <NavLink
-                            to="/notificacoes" 
+                            to="/conta/notificacoes" 
                             className={({ isActive }) => (isActive ? styles.active :"")}
+                            end={true}
                         >
                             Notificações
                         </NavLink>

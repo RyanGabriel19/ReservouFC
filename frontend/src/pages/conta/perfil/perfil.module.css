@@ -1,97 +1,137 @@
+/* Variáveis */
 :root {
   --corum: #1E8449;
   --cordois: #444444;
   --cortres: #171717;
   --corquatro: #1CC206;
   --corcinco: #FFFFFF;
-  --lemonade: #B8FB3C; /* Verde Neon Claro */
+  --lemonade: #B8FB3C;
   --electric: #03045E;
-  --azulEscuro:#0b0c2a;
+  --azulEscuro: #0b0c2a;
 }
 
-/* Container flexível */
-.container {
+
+.perfilContainer {
   display: flex;
-  min-height: calc(100vh - 120px);
+ 
   background-color: var(--electric);
   position: relative;
-}
-
-/* 1. Conteúdo principal (lado esquerdo) */
-.content {
-  flex: 1;
-  padding: 20px;
-  background-color: var(--azulEscuro);
   color: var(--corcinco);
-  z-index: 1;
+ 
+  padding: 20px; 
 }
 
-/* 2. Sidebar (lado direito, flutuante) */
-.sidebar {
-  width: 250px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
+.infoArea {
+  
 
-  /* === EFEITO FLUTUANTE === */
-  position: absolute;
-  right: 30px;
-  top: 100px;
-  bottom: 30px;
-  background: rgba(184, 251, 60, 0.85); /* verde neon com leve transparência */
-  backdrop-filter: blur(12px); /* vidro fosco */
-  border-radius: 20px 20px 20px 20px;
-  box-shadow: -6px 6px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(3, 4, 94, 0.3);
-  border-left: 3px solid var(--electric);
+  position: relative;
+  top: -600px; 
+  left: 20px; 
+  
+  /* Estilo do Retângulo */
+  background: linear-gradient(145deg, #0b0c2a, #13153d);
+  border-left: 4px solid var(--lemonade);
+  border-radius: 12px;
+  padding: 35px 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+
+   width: 90%;         /* ocupa 90% da largura do container */
+  max-width: 800px;   /* não passa de 800px */
+  min-width: 320px;
+  min-height: 400px;  /* altura mínima */
   z-index: 10;
-
-  /* animação de aparição suave */
-  animation: floatIn 0.6s ease-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;  
 }
 
-@keyframes floatIn {
-  from {
-    transform: translateX(100px);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
+.infoArea:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
 }
 
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar li {
-  padding: 15px 10px;
-  cursor: pointer;
-  color: var(--electric);
-  font-weight: 700;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  transition: all 0.3s ease;
-  display: block;
+.infoArea h2 {
+  font-size: 28px;
+  margin-bottom: 25px;
+  color: var(--lemonade);
   text-align: center;
-  background-color: transparent;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-/* Hover */
+.userDetails {
+ 
+  background: linear-gradient(145deg, #0b0c2a, #13153d);
+  
+  
+  padding: 35px 30px;
+  
+ 
+  min-height: 300px;
 
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-/* Item ativo */
-.sidebar li.active {
-  background-color: var(--lemonade);
-  color: var(--electric);
-  font-weight: 800;
-  border: 2px solid var(--electric);
-  box-shadow: 0 0 10px var(--electric);
-  transform: scale(1.03);
+.userDetails p {
+  font-size: 20px;
+  margin-bottom: 12px;
+  line-height: 1.6;
+  color: #ffffff; /* texto branco para contraste */
+}
+
+.userDetails strong {
+  color: var(--lemonade); /* destaque */
 }
 
 
+@media (max-width: 900px) {
+  .perfilContainer {
+   
+    flex-direction: column; 
+    align-items: center; 
+  }
 
+  .infoArea {
+    
+    position: static; 
+    top: auto; 
+    left: auto;
+    
+   
+    width: 90%;
+    max-width: 500px; 
+    margin: 20px auto; 
+    
+    
+    border-left: none;
+    border-top: 4px solid var(--lemonade);
+    
+    transition: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  .infoArea:hover {
+    transform: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+}
+
+
+@media (max-width: 430px) {
+  .infoArea {
+    
+    width: 95%; 
+    padding: 25px 15px; 
+  }
+
+  .infoArea h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .userDetails {
+    padding: 20px; 
+  }
+
+  .userDetails p {
+    margin-bottom: 10px;
+  }
+}
