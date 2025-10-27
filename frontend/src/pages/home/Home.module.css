@@ -46,9 +46,10 @@ img {
   font-weight: bold;
   color: var(--electric);
   position: relative;
-  left: 44%;
   top: -9rem;
   transition: 0.3s ease;
+  margin: 0 auto; /* Centraliza horizontalmente */
+  text-align: center;
 }
 
 .linkhome:hover {

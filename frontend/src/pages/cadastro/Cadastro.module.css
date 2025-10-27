@@ -23,7 +23,7 @@
   padding: 30px;
   border-radius: 20px;
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   color: var(--corcinco);
 }
@@ -33,6 +33,7 @@
   text-align: center;
   font-size: 2rem;
   margin-bottom: 25px;
+  top: -1rem;
 }
 
 
@@ -80,7 +81,7 @@
   cursor: pointer;
   transition: transform 0.3s ease;
   position: relative;
-  left: 0.35rem;
+ text-align: center;
   top: 0rem;
     height: 40px;
 }
@@ -100,7 +101,7 @@
   text-decoration: underline;
   transition: color 0.3s ease;
   position: relative;
-  top: -2rem;
+  top: 0rem;
   left: 1rem;
 }
 

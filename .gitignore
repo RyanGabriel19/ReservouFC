@@ -2,3 +2,4 @@ node_modules/
 documentos/
 .env
 .vscode/
+.docker.compose.yaml

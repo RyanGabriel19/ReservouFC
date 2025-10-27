@@ -1,0 +1,137 @@
+/* Variáveis */
+:root {
+  --corum: #1E8449;
+  --cordois: #444444;
+  --cortres: #171717;
+  --corquatro: #1CC206;
+  --corcinco: #FFFFFF;
+  --lemonade: #B8FB3C;
+  --electric: #03045E;
+  --azulEscuro: #0b0c2a;
+}
+
+
+.perfilContainer {
+  display: flex;
+ 
+  background-color: var(--electric);
+  position: relative;
+  color: var(--corcinco);
+ 
+  padding: 20px; 
+}
+
+.infoArea {
+  
+
+  position: relative;
+  top: -600px; 
+  left: 20px; 
+  
+  /* Estilo do Retângulo */
+  background: linear-gradient(145deg, #0b0c2a, #13153d);
+  border-left: 4px solid var(--lemonade);
+  border-radius: 12px;
+  padding: 35px 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+
+   width: 90%;         /* ocupa 90% da largura do container */
+  max-width: 800px;   /* não passa de 800px */
+  min-width: 320px;
+  min-height: 400px;  /* altura mínima */
+  z-index: 10;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;  
+}
+
+.infoArea:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+.infoArea h2 {
+  font-size: 28px;
+  margin-bottom: 25px;
+  color: var(--lemonade);
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.userDetails {
+ 
+  background: linear-gradient(145deg, #0b0c2a, #13153d);
+  
+  
+  padding: 35px 30px;
+  
+ 
+  min-height: 300px;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.userDetails p {
+  font-size: 20px;
+  margin-bottom: 12px;
+  line-height: 1.6;
+  color: #ffffff; /* texto branco para contraste */
+}
+
+.userDetails strong {
+  color: var(--lemonade); /* destaque */
+}
+
+
+@media (max-width: 900px) {
+  .perfilContainer {
+   
+    flex-direction: column; 
+    align-items: center; 
+  }
+
+  .infoArea {
+    
+    position: static; 
+    top: auto; 
+    left: auto;
+    
+   
+    width: 90%;
+    max-width: 500px; 
+    margin: 20px auto; 
+    
+    
+    border-left: none;
+    border-top: 4px solid var(--lemonade);
+    
+    transition: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  .infoArea:hover {
+    transform: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+}
+
+
+@media (max-width: 430px) {
+  .infoArea {
+    
+    width: 95%; 
+    padding: 25px 15px; 
+  }
+
+  .infoArea h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .userDetails {
+    padding: 20px; 
+  }
+
+  .userDetails p {
+    margin-bottom: 10px;
+  }
+}
