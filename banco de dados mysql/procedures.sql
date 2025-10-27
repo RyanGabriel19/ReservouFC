@@ -1,7 +1,4 @@
-DELIMITER $$
-
-DROP PROCEDURE IF EXISTS prc_insert_log$$
-
+DROP PROCEDURE IF EXISTS prc_insert_log;
 CREATE PROCEDURE prc_insert_log(
   IN p_tipo_evento   VARCHAR(80),
   IN p_detalhes      TEXT,
@@ -28,6 +25,4 @@ BEGIN
     p_valores_old,
     p_valores_new
   );
-END$$
-
-DELIMITER ;
+END;

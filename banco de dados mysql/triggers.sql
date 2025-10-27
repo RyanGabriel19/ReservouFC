@@ -1,13 +1,11 @@
-use dbReservouFC;
-SHOW TRIGGERS;
-
-DELIMITER $$
+-- use dbReservouFC;
+-- SHOW TRIGGERS;
 
 /* =========================
    TRIGGERS PARA USUARIO
    ========================= */
 
-DROP TRIGGER IF EXISTS trg_usuario_after_insert$$
+DROP TRIGGER IF EXISTS trg_usuario_after_insert;
 CREATE TRIGGER trg_usuario_after_insert
 AFTER INSERT ON USUARIO
 FOR EACH ROW
@@ -25,9 +23,9 @@ BEGIN
       'criado_em', DATE_FORMAT(NEW.criado_em, '%Y-%m-%d %H:%i:%s')
     )
   );
-END$$
+END;
 
-DROP TRIGGER IF EXISTS trg_usuario_after_update$$
+DROP TRIGGER IF EXISTS trg_usuario_after_update;
 CREATE TRIGGER trg_usuario_after_update
 AFTER UPDATE ON USUARIO
 FOR EACH ROW
@@ -54,9 +52,9 @@ BEGIN
       'atualizado_em', IFNULL(DATE_FORMAT(NEW.atualizado_em, '%Y-%m-%d %H:%i:%s'), NULL)
     )
   );
-END$$
+END;
 
-DROP TRIGGER IF EXISTS trg_usuario_after_delete$$
+DROP TRIGGER IF EXISTS trg_usuario_after_delete;
 CREATE TRIGGER trg_usuario_after_delete
 AFTER DELETE ON USUARIO
 FOR EACH ROW
@@ -75,13 +73,13 @@ BEGIN
     ),
     NULL
   );
-END$$
+END;
 
 /* =========================
    TRIGGERS PARA QUADRA
    ========================= */
 
-DROP TRIGGER IF EXISTS trg_quadra_after_insert$$
+DROP TRIGGER IF EXISTS trg_quadra_after_insert;
 CREATE TRIGGER trg_quadra_after_insert
 AFTER INSERT ON QUADRA
 FOR EACH ROW
@@ -99,9 +97,9 @@ BEGIN
       'criado_em', DATE_FORMAT(NEW.criado_em, '%Y-%m-%d %H:%i:%s')
     )
   );
-END$$
+END;
 
-DROP TRIGGER IF EXISTS trg_quadra_after_update$$
+DROP TRIGGER IF EXISTS trg_quadra_after_update;
 CREATE TRIGGER trg_quadra_after_update
 AFTER UPDATE ON QUADRA
 FOR EACH ROW
@@ -128,9 +126,9 @@ BEGIN
       'atualizado_em', IFNULL(DATE_FORMAT(NEW.atualizado_em, '%Y-%m-%d %H:%i:%s'), NULL)
     )
   );
-END$$
+END;
 
-DROP TRIGGER IF EXISTS trg_quadra_after_delete$$
+DROP TRIGGER IF EXISTS trg_quadra_after_delete;
 CREATE TRIGGER trg_quadra_after_delete
 AFTER DELETE ON QUADRA
 FOR EACH ROW
@@ -149,13 +147,13 @@ BEGIN
     ),
     NULL
   );
-END$$
+END;
 
 /* =========================
    TRIGGERS PARA RESERVA
    ========================= */
 
-DROP TRIGGER IF EXISTS trg_reserva_after_insert$$
+DROP TRIGGER IF EXISTS trg_reserva_after_insert;
 CREATE TRIGGER trg_reserva_after_insert
 AFTER INSERT ON RESERVA
 FOR EACH ROW
@@ -174,9 +172,9 @@ BEGIN
       'status', NEW.status
     )
   );
-END$$
+END;
 
-DROP TRIGGER IF EXISTS trg_reserva_after_update$$
+DROP TRIGGER IF EXISTS trg_reserva_after_update;
 CREATE TRIGGER trg_reserva_after_update
 AFTER UPDATE ON RESERVA
 FOR EACH ROW
@@ -203,9 +201,9 @@ BEGIN
       'status', NEW.status
     )
   );
-END$$
+END;
 
-DROP TRIGGER IF EXISTS trg_reserva_after_delete$$
+DROP TRIGGER IF EXISTS trg_reserva_after_delete;
 CREATE TRIGGER trg_reserva_after_delete
 AFTER DELETE ON RESERVA
 FOR EACH ROW
@@ -224,13 +222,13 @@ BEGIN
     ),
     NULL
   );
-END$$
+END;
 
 /* =========================
    TRIGGERS PARA DISPONIBILIDADE_SEMANA
    ========================= */
 
-DROP TRIGGER IF EXISTS trg_dispsem_after_insert$$
+DROP TRIGGER IF EXISTS trg_dispsem_after_insert;
 CREATE TRIGGER trg_dispsem_after_insert
 AFTER INSERT ON DISPONIBILIDADE_SEMANA
 FOR EACH ROW
@@ -249,9 +247,9 @@ BEGIN
       'ativo', NEW.ativo
     )
   );
-END$$
+END;
 
-DROP TRIGGER IF EXISTS trg_dispsem_after_update$$
+DROP TRIGGER IF EXISTS trg_dispsem_after_update;
 CREATE TRIGGER trg_dispsem_after_update
 AFTER UPDATE ON DISPONIBILIDADE_SEMANA
 FOR EACH ROW
@@ -278,9 +276,9 @@ BEGIN
       'ativo', NEW.ativo
     )
   );
-END$$
+END;
 
-DROP TRIGGER IF EXISTS trg_dispsem_after_delete$$
+DROP TRIGGER IF EXISTS trg_dispsem_after_delete;
 CREATE TRIGGER trg_dispsem_after_delete
 AFTER DELETE ON DISPONIBILIDADE_SEMANA
 FOR EACH ROW
@@ -299,13 +297,13 @@ BEGIN
     ),
     NULL
   );
-END$$
+END;
 
 /* =========================
    TRIGGERS PARA HORARIO_BLOQUEADO
    ========================= */
 
-DROP TRIGGER IF EXISTS trg_horariobloq_after_insert$$
+DROP TRIGGER IF EXISTS trg_horariobloq_after_insert;
 CREATE TRIGGER trg_horariobloq_after_insert
 AFTER INSERT ON HORARIO_BLOQUEADO
 FOR EACH ROW
@@ -322,9 +320,9 @@ BEGIN
       'criado_por', NEW.criado_por
     )
   );
-END$$
+END;
 
-DROP TRIGGER IF EXISTS trg_horariobloq_after_delete$$
+DROP TRIGGER IF EXISTS trg_horariobloq_after_delete;
 CREATE TRIGGER trg_horariobloq_after_delete
 AFTER DELETE ON HORARIO_BLOQUEADO
 FOR EACH ROW
@@ -341,14 +339,14 @@ BEGIN
     ),
     NULL
   );
-END$$
+END;
 
 
 /* =========================
    TRIGGERS PARA DIA_FECHADO
    ========================= */
 
-DROP TRIGGER IF EXISTS trg_diafechado_after_insert$$
+DROP TRIGGER IF EXISTS trg_diafechado_after_insert;
 CREATE TRIGGER trg_diafechado_after_insert
 AFTER INSERT ON DIA_FECHADO
 FOR EACH ROW
@@ -364,9 +362,9 @@ BEGIN
       'motivo', NEW.motivo
     )
   );
-END$$
+END;
 
-DROP TRIGGER IF EXISTS trg_diafechado_after_delete$$
+DROP TRIGGER IF EXISTS trg_diafechado_after_delete;
 CREATE TRIGGER trg_diafechado_after_delete
 AFTER DELETE ON DIA_FECHADO
 FOR EACH ROW
@@ -382,6 +380,4 @@ BEGIN
     ),
     NULL
   );
-END$$
-
-DELIMITER ;
+END;
