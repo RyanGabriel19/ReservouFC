@@ -1,6 +1,6 @@
 export async function cadastroUsuario(dados){
     try{
-        const response = await fetch("http://localhost:3000/usuarios/cadastrar", {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/usuarios/cadastrar`, {
             method:'POST',
             headers:{
                 'Content-Type': 'application/json'
@@ -20,7 +20,7 @@ export async function cadastroUsuario(dados){
 
 export async function LoginUsuario(dados){
   try{
-      const response = await fetch("http://localhost:3000/usuarios/login", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/usuarios/login`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(dados)

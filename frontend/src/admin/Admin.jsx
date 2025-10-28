@@ -8,7 +8,7 @@ function Admin () {
     const [count, setCount ] = useState(0);
 
 useEffect(() => {
-    fetch("http://localhost:3000/api/users/count")
+    fetch(`${import.meta.env.VITE_API_URL}/api/users/count`)
     .then((res) => res.json())
     .then((data) => setCount(data.total))
     .catch((err) => console.log("Erro ao buscar número de usuários:", err));
