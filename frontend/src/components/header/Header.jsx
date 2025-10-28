@@ -8,7 +8,11 @@ function Header() {
   return (
     <>
       <header className={styles.header}>
-        <img src="/fc.png" alt="Reservou FC Logo" className={styles.logo} />
+        <NavLink 
+        to="/home">
+          <img src="/fc.png" alt="Reservou FC Logo" className={styles.logo} />
+        </NavLink>
+        
         <nav className={styles.navegacao}>
           
           
