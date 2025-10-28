@@ -43,10 +43,10 @@ const Perfil = () => {
     let TipoUsuario;
     if(userData){
         if(userData.tipo === "c"){
-            TipoUsuario = "USUARIO COMUM"
+            TipoUsuario = "Cliente"
         }
         if(userData.Tipo === "a"){
-            TipoUsuario = "USUARIO ADMINISTRADOR"
+            TipoUsuario = "Administrador"
         }
     }
 
@@ -64,10 +64,10 @@ const Perfil = () => {
                     {userData ? (
                         <div className={styles.userDetails}>
                            
-                            <p><strong>Nome:</strong> {userData.nome || 'Não definido'}</p>
-                            <p><strong>Email:</strong> {userData.email}</p>
-                            <p><strong>Tipo da Conta:</strong>{TipoUsuario}</p>
-                            <p><strong>Telefone:</strong>{userData.telefone}</p>
+                            <p><strong>Nome: </strong>{userData.nome || 'Não definido'}</p>
+                            <p><strong>Email: </strong>{userData.email}</p>
+                            <p><strong>Telefone: </strong>{userData.telefone}</p>
+                            <p><strong>Tipo da Conta: </strong>{TipoUsuario}</p>
                         </div>
                     ) : (
                         <p>Token não encontrado ou inválido. Faça login novamente.</p>

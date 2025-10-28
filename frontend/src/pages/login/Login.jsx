@@ -30,7 +30,10 @@ function Login() {
       setTipoMensagem("sucesso");
       
       // aqui você pode salvar o token
-      localStorage.setItem("token", resultado.token);
+      // localStorage.setItem("token", resultado.token);
+      // Importe a variável de ambiente no topo do seu arquivo de Login
+      const TOKEN_KEY_NAME = import.meta.env.VITE_TOKEN_KEY_NAME;
+      localStorage.setItem(TOKEN_KEY_NAME, resultado.token);
 
       setTimeout(() => navigate("/home"), 1000);
     } catch (err) {
