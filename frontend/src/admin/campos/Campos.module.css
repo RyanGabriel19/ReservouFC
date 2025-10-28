@@ -1,20 +1,104 @@
 :root {
-  --corum: #1E8449;
-  --cordois: #444444;
-  --cortres: #171717;
-  --corquatro: #1CC206;
-  --corcinco: #FFFFFF;
-  --lemonade: #B8FB3C;
-  --electric: #03045E;
+  --lemonade: #B8FB3C;   /* Verde neon */
+   --electric: #03045E;   /* Azul escuro */
 }
 
-.containercampo{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background-size: cover;
+.containercampo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  color: var(--lemonade);
+}
+
+.cadastrocampo {
+  background-color: var(--lemonade);
+  padding: 30px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 500px;
+  color: var(--electric);
+}
+
+.campoform label {
+  font-weight: bold;
+  color: var(--electric);
+}
+
+.campoform input,
+.campoform select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 2px solid var(--electric);
+  border-radius: 5px;
+  background-color: var(--electric);
+  color: var(--lemonade);
+}
+
+.campoform input:focus,
+.campoform select:focus {
+  outline: none;
+  border-color: var(--lemonade);
+  box-shadow: 0 0 5px var(--lemonade);
+}
+
+.submitbtn {
+  background-color: var(--electric);
+  color: var(--lemonade);
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submitbtn:hover {
+  background-color: var(--lemonade);
+  color: var(--electric);
+}
+
+.quadraCard {
+  background-color: var(--electric);
+  color: var(--lemonade);
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.togglebtn {
+  background-color: var(--lemonade);
+  color: var(--electric);
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.imagemQuadra {
+  margin-top: 10px;
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+/* 📱 Responsivo para telas até 430px */
+@media (max-width: 430px) {
+  .cadastrocampo {
     padding: 20px;
-    box-sizing: border-box;
+  }
+
+  .submitbtn {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .campoform input,
+  .campoform select {
+    font-size: 14px;
+  }
 }
