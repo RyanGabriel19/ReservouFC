@@ -1,6 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import { useState } from "react";
 import styles from './funcionalidade.module.css'
+import { Logout } from '../../../services/UsuarioService';
+
+
 
 function Funcionalidade(){
 
@@ -47,11 +50,16 @@ function Funcionalidade(){
 
                     <li className={styles.listItem}>
                         <NavLink
-                            to="/conta/notificacoes" 
-                            className={({ isActive }) => (isActive ? styles.active :"")}
-                            end={true}
+                            to="#" 
+                            onClick = {(e) =>{
+                                e.preventDefault;
+                                Logout();
+                               
+                            } 
+
+                            }
                         >
-                            Notificações
+                            Sair
                         </NavLink>
                     </li>
                 </ul>

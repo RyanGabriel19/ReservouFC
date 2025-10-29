@@ -4,8 +4,8 @@
   --cortres: #171717;
   --corquatro: #1CC206;
   --corcinco: #FFFFFF;
-  --lemonade: #B8FB3C; /* Verde Neon Claro */
-  --electric: #03045E; /* Azul escuro */
+  --lemonade: #B8FB3C;
+  --electric: #03045E;
   --azulEscuro:#0b0c2a;
 }
 
@@ -38,6 +38,7 @@
   z-index: 10;
   animation: floatIn 0.6s ease-out;
 }
+
 
 @keyframes floatIn {
   from {
@@ -81,17 +82,28 @@
   
   background-color: transparent;
   border: 2px solid transparent; 
-}
+  
+  border: 2px solid transparent; 
 
+
+  /* Transição suave para hover/active */
+  transition: all 0.3s ease;
+}
+.box a:hover {
+  transform: scale(1.02);
+  border: 2px solid var(--electric);
+  box-shadow: 0 0 10px var(--electric);
+  background-color: var(--lemonade);
+  font-weight: 800;
+}
 
 
 .active {
   
-  background-color: var(--lemonade); 
+ background-color: var(--lemonade); 
   font-weight: 800; 
-  
   border: 2px solid var(--electric);
   box-shadow: 0 0 10px var(--electric);
-  
   transform: scale(1.02); 
 }
+

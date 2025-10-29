@@ -10,23 +10,28 @@ import Admin from './admin/Admin'
 import Perfil from './pages/conta/perfil/Perfil'
 import Configuracoes from "./pages/conta/config/Configuracoes"
 import Campo from './admin/campos/Campos'
-
+import { Protected } from './components/rotaProtected/Protected'
 function App() {
 
   return (
     <>
     <BrowserRouter>
       <Routes>
+
+        //rotas publicas
         <Route path='/' element={<Inicio/>}></Route>
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/cadastro' element={<Cadastro />}></Route>
-        <Route path='/home' element={<Home/>}></Route>
-        <Route path='/agendamento' element={<Agendamento/>}></Route>
-        <Route path='/func' element={<Funcionalidade/>}></Route>
-        <Route path='/conta' element={<Perfil/>}></Route>
-        <Route path='/admin' element={<Admin/>}></Route>
-        <Route path='/campo' element={<Campo/>}></Route>
-        <Route path='/conta/configuracoes' element={<Configuracoes/>}></Route>
+
+
+        //rotas protegidas
+        <Route path='/home' element={<Protected><Home /></Protected>}></Route>
+        <Route path='/agendamento' element={<Protected><Agendamento/></Protected>}></Route>
+        <Route path='/func' element={<Protected><Funcionalidade/></Protected>}></Route>
+        <Route path='/conta' element={<Protected><Perfil/></Protected>}></Route>
+        <Route path='/admin' element={<Protected><Admin/></Protected>}></Route>
+        <Route path='/campo' element={<Protected><Campo/></Protected>}></Route>
+        <Route path='/conta/configuracoes' element={<Protected><Configuracoes/></Protected>}></Route>
       </Routes>
     </BrowserRouter>
     </>
