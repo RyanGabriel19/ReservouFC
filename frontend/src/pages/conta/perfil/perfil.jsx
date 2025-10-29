@@ -45,7 +45,7 @@ const Perfil = () => {
         if(userData.tipo === "c"){
             TipoUsuario = "Cliente"
         }
-        if(userData.Tipo === "a"){
+        if(userData.tipo === "a"){
             TipoUsuario = "Administrador"
         }
     }
