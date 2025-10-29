@@ -7,7 +7,7 @@ import Agendamento from './pages/agendamento/Agendamento'
 import Login from './pages/login/Login'
 import Inicio from './pages/inicio/Inicio'
 import Admin from './admin/Admin'
-import Perfil from './pages/conta/perfil/Perfil'
+import Perfil from './pages/conta/perfil/perfil'
 import Configuracoes from "./pages/conta/config/Configuracoes"
 import Campo from './admin/campos/Campos'
 import { Protected } from './components/rotaProtected/Protected'
