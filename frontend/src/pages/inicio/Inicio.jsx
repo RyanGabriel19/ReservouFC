@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import styles from "../inicio/inicio.module.css";
+import styles from "../inicio/Inicio.module.css";
 import Footer from "../../components/footer/Footer";
 
 function Inicio() {
