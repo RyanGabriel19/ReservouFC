@@ -2,11 +2,13 @@ import { NavLink } from 'react-router-dom';
 import { useState } from "react";
 import styles from './funcionalidade.module.css'
 import { Logout } from '../../../services/UsuarioService';
+import { getDecodedToken } from '../perfil/Perfil';
 
-
-
+const user = getDecodedToken();
 function Funcionalidade(){
 
+    
+    const user = getDecodedToken();
     const [active, setActive] = useState("/conta"); 
     
     return(
@@ -48,7 +50,20 @@ function Funcionalidade(){
                         </NavLink>
                     </li>
 
-                    <li className={styles.listItem}>
+                    {user.tipo === "a" &&(
+                        <li className={styles.listItem}>
+                        <NavLink 
+                            to="/conta/admin" // Rota preenchida
+                            className={({ isActive }) => (isActive ? styles.active : "")}
+                            end={true}
+                        >
+                            Painel Admin
+                        </NavLink>
+                        </li>
+                        
+                    )}
+                    
+                        <li className={styles.listItem}>
                         <NavLink
                             to="#" 
                             onClick = {(e) =>{

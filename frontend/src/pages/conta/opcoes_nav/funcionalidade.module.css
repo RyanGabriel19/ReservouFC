@@ -83,13 +83,14 @@
   background-color: transparent;
   border: 2px solid transparent; 
   
-  border: 2px solid transparent; 
+ 
 
 
   /* Transição suave para hover/active */
   transition: all 0.3s ease;
 }
-.box a:hover {
+
+.box a.active {
   transform: scale(1.02);
   border: 2px solid var(--electric);
   box-shadow: 0 0 10px var(--electric);
@@ -98,12 +99,12 @@
 }
 
 
-.active {
+/* .active {
   
- background-color: var(--lemonade); 
-  font-weight: 800; 
+ transform: scale(1.02);
   border: 2px solid var(--electric);
   box-shadow: 0 0 10px var(--electric);
-  transform: scale(1.02); 
+  background-color: var(--lemonade);
+  font-weight: 800;
 }
-
+ */

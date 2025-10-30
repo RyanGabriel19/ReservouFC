@@ -4,6 +4,8 @@ import usuarioRoutes from './routes/UsuarioRoute.js'
 
 const app = express()
 
+// https://reservou-fc.vercel.app
+//http://localhost:5173
 const allowedOrigin = 'https://reservou-fc.vercel.app';
 
 const corsOptions = {

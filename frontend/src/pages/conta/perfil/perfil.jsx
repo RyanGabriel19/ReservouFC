@@ -9,7 +9,7 @@ import { jwtDecode } from 'jwt-decode';
 const TOKEN_KEY_NAME = import.meta.env.VITE_TOKEN_KEY_NAME;
 
 
-const getDecodedToken = () =>{
+export const getDecodedToken = () =>{
     if(!TOKEN_KEY_NAME){
         console.error("TOKEN_KEY_NAME não está definida nas variáveis de ambiente!");
         return null;

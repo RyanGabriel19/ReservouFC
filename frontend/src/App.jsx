@@ -7,10 +7,12 @@ import Agendamento from './pages/agendamento/Agendamento'
 import Login from './pages/login/Login'
 import Inicio from './pages/inicio/Inicio'
 import Admin from './admin/Admin'
-import Perfil from './pages/conta/perfil/perfil'
+import Perfil from './pages/conta/perfil/Perfil'
 import Configuracoes from "./pages/conta/config/Configuracoes"
 import Campo from './admin/campos/Campos'
 import { Protected } from './components/rotaProtected/Protected'
+import {ProtectedAdmin} from './components/rotaProtected/ProtectedAdmin';
+
 function App() {
 
   return (
@@ -29,9 +31,12 @@ function App() {
         <Route path='/agendamento' element={<Protected><Agendamento/></Protected>}></Route>
         <Route path='/func' element={<Protected><Funcionalidade/></Protected>}></Route>
         <Route path='/conta' element={<Protected><Perfil/></Protected>}></Route>
-        <Route path='/admin' element={<Protected><Admin/></Protected>}></Route>
-        <Route path='/campo' element={<Protected><Campo/></Protected>}></Route>
         <Route path='/conta/configuracoes' element={<Protected><Configuracoes/></Protected>}></Route>
+
+        //rota admin
+        <Route path='/conta/admin' element={<ProtectedAdmin><Admin/></ProtectedAdmin>}></Route>
+        <Route path='/conta/admin/campo' element={<ProtectedAdmin><Campo/></ProtectedAdmin>}></Route>
+
       </Routes>
     </BrowserRouter>
     </>
