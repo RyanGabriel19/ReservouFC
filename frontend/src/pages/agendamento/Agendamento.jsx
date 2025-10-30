@@ -28,7 +28,7 @@ export default function Agendamento() {
     };
  
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/reservas/cadastrar`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/reservas`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(reserva)
