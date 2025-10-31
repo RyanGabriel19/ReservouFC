@@ -1,8 +1,12 @@
 :root {
-  --corum: #1E8449;
+  --corum: #1E8449 ;
   --cordois: #444444;
+  --cortres: #171717;
   --corquatro: #1CC206;
   --corcinco: #FFFFFF;
+  --lemonade: #b8ff00;
+  --electric: #03045E;
+ 
 }
 
 
@@ -11,7 +15,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url('/img.png') no-repeat center center fixed;
+  /* background: url('/img.png') no-repeat center center fixed; */
   background-size: cover;
   padding: 20px;
   box-sizing: border-box;
@@ -34,8 +38,11 @@
   font-size: 2rem;
   margin-bottom: 25px;
   top: -1rem;
+  color: var(--lemonade);
 }
-
+input{
+  background-color: #fff;
+}
 
 .formcadastro {
   display: flex;
@@ -164,12 +171,14 @@
 
   .btnSubmitcadastro {
     font-size: 0.95rem;
-    position: relative;
-    left: 3.5rem;
+  
+
   }
 
   .linkcadastro {
     font-size: 0.85rem;
+    position: relative;
+    left: 0.8rem;
   }
   .alerta {
     bottom: 15px;

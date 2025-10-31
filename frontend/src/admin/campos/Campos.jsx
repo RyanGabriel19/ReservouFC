@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from './Campos.module.css';
+import Headeradm from '../../components/header-adm/headeradm';
 
 function Campo() {
   const [quadras, setQuadras] = useState([]);
@@ -38,9 +39,11 @@ function Campo() {
   };
 
   return (
+    <>
+    <Headeradm />
     <div className={styles.containercampo}>
       <div className={styles.cadastrocampo}>
-        <h2>Cadastrar nova quadra</h2>
+        <h2 className={styles['h2campo']}>Cadastrar nova quadra</h2>
         <form onSubmit={handleSubmit} className={styles.campoform}>
           <label htmlFor="nome">Nome da Quadra:</label>
           <input
@@ -110,6 +113,7 @@ function Campo() {
         ))}
       </div>
     </div>
+    </>
   );
 }
 

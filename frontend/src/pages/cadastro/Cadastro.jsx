@@ -49,13 +49,13 @@ function Cadastro() {
     <>
     
      
-    <div className={styles.cadastroContainer}>
-      <div className={styles.cadastroBox}>
-        <h1 className={styles.titlecadastro}>Cadastro do usuário</h1>
+    <div className={styles['cadastroContainer']}>
+      <div className={styles['cadastroBox']}>
+        <h1 className={styles['titlecadastro']}>Cadastro do usuário</h1>
 
       
-        <form className={styles.formcadastro} onSubmit={handleSubmit}>
-          <div className={styles.inputGroupcadastro}>
+        <form className={styles['formcadastro']} onSubmit={handleSubmit}>
+          <div className={styles['inputGroupcadastro']}>
             <label htmlFor="name">Nome completo</label>
             <input
               type="text"
@@ -66,7 +66,7 @@ function Cadastro() {
             />
           </div>
 
-          <div className={styles.inputGroupcadastro}>
+          <div className={styles['inputGroupcadastro']}>
             <label htmlFor="telefone">Telefone</label>
             <input
               type="number"
@@ -77,7 +77,7 @@ function Cadastro() {
             />
           </div>
 
-          <div className={styles.inputGroupcadastro}>
+          <div className={styles['inputGroupcadastro']}>
             <label htmlFor="email">E-mail</label>
             <input
               type="email"
@@ -88,7 +88,7 @@ function Cadastro() {
             />
           </div>
 
-          <div className={styles.inputGroupcadastro}>
+          <div className={styles['inputGroupcadastro']}>
             <label htmlFor="senha">Senha</label>
             <input
               type="password"
@@ -99,20 +99,20 @@ function Cadastro() {
             />
           </div>
 
-          <button type="submit" className={styles.btnSubmitcadastro}>
+          <button type="submit" className={styles['btnSubmitcadastro']}>
             Enviar
           </button>
         </form>
 
         
          {mensagem && (
-          <div className={`${styles.alerta}
+          <div className={`${styles['alerta']}
            ${tipoMensagem === "sucesso" ? styles.sucesso : styles.erro}`}>
             {mensagem}
             </div> 
             )}
 
-        <Link to="/login" className={styles.linkcadastro}>
+        <Link to="/login" className={styles['linkcadastro']}>
           <i>já tem cadastro? faça seu login</i>
         </Link>
       </div>

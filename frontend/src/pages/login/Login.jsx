@@ -43,11 +43,11 @@ function Login() {
   };
 
   return (
-    <div className={styles.loginContainer}>
-      <div className={styles.loginBox}>
-        <h1 className={styles.titlelogin}>Login</h1>
-        <form className={styles.formlogin} onSubmit={handleSubmit}>
-          <div className={styles.inputGrouplogin}>
+    <div className={styles['loginContainer']}>
+      <div className={styles['loginBox']}>
+        <h1 className={styles['titlelogin']}>Login</h1>
+        <form className={styles['formlogin']} onSubmit={handleSubmit}>
+          <div className={styles['inputGrouplogin']}>
             <label htmlFor="user">E-mail</label>
             <input
               type="email"
@@ -58,7 +58,7 @@ function Login() {
               required
             />
           </div>
-          <div className={styles.inputGrouplogin}>
+          <div className={styles['inputGrouplogin']}>
             <label htmlFor="password">Senha</label>
             <input
               type="password"
@@ -69,12 +69,12 @@ function Login() {
               required
             />
           </div>
-          <button className={styles.btnLogin}>Entrar</button>
+          <button className={styles['btnLogin']}>Entrar</button>
         </form>
 
         {mensagem && (
           <div
-            className={`${styles.alerta} ${
+            className={`${styles['alerta']} ${
               tipoMensagem === "sucesso" ? styles.sucesso : styles.erro
             }`}
           >
@@ -82,7 +82,7 @@ function Login() {
           </div>
         )}
 
-        <Link to="/cadastro" className={styles.linklogin}>
+        <Link to="/cadastro" className={styles['linklogin']}>
           <i>Não tem conta? Cadastre-se</i>
         </Link>
       </div>

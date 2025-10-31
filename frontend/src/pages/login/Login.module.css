@@ -1,8 +1,11 @@
 :root {
-  --corum: #1E8449;
+  --corum: #1E8449 ;
   --cordois: #444444;
+  --cortres: #171717;
   --corquatro: #1CC206;
   --corcinco: #FFFFFF;
+  --lemonade: #b8ff00;
+  --electric: #03045E;
 }
 
 /* 🌍 Container centralizado */
@@ -11,7 +14,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url('/img.png') no-repeat center center fixed;
+  /* background: url('/img.png') no-repeat center center fixed; */
   background-size: cover;
   padding: 20px;
   box-sizing: border-box;
@@ -38,6 +41,7 @@
   top: -2rem;
   font-size: 2rem;
   margin-bottom: 25px;
+  color: var(--lemonade);
 }
 
 /* 🧾 Formulário */
@@ -164,6 +168,8 @@
 
   .titlelogin {
     font-size: 1.6rem;
+    position: relative;
+    top: 0rem;
   }
 
   .inputGrouplogin input {
@@ -173,7 +179,6 @@
   .btnLogin {
     font-size: 0.95rem;
     position: relative;
-    left: 4rem;
     top: 0.2rem;
   }
 
@@ -181,6 +186,7 @@
     font-size: 0.85rem;
     position: relative;
     left: 0.6rem;
+    top: 0.1rem;
   }
 
   .alerta {

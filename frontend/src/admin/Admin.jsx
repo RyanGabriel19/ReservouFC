@@ -1,6 +1,7 @@
 import styles from './Admin.module.css';
 import Btn from '../components/btn-adm/Btn.jsx';
 import {useEffect, useState} from 'react';
+import Headeradm from '../components/header-adm/headeradm.jsx';
 
 function Admin () {
 
@@ -17,8 +18,9 @@ useEffect(() => {
 
     return(
     <>
+    <Headeradm />
         <div className={styles["painel_controle"]}>
-            <h1>Painel de controle - ADM</h1>
+            <h1 className={styles['h1adm']}>Painel de controle - ADM</h1>
                         {/* estrutura de front para contagem de usuários */}
             <div className={styles["usercount"]}>
                 <h2 className={styles["numberuser"]}>{count}</h2>

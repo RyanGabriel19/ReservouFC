@@ -10,8 +10,11 @@ import Admin from './admin/Admin'
 import Perfil from './pages/conta/perfil/perfil'
 import Configuracoes from "./pages/conta/config/Configuracoes"
 import Campo from './admin/campos/Campos'
+import Agendamentoadm from './admin/agendamentosadm/Agendamentoadm'
+import GerenciarUsuarios from './admin/gerenciar/Gerenciar-adm'
 import { Protected } from './components/rotaProtected/Protected'
 import {ProtectedAdmin} from './components/rotaProtected/ProtectedAdmin';
+
 
 function App() {
 
@@ -36,7 +39,8 @@ function App() {
         //rota admin
         <Route path='/conta/admin' element={<ProtectedAdmin><Admin/></ProtectedAdmin>}></Route>
         <Route path='/conta/admin/campo' element={<ProtectedAdmin><Campo/></ProtectedAdmin>}></Route>
-
+        <Route path='/gerenciarusuarios' element={<ProtectedAdmin><GerenciarUsuarios/></ProtectedAdmin>}></Route>
+        <Route path='/agendamentoadm' element={<ProtectedAdmin><Agendamentoadm/></ProtectedAdmin>}></Route>
       </Routes>
     </BrowserRouter>
     </>

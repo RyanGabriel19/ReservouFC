@@ -61,3 +61,16 @@
     top: 20rem;
     left: 0rem;
 }
+@media (max-width: 430px) {
+  .campos_adm_btn,
+  .agendamento_adm_btn,
+  .gerenciar_adm_btn {
+    position: static;
+    display: block;
+    width: 100%;
+    margin: 1rem 0;
+    font-size: 1.4rem;
+    padding: 0.6rem 1rem;
+    text-align: center;
+  }
+}

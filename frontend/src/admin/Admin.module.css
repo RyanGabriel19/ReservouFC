@@ -16,7 +16,7 @@
     top: -5rem;
 }
 
-h1{
+.h1adm{
     margin-bottom: 10px;
     padding: 10px;
     position: relative;
@@ -34,7 +34,7 @@ h1{
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: var(--lemonade);
+    background-color: var(--cordois);
     color: rgb(255, 255, 255);
     cursor: pointer;
     font-size: 16px;
@@ -42,11 +42,11 @@ h1{
 }
 .option_painel{
     position: relative;
-    top: 9rem;
+    top: 4rem;
 }
 .usercount{
     position: relative;
-    top: 17rem;
+    top: 10rem;
     left: -24rem;
     font-size: 20px;
     margin-top: 10px;
@@ -56,9 +56,52 @@ h1{
 .numberuser{
     position: relative;
     left: 5.5rem;
-    color: var(--electric);
+    color: #FFFFFF;
 }
 .textuser{
     font-weight: bold;
-    color: var(--electric);
+    color: #FFFFFF;
+}
+@media (max-width: 430px) {
+  .painel_controle {
+    top: 0;
+    padding: 1rem;
+  }
+
+  .h1adm {
+    font-size: 1.8rem;
+    top: 3rem;
+    text-align: center;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .option_painel {
+    width: 100%;
+    height: auto;
+    font-size: 1rem;
+    padding: 1rem;
+    margin: 1rem 0;
+    top: 2rem;
+  }
+
+  .usercount {
+    position: static;
+    font-size: 1rem;
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .numberuser {
+    position: static;
+    display: block;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+
+  .textuser {
+    text-align: center;
+    display: block;
+    margin-top: 0.5rem;
+  }
 }
