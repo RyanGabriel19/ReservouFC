@@ -1,7 +1,7 @@
 # ReservouFC
 
 ## Link do Site (em construção):
-[ReservouFC](https://reservou-fc.vercel.app/)\
+[ReservouFC](https://reservou-fc.vercel.app/)
 
 Para que o repositório funcione no seu ambiente local, siga os próximos passos:
 
