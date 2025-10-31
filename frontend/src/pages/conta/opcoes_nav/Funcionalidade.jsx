@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { useState } from "react";
 import styles from './funcionalidade.module.css'
 import { Logout } from '../../../services/UsuarioService';
-import { getDecodedToken } from '../perfil/Perfil';
+import { getDecodedToken } from '../perfil/perfil';
 
 const user = getDecodedToken();
 function Funcionalidade(){

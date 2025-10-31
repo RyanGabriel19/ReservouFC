@@ -1,4 +1,4 @@
-import { getDecodedToken } from "../../pages/conta/perfil/Perfil";
+import { getDecodedToken } from "../../pages/conta/perfil/perfil";
 import { Navigate } from "react-router-dom";
 
 export function ProtectedAdmin({children}){
