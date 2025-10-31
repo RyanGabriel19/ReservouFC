@@ -6,7 +6,7 @@ const app = express()
 
 // https://reservou-fc.vercel.app
 //http://localhost:5173
-const allowedOrigin = 'https://reservou-fc.vercel.app';
+const allowedOrigin = process.env.ALLOWED_ORIGIN;
 
 const corsOptions = {
   origin: allowedOrigin
