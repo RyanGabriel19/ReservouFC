@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import styles from './Campos.module.css';
 import Headeradm from '../../components/header-adm/headeradm';
-import { CadastroQuadra } from '../../services/QuadraSerivce';
+import { CadastroQuadra } from '../../services/QuadraService';
 
 function Campo() {
   const [nome, setNome] = useState("");
