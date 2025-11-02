@@ -3,7 +3,6 @@ import { SelectLog,
      BuscarLogIdUsuario,
       BuscarLogId } from '../models/logModel.js';
 
-/
 export async function getLogs(req, res) {
     try {
         const logs = await SelectLog();

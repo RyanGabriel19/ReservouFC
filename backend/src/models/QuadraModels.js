@@ -7,7 +7,7 @@ export async function SelectQuadra(){
 
 export async function InsertQuadra(nome, localizacao, valor_hora){
     const [result] = await db.execute(
-        "INSERT INTO QUADRA(nome, localizacao, valor_hora, ativo, tipo) VALUES(?,?,?,?,?)",
+        "INSERT INTO QUADRA(nome, localizacao, valor_hora) VALUES(?,?,?)",
         [nome, localizacao, valor_hora]
     );
     return result.insertId
@@ -30,6 +30,6 @@ export async function UpdateQuadra(id, {nome, localizacao, valor_hora}){
 }
 
 export async function DeleteQuadra(id){
-    const [result] = await db.execute("DELET FROM QUADRA WHERE ID = ?", [id])
+    const [result] = await db.execute("DELETE FROM QUADRA WHERE ID = ?", [id])
     return result;
 }

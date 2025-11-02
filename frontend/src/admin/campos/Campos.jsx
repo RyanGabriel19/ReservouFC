@@ -31,7 +31,8 @@ function Campo() {
       Navigate("/admin")
       console.log("sucesso");
     }catch(err){
-      setMensagem("❌ erro ao cadastrar quadra" );
+      console.log(err)
+      setMensagem("❌ erro ao cadastrar quadra:" );
       setTipoMensagem("erro");
     }
     }

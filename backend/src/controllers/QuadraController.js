@@ -2,8 +2,8 @@ import {
     SelectQuadra,
     UpdateQuadra,
     InsertQuadra,
-    DeletQuadra
-} from "../models/QuadraModels"
+    DeleteQuadra
+} from "../models/QuadraModels.js"
 
 export async function getQuadra(req, res){
     try{
@@ -29,9 +29,9 @@ export async function putQuadra(req, res){
 }
 
 export async function postQuadra(req, res){
-    const {nome, localizacao, valor_hora, ativo, tipo} = req.body
+    const {nome, localizacao, valor_hora} = req.body
     try{
-        const {id} = await InsertQuadra(nome, localizacao, valor_hora, ativo, tipo);
+        const {id} = await InsertQuadra(nome, localizacao, valor_hora);
         return res.status(200).json({id, message: `Cadastro realizado com sucesso `})
     
     }catch(err){

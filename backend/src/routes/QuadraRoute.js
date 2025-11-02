@@ -3,7 +3,7 @@ import{
     getQuadra,
     postQuadra,
     putQuadra
-} from '../controllers/QuadraController';
+} from '../controllers/QuadraController.js';
 
 const router = express.Router();
 

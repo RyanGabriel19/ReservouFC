@@ -5,7 +5,7 @@ import {
     BuscarReservaUsuario,
     AtualizarReserva,
     CancelarReserva
-} from "../models/ReservaModels";
+} from "../models/ReservaModels.js";
 
 
 //buscar reserba
@@ -36,7 +36,7 @@ export async function getReservaId(req, res){
 export async function getReservaUsuario(req, res){
     try{
         const {usuario_id} = req.params;
-        const reservas = awai BuscarReservaUsuario(usuario_id);
+        const reservas = await BuscarReservaUsuario(usuario_id);
         res.json(reservas);
     }catch(err){
         res.status(500).json({error: err.message})
