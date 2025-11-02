@@ -27,7 +27,7 @@ function Header() {
             to="/agendamento" 
             className={({ isActive }) => (isActive ? styles.active : "")}
           >
-            Agendamento
+            Reserva
           </NavLink>
           
           <NavLink 
