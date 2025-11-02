@@ -8,8 +8,7 @@ const fields = [
   { id: 1, name: 'Campo 1', imageUrl: 'campo.png' },
   { id: 2, name: 'Campo 2', imageUrl: 'campo1.jpg' },
   { id: 3, name: 'Campo 3', imageUrl: 'campoo2.jpg' },
-  { id: 4, name: 'Campo 4', imageUrl: '/campo3.jpg' },
-  { id: 5, name: 'Campo 5', imageUrl: '/campo5.jpg' },
+  { id: 4, name: 'Campo 4', imageUrl: '/campo3.jpg' }
 ];
 
 const FieldCarousel = () => {
