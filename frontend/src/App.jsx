@@ -37,10 +37,10 @@ function App() {
         <Route path='/conta/configuracoes' element={<Protected><Configuracoes/></Protected>}></Route>
 
         //rota admin
-        <Route path='/conta/admin' element={<ProtectedAdmin><Admin/></ProtectedAdmin>}></Route>
-        <Route path='/conta/admin/campo' element={<ProtectedAdmin><Campo/></ProtectedAdmin>}></Route>
-        <Route path='/gerenciarusuarios' element={<ProtectedAdmin><GerenciarUsuarios/></ProtectedAdmin>}></Route>
-        <Route path='/agendamentoadm' element={<ProtectedAdmin><Agendamentoadm/></ProtectedAdmin>}></Route>
+        <Route path='/admin' element={<ProtectedAdmin><Admin/></ProtectedAdmin>}></Route>
+        <Route path='/admin/campo' element={<ProtectedAdmin><Campo/></ProtectedAdmin>}></Route>
+        <Route path='/admin/gerenciarUsuarios' element={<ProtectedAdmin><GerenciarUsuarios/></ProtectedAdmin>}></Route>
+        <Route path='/admin/agendamento' element={<ProtectedAdmin><Agendamentoadm/></ProtectedAdmin>}></Route>
       </Routes>
     </BrowserRouter>
     </>

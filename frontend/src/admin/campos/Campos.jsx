@@ -1,30 +1,40 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './Campos.module.css';
 import Headeradm from '../../components/header-adm/headeradm';
+import { CadastroQuadra } from '../../services/QuadraSerivce';
 
 function Campo() {
-  const [quadras, setQuadras] = useState([]);
-  const [novaQuadra, setNovaQuadra] = useState({
-    nome: '',
-    localizacao: '',
-    tipo: '',
-    preco: '',
-    ativa: true,
-    imagem: null,
-  });
+  const [nome, setNome] = useState("");
+  const [valor_hora, setValor_hora] = useState("");
+  const [localizacao, setLocalizacao] = useState("");
+  const [mensagem, setMensagem] = useState("");
+  const [tipoMensagem, setTipoMensagem] = useState("");
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+      if (mensagem) {
+        const timer = setTimeout(() => {
+          setMensagem("");
+          setTipoMensagem("");
+        }, 3000);
+        return () => clearTimeout(timer);
+      }
+    }, [mensagem]);
+ 
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setQuadras([...quadras, novaQuadra]);
-    setNovaQuadra({
-      nome: '',
-      localizacao: '',
-      tipo: '',
-      preco: '',
-      ativa: true,
-      imagem: null,
-    });
-  };
+    const dados = {nome, valor_hora, localizacao};
+    try{
+      const resultado = await CadastroQuadra({nome, valor_hora, localizacao});
+      setMensagem("✅ Quadra cadastrada com sucesso" );
+      setTipoMensagem("sucesso");
+      Navigate("/admin")
+      console.log("sucesso");
+    }catch(err){
+      setMensagem("❌ erro ao cadastrar quadra" );
+      setTipoMensagem("erro");
+    }
+    }
 
   const handleToggle = (index) => {
     const atualizadas = [...quadras];
@@ -50,8 +60,8 @@ function Campo() {
             type="text"
             id="nomecampo"
             name="nomecampo"
-            value={novaQuadra.nome}
-            onChange={(e) => setNovaQuadra({ ...novaQuadra, nome: e.target.value })}
+            value={nome}
+            onChange={(e) => setNome( e.target.value )}
             required
           />
 
@@ -60,23 +70,13 @@ function Campo() {
             type="text"
             id="localizacao"
             name="localizacao"
-            value={novaQuadra.localizacao}
-            onChange={(e) => setNovaQuadra({ ...novaQuadra, localizacao: e.target.value })}
+            value={localizacao}
+            onChange={(e) => setLocalizacao(e.target.value )}
             required
           />
 
-          <label htmlFor="tipo">Tipo de Quadra:</label>
-          <select
-            id="tipo"
-            name="tipo"
-            value={novaQuadra.tipo}
-            onChange={(e) => setNovaQuadra({ ...novaQuadra, tipo: e.target.value })}
-            required
-          >
-            <option value="">Selecione</option>
-            <option value="society">Society</option>
-            <option value="futsal">Futsal</option>
-          </select>
+          
+          
 
           <label htmlFor="preco">Preço por Hora (R$):</label>
           <input
@@ -84,16 +84,28 @@ function Campo() {
             id="preco"
             name="preco"
             step="0.01"
-            value={novaQuadra.preco}
-            onChange={(e) => setNovaQuadra({ ...novaQuadra, preco: e.target.value })}
+            value={valor_hora}
+            onChange={(e) => setValor_hora(e.target.value )}
             required
           />
 
           <button type="submit" className={styles.submitbtn}>Cadastrar Quadra</button>
+           {mensagem && (
+                    <div className={`${styles['alerta']}
+                     ${tipoMensagem === "sucesso" ? styles.sucesso : styles.erro}`}>
+                      {mensagem}
+                      </div> 
+                      )}
         </form>
       </div>
+          </div>
+    </>
+  );
+}
 
-      {/* 🏟️ Lista de quadras cadastradas */}
+export default Campo;
+
+      {/* 🏟️ Lista de quadras cadastradas
       <div className={styles.listaQuadras}>
         {quadras.map((quadra, index) => (
           <div key={index} className={styles.quadraCard}>
@@ -111,13 +123,8 @@ function Campo() {
             </button>
           </div>
         ))}
-      </div>
-    </div>
-    </>
-  );
-}
+      </div> */}
 
-export default Campo;
 
 
 

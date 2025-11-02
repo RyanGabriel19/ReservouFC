@@ -106,3 +106,28 @@
     font-size: 14px;
   }
 }
+.alerta {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 16px 24px;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 500;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  animation: aparecer 0.3s ease-in-out;
+  z-index: 1000;
+  max-width: 90%;
+  word-wrap: break-word;
+  text-align: center;
+}
+
+/* Verde (sucesso) */
+.sucesso {
+  background-color: #28a745;
+}
+
+/* Vermelho (erro) */
+.erro {
+  background-color: #dc3545;
+}

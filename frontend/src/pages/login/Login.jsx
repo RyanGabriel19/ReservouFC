@@ -2,8 +2,11 @@ import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import styles from "./Login.module.css";
 import { LoginUsuario } from "../../services/UsuarioService";
+import { getDecodedToken } from "../conta/perfil/perfil";
 
 function Login() {
+ 
+
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [mensagem, setMensagem] = useState("");
@@ -26,18 +29,27 @@ function Login() {
 
     try {
       const resultado = await LoginUsuario({email, senha});
-      setMensagem("✅ Login realizado com sucesso!");
-      setTipoMensagem("sucesso");
       
-      // aqui você pode salvar o token
-      // localStorage.setItem("token", resultado.token);
-      // Importe a variável de ambiente no topo do seu arquivo de Login
+      
+      
+ 
       const TOKEN_KEY_NAME = import.meta.env.VITE_TOKEN_KEY_NAME;
       localStorage.setItem(TOKEN_KEY_NAME, resultado.token);
 
-      setTimeout(() => navigate("/home"), 1000);
+      setMensagem("✅ Login realizado com sucesso!");
+      setTipoMensagem("sucesso");
+
+
+      const user = getDecodedToken();
+
+      if(user.tipo === "c"){
+        setTimeout(() => navigate("/home"), 1000);
+      }if(user.tipo === "a"){
+      setTimeout(() => navigate("/admin"), 1000);
+      }
+
     } catch (err) {
-      setMensagem("❌ " + err.message);
+      setMensagem("❌ erro ao fazer login" );
       setTipoMensagem("erro");
     }
   };
