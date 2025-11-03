@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import styles from './funcionalidade.module.css'
 import { Logout } from '../../../services/UsuarioService';
@@ -6,19 +6,26 @@ import { getDecodedToken } from '../perfil/perfil';
 
 
 function Funcionalidade(){
-
-    
-   
+    // hook 'useNavigate' para pegar a função de navegação
+    const navigate = useNavigate();
     const [active, setActive] = useState("/conta"); 
     
+    // função local para lidar com o clique no botão Sair
+    const handleSairClick = (e) => {
+        e.preventDefault(); 
+        Logout();
+
+        setTimeout(() => {
+            navigate('/login');
+        }, 500);
+    }
+
     return(
         <div className={styles.container}> 
         
             <div className={styles.box}>
                 
-              
                 <ul className={styles.menuList}> 
-                    
                    
                     <li className={styles.listItem}>
                         <NavLink 
@@ -49,18 +56,11 @@ function Funcionalidade(){
                             Segurança
                         </NavLink>
                     </li>
-
                     
                         <li className={styles.listItem}>
                         <NavLink
                             to="#" 
-                            onClick = {(e) =>{
-                                e.preventDefault;
-                                Logout();
-                               
-                            } 
-
-                            }
+                            onClick = {handleSairClick}
                         >
                             Sair
                         </NavLink>
