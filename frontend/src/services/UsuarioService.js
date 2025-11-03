@@ -38,9 +38,10 @@ export function Logout(){
     try{
         localStorage.removeItem(`${import.meta.env.VITE_TOKEN_KEY_NAME}`)
         
-        setTimeout(()=>{
-            window.location.href = '/login';
-        }, 1000);
+        // Testando passar isso direto para o headeradm.jsx nos components
+        // setTimeout(()=>{
+        //     window.location.href = '/login';
+        // }, 1000);
          
     } catch(err){
         console.log("erro ao sair da conta ", err)
