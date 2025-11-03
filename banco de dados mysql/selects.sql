@@ -1,5 +1,5 @@
 -- use dbReservouFC;
-SET time_zone = '-03:00'; -- Ajustar horário para o log
+SET time_zone = '-03:00'; -- Ajustar horário
 select * from USUARIO;
 select * from LOG;
 select * from QUADRA;

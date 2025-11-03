@@ -39,7 +39,7 @@ export function Logout(){
         localStorage.removeItem(`${import.meta.env.VITE_TOKEN_KEY_NAME}`)
         
         setTimeout(()=>{
-            window.location.href = '\login';
+            window.location.href = '/login';
         }, 1000);
          
     } catch(err){
