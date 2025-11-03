@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './Campos.module.css';
 import Headeradm from '../../components/header-adm/headeradm';
 import { CadastroQuadra } from '../../services/QuadraService';
@@ -10,6 +11,7 @@ function Campo() {
   const [mensagem, setMensagem] = useState("");
   const [tipoMensagem, setTipoMensagem] = useState("");
 
+  const navigate = useNavigate();
   useEffect(() => {
       if (mensagem) {
         const timer = setTimeout(() => {
@@ -28,7 +30,7 @@ function Campo() {
       const resultado = await CadastroQuadra({nome, valor_hora, localizacao});
       setMensagem("✅ Quadra cadastrada com sucesso" );
       setTipoMensagem("sucesso");
-      Navigate("/admin")
+      navigate("/admin")
       console.log("sucesso");
     }catch(err){
       console.log(err)
