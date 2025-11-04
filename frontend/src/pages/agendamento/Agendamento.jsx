@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "./Agendamento.module.css";
+import styles from "./Reserva.module.css";
 import Header from "../../components/header/Header";
 import { quadraConsultar } from "../../services/QuadraService";
 import { useNavigate } from "react-router-dom";
