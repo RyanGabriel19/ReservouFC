@@ -29,7 +29,7 @@ function Funcionalidade(){
                    
                     <li className={styles.listItem}>
                         <NavLink 
-                            to="/conta" 
+                            to="/conta/perfil" 
                             className={({ isActive }) => (isActive ? styles.active : "")}
                             end={true}
                         >
@@ -58,17 +58,17 @@ function Funcionalidade(){
                     </li>
                      <li className={styles.listItem}>
                         <NavLink 
-                            to="/semrota" 
+                            to="/conta/historico" 
                             className={({ isActive }) => (isActive ? styles.active : "")}
                             end={false}
                         >
-                            Reservas
+                            Histórico de Reservas
                         </NavLink>
                     </li>
 
                      <li className={styles.listItem}>
                         <NavLink 
-                             to="/semrota"
+                             to="/conta/sorteador"
                             className={({ isActive }) => (isActive ? styles.active : "")}
                             
                         >

@@ -17,7 +17,11 @@ function Headeradm() {
   return (
     <header className={styles["header"]}>
         <div className={styles["logo"]}>
-        <img src="/fc.png" alt="Reservou FC Logo" className={styles.img} />  
+        {/* <img src="/fc.png" alt="Reservou FC Logo" className={styles.img} />   */}
+        <NavLink 
+        to="/admin">
+          <img src="/fc.png" alt="Reservou FC Logo" className={styles.logo} />
+        </NavLink>
         
       </div>
       <nav className={styles["navegacao"]}>
