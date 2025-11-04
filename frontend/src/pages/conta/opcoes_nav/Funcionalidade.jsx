@@ -39,7 +39,7 @@ function Funcionalidade(){
                         
                     <li className={styles.listItem}>
                         <NavLink 
-                            to="/conta/configuracoes" // Rota preenchida
+                            to="/conta/configuracoes"
                             className={({ isActive }) => (isActive ? styles.active :"")}
                             end={true}
                         >
@@ -49,11 +49,30 @@ function Funcionalidade(){
                         
                     <li className={styles.listItem}>
                         <NavLink 
-                            to="/conta/seguranca" // Rota preenchida
+                            to="/conta/seguranca" 
                             className={({ isActive }) => (isActive ? styles.active : "")}
                             end={true}
                         >
                             Segurança
+                        </NavLink>
+                    </li>
+                     <li className={styles.listItem}>
+                        <NavLink 
+                            to="/semrota" 
+                            className={({ isActive }) => (isActive ? styles.active : "")}
+                            end={false}
+                        >
+                            Reservas
+                        </NavLink>
+                    </li>
+
+                     <li className={styles.listItem}>
+                        <NavLink 
+                             to="/semrota"
+                            className={({ isActive }) => (isActive ? styles.active : "")}
+                            
+                        >
+                            Sorteador de time
                         </NavLink>
                     </li>
                     

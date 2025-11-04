@@ -24,7 +24,7 @@ export async function criarReserva({ quadra_id, usuario_id, data_hora, duracao_m
 
     const [result] = await db.execute(
         `INSERT INTO RESERVA (quadra_id, usuario_id, data_hora, duracao_min, valor, status)
-         VALUES (?, ?, ?, ?, ?)`,
+         VALUES (?, ?, ?, ?, ?, ?)`,
         [quadra_id, usuario_id, data_hora, duracao_min || 60, valor || 0.0, 'PENDENTE']
     );
 
