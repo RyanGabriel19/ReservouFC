@@ -141,4 +141,9 @@ button.sair{
   .active {
     font-size: 1.1rem;
   }
+  .navegacao{
+    width: 100%;
+    border-radius: 10px;
+    background-color: var(--lemonade);
+  }
 }
