@@ -137,9 +137,7 @@ export default function Agendamento() {
             <p>
               <strong>Valor:</strong> R$ {quadraSelecionada.valor_hora}
             </p>
-            <p>
-              <strong>Valor:</strong> R$ {quadraSelecionada.duracao_min}
-            </p>
+            
 
             <form onSubmit={handleSubmit}>
               <label>Data e Hora:</label>
