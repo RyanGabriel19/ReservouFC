@@ -49,3 +49,25 @@ export function Logout(){
 
     }
 }
+
+export async function ConsultarUsuario(id) {
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/usuarios/consultar/${id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const resultado = await response.json();
+    if (!response.ok)
+      throw new Error(resultado.error || "Erro ao consultar usuário");
+
+    return resultado;
+  } catch (err) {
+    throw err;
+  }
+}

@@ -13,6 +13,7 @@ export default function Agendamento() {
   const navigate = useNavigate();
   const [quadraSelecionada, setQuadraSelecionada] = useState(null);
 
+  const hora = ["19:00", "20:30", "22:00", "23:30"];
   // Modal
   const [modalAberto, setModalAberto] = useState(false);
 
@@ -27,7 +28,7 @@ export default function Agendamento() {
   const [quadra_id, setQuadra_id] = useState("");
   const [usuario_id, setUsuario_id] = useState(user.id);
   const [data_hora, setData_hora] = useState("");
-  const [duracao_min, setDuracao_min] = useState("90");
+  const [duracao_min, setDuracao_min] = useState(90);
   const [valor, setValor] = useState("");
 
   // Abrir modal
@@ -135,6 +136,9 @@ export default function Agendamento() {
             </p>
             <p>
               <strong>Valor:</strong> R$ {quadraSelecionada.valor_hora}
+            </p>
+            <p>
+              <strong>Valor:</strong> R$ {quadraSelecionada.duracao_min}
             </p>
 
             <form onSubmit={handleSubmit}>

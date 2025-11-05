@@ -30,3 +30,19 @@ export async function quadraConsultar() {
     throw error;
   }
 }
+
+export async function quadraConsultarID(id) {
+  try {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/quadra/consultar/${id}`);
+    
+    if (!response.ok) {
+      throw new Error(`Erro HTTP: ${response.status}`);
+    }
+
+    const data = await response.json(); // ✅ transforma a resposta em JSON
+    return data; // ✅ retorna os dados corretamente
+  } catch (error) {
+    console.error("Erro ao buscar quadras:", error);
+    throw error;
+  }
+}

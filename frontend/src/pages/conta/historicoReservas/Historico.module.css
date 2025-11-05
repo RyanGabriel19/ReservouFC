@@ -1,0 +1,100 @@
+:root {
+  --corum: #1E8449;
+  --cordois: #444444;
+  --cortres: #171717;
+  --corquatro: #1CC206;
+  --corcinco: #FFFFFF;
+  --lemonade: #B8FB3C;
+  --electric: #03045E;
+  --azulEscuro: #0b0c2a;
+}
+
+/* ======== CONTAINER PRINCIPAL ======== */
+.container {
+  background-color: transparent;
+
+  /* Mantém o conteúdo centralizado */
+  min-height: auto;
+  padding: 1rem 2rem;
+  color: var(--corcinco);
+
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+
+  /* Sobe o conteúdo suavemente */
+  margin-top: -600px; /* Ajuste o valor conforme quiser */
+
+}
+/* ======== CARD DE RESERVA ======== */
+.card {
+  background:  linear-gradient(145deg, #0b0c2a, #13153d);
+ border-left: 4px solid var(--lemonade);
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+
+/* ======== TÍTULOS E TEXTOS ======== */
+.card h3 {
+  color: #FFFFFF;
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+  
+}
+
+.data{
+  color: #FFFFFF;
+  font-size: 1rem;
+  margin: 0.3rem 0;
+  display: flex;
+  text-align: left;
+}
+
+/* ======== STATUS ======== */
+.status {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  color: var(--corquatro);
+  margin-top: 0.7rem;
+}
+
+
+/* ======== MENSAGEM DE ERRO ======== */
+.container p {
+  font-size: 1.1rem;
+  color: var(--lemonade);
+  text-align: center;
+}
+.status::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background-color: var(--corquatro);
+  border-radius: 50%;
+  margin-right: 8px;
+  box-shadow: 0 0 6px var(--corquatro);
+}
+
+/* ======== RESPONSIVIDADE ======== */
+@media (max-width: 600px) {
+  .card {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .card h3 {
+    font-size: 1.1rem;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+  }
+}

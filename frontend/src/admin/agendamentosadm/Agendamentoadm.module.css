@@ -6,6 +6,8 @@
   --corcinco: #FFFFFF;
   --lemonade: #b8ff00;
   --electric: #03045E;
+  font-family: "inter", monospace;
+  
 }
 
 .containe-agend-adm{
@@ -70,3 +72,17 @@
   }
 }
 
+.button{
+  padding: 10px;
+  font-size: 1.2rem;
+  border: #1E8449;
+  background-color:var(--lemonade);
+  border-radius: 6px; 
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.button:hover{
+    transform: scale(1.05);
+}

@@ -53,6 +53,9 @@ export async function AtualizarReserva(id, { data_hora, duracao_min, status }) {
             if (!disponivel) throw new Error("Novo horário não disponível");
         }
     }
+    data_hora = data_hora ?? null;
+    duracao_min = duracao_min ?? null;
+    status = status ?? null;
 
     await db.execute(
         `UPDATE RESERVA SET 

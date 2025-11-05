@@ -4,6 +4,10 @@ export async function SelectQuadra(){
     const [rows] = await db.query("SELECT * FROM QUADRA")
     return rows;
 }
+export async function SelectQuadraID(id){
+    const [rows] = await db.query("SELECT * FROM QUADRA WHERE ID = ?", [id])
+    return rows[0];
+}
 
 export async function InsertQuadra(nome, localizacao, valor_hora){
     const [result] = await db.execute(

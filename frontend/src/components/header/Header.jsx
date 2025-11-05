@@ -31,7 +31,7 @@ function Header() {
           </NavLink>
           
           <NavLink 
-            to="/conta/perfil" 
+            to="/conta" 
             className={({ isActive }) => (isActive ? styles.active : "")}
             end={false}
           >

@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import styles from './funcionalidade.module.css'
 import { Logout } from '../../../services/UsuarioService';
-import { getDecodedToken } from '../perfil/perfil';
+
 
 
 function Funcionalidade(){
@@ -29,7 +29,7 @@ function Funcionalidade(){
                    
                     <li className={styles.listItem}>
                         <NavLink 
-                            to="/conta/perfil" 
+                            to="/conta" 
                             className={({ isActive }) => (isActive ? styles.active : "")}
                             end={true}
                         >
@@ -41,7 +41,7 @@ function Funcionalidade(){
                         <NavLink 
                             to="/conta/configuracoes"
                             className={({ isActive }) => (isActive ? styles.active :"")}
-                            end={true}
+                            
                         >
                             Configurações
                         </NavLink>
@@ -51,7 +51,7 @@ function Funcionalidade(){
                         <NavLink 
                             to="/conta/seguranca" 
                             className={({ isActive }) => (isActive ? styles.active : "")}
-                            end={true}
+                            
                         >
                             Segurança
                         </NavLink>
@@ -60,7 +60,7 @@ function Funcionalidade(){
                         <NavLink 
                             to="/conta/historico" 
                             className={({ isActive }) => (isActive ? styles.active : "")}
-                            end={false}
+                            
                         >
                             Histórico de Reservas
                         </NavLink>
