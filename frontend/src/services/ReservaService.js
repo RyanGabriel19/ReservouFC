@@ -69,3 +69,29 @@ export async function ConfirmarReserva(id) {
     throw error;
   }
 }
+export function formatarData(dataISO) {
+  const data = new Date(dataISO);
+  return data.toLocaleString("pt-BR");
+}
+
+export async function CancelarReserva(id) {
+  try {
+  
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/reservas/atualizar/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ status: "CANCELADO"}),
+    });
+
+    const resultado = await response.json();
+
+    if (!response.ok) throw new Error(resultado.error || "Erro ao atualizar reserva");
+
+    return resultado;
+  } catch (error) {
+    console.error("Erro ao atualizar reserva:", error);
+    throw error;
+  }
+}

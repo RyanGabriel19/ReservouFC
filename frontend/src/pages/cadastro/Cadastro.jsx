@@ -69,10 +69,11 @@ function Cadastro() {
           <div className={styles['inputGroupcadastro']}>
             <label htmlFor="telefone">Telefone</label>
             <input
-              type="number"
+              type="tel"
               id="telefone"
               value={telefone}
               onChange={(e) => setTelefone(e.target.value)}
+              maxLength={11}
               required
             />
           </div>

@@ -105,7 +105,7 @@ const FieldCarousel = () => { const [quadras, setQuadras] = useState([]);
                     />
                     <h3 className={styles.fieldName}>{q.nome}</h3>
                     <p>{q.endereco}</p>
-                    <span className={styles.viewButton}onClick={() => navigate("/agendamento")}>Ver detalhes</span>
+                    <span className={styles.viewButton}onClick={() => navigate("/reserva")}>Ver detalhes</span>
                   </div>
                 </div>
               ))}

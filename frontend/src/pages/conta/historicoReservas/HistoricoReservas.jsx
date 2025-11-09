@@ -3,9 +3,8 @@ import Funcionalidade from "../opcoes_nav/Funcionalidade";
 import styles from "./Historico.module.css"
 import { getDecodedToken } from "../perfil/perfil";
 import { useEffect, useState } from "react";
-import { UsuarioReserva } from "../../../services/ReservaService";
-
-
+import { formatarData, UsuarioReserva } from "../../../services/ReservaService";
+import { quadraConsultarID } from "../../../services/QuadraService";
 
 
 function HistoricoReservas(){
@@ -14,18 +13,31 @@ const user = getDecodedToken();
 const [reservas, setReservas] = useState([]);
 const [erro, setErro] = useState("");
 
-useEffect(()=>{
-    
-    async function carregarReservas(){
-        try{
-            const data = await UsuarioReserva(user.id);
-            setReservas(data);
-        }catch(err){
-            setErro("erro ao consultar reservas")
-        }
+useEffect(() => {
+  async function carregarReservas() {
+    try {
+      const data = await UsuarioReserva(user.id);
+
+      const reservasComDetalhes = await Promise.all(
+        data.map(async (r) => {
+          const quadra = await quadraConsultarID(r.quadra_id);
+
+          return {
+            ...r,
+            nome_quadra: quadra.nome,
+          };
+        })
+      );
+
+      setReservas(reservasComDetalhes);
+    } catch (err) {
+      console.error(err);
+      setErro("Erro ao consultar reserva");
     }
-    carregarReservas();
-}, []);
+  }
+
+  carregarReservas();
+}, [user.id]);
         return(
         <>
       <Header />
@@ -37,8 +49,9 @@ useEffect(()=>{
         ) : (
           reservas.map((r) => (
             <div key={r.id} className={styles.card}>
-              <h3>ID DA RESERVA: {r.id}</h3>
-              <p className={styles.data}>DATA E HORA DA RESERVA: {r.criado_em}</p>
+              <h3>Reserva da: {r.nome_quadra}</h3>
+              <p className={styles.data}>ID DA RESERVA: {r.id}</p>
+              <p className={styles.data}>DATA E HORA DA RESERVA: {formatarData(r.criado_em)}</p>
               <p className={styles.status}>STATUS DA RESERVA: {r.status}</p>
             </div>
           ))
