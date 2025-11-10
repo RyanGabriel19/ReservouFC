@@ -3,7 +3,7 @@ import Funcionalidade from "../opcoes_nav/Funcionalidade";
 import styles from "./Historico.module.css"
 import { getDecodedToken } from "../perfil/perfil";
 import { useEffect, useState } from "react";
-import { formatarData, UsuarioReserva } from "../../../services/ReservaService";
+import { formatarData, UsuarioReserva, HoraCorreta } from "../../../services/ReservaService";
 import { quadraConsultarID } from "../../../services/QuadraService";
 
 
@@ -51,7 +51,8 @@ useEffect(() => {
             <div key={r.id} className={styles.card}>
               <h3>Reserva da: {r.nome_quadra}</h3>
               <p className={styles.data}>ID DA RESERVA: {r.id}</p>
-              <p className={styles.data}>DATA E HORA DA RESERVA: {formatarData(r.criado_em)}</p>
+              <p className={styles.data}>RESERVA CRIADA EM: {HoraCorreta(r.criado_em)}</p>
+              <p className={styles.data}>DATA E HORA DA RESERVA: {formatarData(r.data_hora)}</p>
               <p className={styles.status}>STATUS DA RESERVA: {r.status}</p>
             </div>
           ))

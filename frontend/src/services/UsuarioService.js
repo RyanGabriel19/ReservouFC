@@ -33,6 +33,23 @@ export async function LoginUsuario(dados){
       throw err;
   }
 }
+export async function AtualizarUsuario(id, dados){
+  try{
+    console.log("Enviando dados:", dados);
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/usuarios/atualizar/${id}`,{
+      method: "PUT",
+      headers:  { "Content-Type": "application/json" },
+      body: JSON.stringify(dados)
+
+    }); 
+    const resultado = await response.json();
+    if(!response.ok) throw new Error(resultado.error || "Erro ao atualizar dados");
+      return resultado;
+  } catch(err){
+      throw err;
+  }
+  
+}
 
 export function Logout(){
     try{

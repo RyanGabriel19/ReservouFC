@@ -69,10 +69,39 @@ export async function ConfirmarReserva(id) {
     throw error;
   }
 }
+//usar para datas criadas por usuario
 export function formatarData(dataISO) {
   const data = new Date(dataISO);
-  return data.toLocaleString("pt-BR");
+  return data.toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo", // converte de UTC para horário local
+    hour12: false,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit"
+  }).replace(",", " às");
 }
+
+//usar para formatar datas e horas criada pelo sistema
+export function HoraCorreta(dataISO){
+  
+  const data = new Date(dataISO);
+
+  // Corrige o fuso (ajusta para o horário local do Brasil)
+  // UTC-3 → subtrai 3 horas
+  data.setHours(data.getHours() - 3);
+
+  // Formata sem mostrar os segundos
+  return data.toLocaleString("pt-BR", {
+    hour12: false,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
+
 
 export async function CancelarReserva(id) {
   try {
