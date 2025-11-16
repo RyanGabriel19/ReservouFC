@@ -58,11 +58,11 @@
 .buttonPaymente {
   padding: 12px 20px;
   font-size: 1.1rem;
-  color: #000;
-  background: linear-gradient(145deg, var(--lemonade), #a6e600); /* degrade leve */
+ color: #fff;
+  background: linear-gradient(145deg, var(--lemonade), #91c904); /* degrade leve */
   border: none;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(180, 255, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.2);
+  
   cursor: pointer;
   transition: all 0.25s ease-in-out;
   font-weight: 700;
@@ -73,7 +73,7 @@
 
 .buttonPaymente:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 14px rgba(180, 255, 0, 0.5), 0 4px 6px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 6px 14px rgba(180, 255, 0, 0.5), 0 4px 2px rgba(0, 0, 0, 0.25);
   background: linear-gradient(145deg, #d8ff4d, #b8ff00);
 }
 

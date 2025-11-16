@@ -137,8 +137,12 @@ export default function Agendamento() {
             <p>
               <strong>Valor:</strong> R$ {quadraSelecionada.valor_hora}
             </p>
-            
+            <p><strong>Duração (minutos):</strong>{duracao_min} min</p>
+           <br></br>
 
+           
+            
+         
             <form onSubmit={handleSubmit}>
               <label>Data e Hora:</label>
               <input
@@ -147,14 +151,8 @@ export default function Agendamento() {
                 value={data_hora}
                 onChange={(e) => setData_hora(e.target.value)}
               />
-
-              <label>Duração (minutos):</label>
-              <input
-                type="number"
-                className={styles.input}
-                value={duracao_min}
-                onChange={(e) => setDuracao_min(e.target.value)}
-              />
+            
+            
 
               <div className={styles.modalButtons}>
                 <button
@@ -169,6 +167,7 @@ export default function Agendamento() {
                 </button>
               </div>
             </form>
+            
 
             {mensagem && (
               <p

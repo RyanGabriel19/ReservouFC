@@ -38,28 +38,46 @@ useEffect(() => {
 
   carregarReservas();
 }, [user.id]);
-        return(
-        <>
+
+  const StatusLabel = ({ status }) => {
+    const classes = {
+      CONFIRMADO: styles.confirmado,
+      CANCELADO: styles.cancelado,
+      PENDENTE: styles.pendente,
+    };
+
+    return <span className={classes[status] || styles.status}>{status}</span>;
+  };
+
+  return (
+    <>
       <Header />
       <Funcionalidade />
+
       <div className={styles.container}>
-        {erro && <p style={{ color: "red" }}>{erro}</p>}
+        {erro && <p className={styles.erro}>{erro}</p>}
+
         {reservas.length === 0 ? (
-          <p>Nenhuma reserva encontrada</p>
+          <p className={styles.erro}>Nenhuma reserva encontrada</p>
         ) : (
           reservas.map((r) => (
             <div key={r.id} className={styles.card}>
               <h3>Reserva da: {r.nome_quadra}</h3>
+
               <p className={styles.data}>ID DA RESERVA: {r.id}</p>
               <p className={styles.data}>RESERVA CRIADA EM: {HoraCorreta(r.criado_em)}</p>
               <p className={styles.data}>DATA E HORA DA RESERVA: {formatarData(r.data_hora)}</p>
-              <p className={styles.status}>STATUS DA RESERVA: {r.status}</p>
+
+              <p className={styles.status}>
+                STATUS DA RESERVA: <StatusLabel status={r.status} />
+              </p>
+              
             </div>
           ))
         )}
       </div>
     </>
-    )
+  );
 }
 
 export default HistoricoReservas;
