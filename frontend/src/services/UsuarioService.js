@@ -33,18 +33,58 @@ export async function LoginUsuario(dados){
       throw err;
   }
 }
+export async function AtualizarUsuario(id, dados){
+  try{
+    console.log("Enviando dados:", dados);
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/usuarios/atualizar/${id}`,{
+      method: "PUT",
+      headers:  { "Content-Type": "application/json" },
+      body: JSON.stringify(dados)
+
+    }); 
+    const resultado = await response.json();
+    if(!response.ok) throw new Error(resultado.error || "Erro ao atualizar dados");
+      return resultado;
+  } catch(err){
+      throw err;
+  }
+  
+}
 
 export function Logout(){
     try{
         localStorage.removeItem(`${import.meta.env.VITE_TOKEN_KEY_NAME}`)
         
-        setTimeout(()=>{
-            window.location.href = '\login';
-        }, 1000);
+        // Testando passar isso direto para o headeradm.jsx nos components
+        // setTimeout(()=>{
+        //     window.location.href = '/login';
+        // }, 1000);
          
     } catch(err){
         console.log("erro ao sair da conta ", err)
         throw err;
 
     }
+}
+
+export async function ConsultarUsuario(id) {
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/usuarios/consultar/${id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const resultado = await response.json();
+    if (!response.ok)
+      throw new Error(resultado.error || "Erro ao consultar usuário");
+
+    return resultado;
+  } catch (err) {
+    throw err;
+  }
 }

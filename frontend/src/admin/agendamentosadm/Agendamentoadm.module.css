@@ -6,6 +6,8 @@
   --corcinco: #FFFFFF;
   --lemonade: #b8ff00;
   --electric: #03045E;
+  font-family: "inter", monospace;
+  
 }
 
 .containe-agend-adm{
@@ -26,20 +28,103 @@
     font-size: 40px;
     
 }
-.tabela-agend-adm{
-    width: 80rem;
-    margin-top: 4rem;
-    border-radius: 8px;
-    background-color: var(--cordois);
-    padding: 2rem;
-    color: white;
-    font-size: 1.6rem;
+.tabela-agend-adm {
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 2rem;
+  border-radius: 8px;
+  background-color: var(--cordois);
+  padding: 1rem;
+  color: white;
+  font-size: 1.2rem;
+  box-sizing: border-box;
+  overflow-x: auto; /* 🔥 Se a tabela for maior, rola só dentro dela */
 }
-.tabela-agend-adm th, .tabela-agend-adm td{
-    padding: 1rem 2rem;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+
+.tabela-agend-adm table {
+  width: 100%;
+  border-collapse: collapse;
 }
+
+.tabela-agend-adm th,
+.tabela-agend-adm td {
+  padding: 0.8rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  word-wrap: break-word; /* 🔥 Quebra linhas longas */
+  white-space: normal; /* 🔥 Evita largura extra */
+}
+
+.buttonPaymente {
+  padding: 12px 20px;
+  font-size: 1.1rem;
+ color: #fff;
+  background: linear-gradient(145deg, var(--lemonade), #91c904); /* degrade leve */
+  border: none;
+  border-radius: 10px;
+  
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.buttonPaymente:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(180, 255, 0, 0.5), 0 4px 2px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(145deg, #d8ff4d, #b8ff00);
+}
+
+
+.ButtonCancelar {
+  padding: 12px 20px;
+  font-size: 1.1rem;
+  color: #fff;
+  background: linear-gradient(145deg, #ff4d4d, #d93030); /* degrade leve */
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(255, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.ButtonCancelar:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(255, 0, 0, 0.5), 0 4px 6px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(145deg, #ff5c5c, #e63232);
+}
+
+.buttonConfirm {
+  padding: 12px 20px;
+  font-size: 1.1rem;
+  color: #fff;
+  background: linear-gradient(145deg, var(--corquatro), #1d8c3a); /* degrade leve */
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 128, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.buttonConfirm:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 128, 0, 0.5), 0 4px 6px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(145deg, #2ecb5f, #1d9f44);
+}
+
+
+
+
 @media (max-width: 430px) {
   .containe-agend-adm {
     top: 2rem;
@@ -70,3 +155,17 @@
   }
 }
 
+.button{
+  padding: 10px;
+  font-size: 1.2rem;
+  border: #1E8449;
+  background-color:var(--lemonade);
+  border-radius: 6px; 
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.button:hover{
+    transform: scale(1.05);
+}

@@ -13,7 +13,7 @@ function Home () {
 
   const handleAgendamentoClick = () => {
  
-    navigate('/agendamento');
+    navigate('/reserva');
   };
     
   

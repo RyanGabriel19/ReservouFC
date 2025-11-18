@@ -42,8 +42,8 @@
 
 @keyframes floatIn {
   from {
-    transform: translateX(100px);
-    opacity: 0;
+    transform: translateX(5px);
+    opacity: 0.5;
   }
   to {
     transform: translateX(0);

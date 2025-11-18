@@ -2,7 +2,8 @@ import {
     SelectQuadra,
     UpdateQuadra,
     InsertQuadra,
-    DeleteQuadra
+    DeleteQuadra,
+    SelectQuadraID
 } from "../models/QuadraModels.js"
 
 export async function getQuadra(req, res){
@@ -11,6 +12,16 @@ export async function getQuadra(req, res){
         res.json(quadras);
     } catch(err){
         err.status(500).json({error: err.message})
+
+    }
+}
+export async function getQuadraID(req, res){
+    try{
+        const { id } = req.params;
+        const quadras = await SelectQuadraID(id);
+        res.json(quadras);
+    } catch(err){
+        res.status(500).json({error: err.message})
 
     }
 }

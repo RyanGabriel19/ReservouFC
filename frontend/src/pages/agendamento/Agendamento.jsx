@@ -1,112 +1,188 @@
-import React, { useState } from 'react';
-import styles from './Agendamento.module.css';
-import Header from '../../components/header/Header';
-import Footer from '../../components/footer/Footer';
-
-const quadrasDisponiveis = ['Quadra 1', 'Quadra 2', 'Quadra Coberta'];
-const horariosDisponiveis = [
-  '08:00', '09:00', '10:00', '11:00',
-  '14:00', '15:00', '16:00', '17:00',
-  '18:00', '19:00', '20:00', '21:00'
-];
+import React, { useEffect, useState } from "react";
+import styles from "./Reserva.module.css";
+import Header from "../../components/header/Header";
+import { quadraConsultar } from "../../services/QuadraService";
+import { useNavigate } from "react-router-dom";
+import { criarReserva } from "../../services/ReservaService";
+import { getDecodedToken } from "../conta/perfil/perfil";
 
 export default function Agendamento() {
-  const [etapa, setEtapa] = useState(1);
-  const [quadra, setQuadra] = useState('');
-  const [data, setData] = useState('');
-  const [horario, setHorario] = useState('');
-  const [confirmado, setConfirmado] = useState(false);
-  const [loading, setLoading] = useState(false);
+  // Variáveis da quadra
+  const [quadras, setQuadras] = useState([]);
+  const [erro, setErro] = useState("");
+  const navigate = useNavigate();
+  const [quadraSelecionada, setQuadraSelecionada] = useState(null);
 
-  const handleConfirmar = async () => {
-    setLoading(true);
+  const hora = ["19:00", "20:30", "22:00", "23:30"];
+  // Modal
+  const [modalAberto, setModalAberto] = useState(false);
 
-    const reserva = {
-      quadra,
-      data,
-      horario
-    };
- 
+  // Mensagem
+  const [mensagem, setMensagem] = useState("");
+  const [tipoMensagem, setTipoMensagem] = useState("");
+
+  // Usuário logado
+  const user = getDecodedToken();
+
+  // Variáveis da reserva
+  const [quadra_id, setQuadra_id] = useState("");
+  const [usuario_id, setUsuario_id] = useState(user.id);
+  const [data_hora, setData_hora] = useState("");
+  const [duracao_min, setDuracao_min] = useState(90);
+  const [valor, setValor] = useState("");
+
+  // Abrir modal
+  function abrirModal(quadra) {
+    setQuadraSelecionada(quadra);
+    setModalAberto(true);
+    setValor(quadra.valor_hora);
+    setQuadra_id(quadra.id);
+  }
+
+  // Fechar modal
+  function fecharModal() {
+    setQuadraSelecionada(null);
+    setModalAberto(false);
+  }
+
+  // Criar reserva
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const dados = { quadra_id, usuario_id, data_hora, duracao_min, valor };
+
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/reservas`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(reserva)
-      });
-
-      if (response.ok) {
-        setConfirmado(true);
-      } else {
-        alert('Erro ao confirmar reserva');
-      }
-    } catch (error) {
-      console.error('Erro na requisição:', error);
-      alert('Erro de conexão com o servidor');
-    } finally {
-      setLoading(false);
+      const resultado = await criarReserva(dados);
+      setMensagem("✅ Reservado com sucesso");
+      setTipoMensagem("sucesso");
+      console.log("Reserva criada:", resultado);
+    } catch (err) {
+      console.error(err);
+      setMensagem("❌ Erro ao reservar quadra");
+      setTipoMensagem("erro");
     }
   };
 
+  // Apagar mensagem depois de 3 segundos
+  useEffect(() => {
+    if (mensagem) {
+      const timer = setTimeout(() => {
+        setMensagem("");
+        setTipoMensagem("");
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [mensagem]);
+
+  // Carregar as quadras ao abrir a página
+  useEffect(() => {
+    async function carregarQuadras() {
+      try {
+        const data = await quadraConsultar();
+        setQuadras(data);
+      } catch (err) {
+        setErro("Erro ao carregar quadras.");
+        console.error(err);
+      }
+    }
+
+    carregarQuadras();
+  }, []); 
+
+  
   return (
-    <>
-    <Header />
-    <div className={styles.container}>
-      <h2>Reservar Quadra</h2>
+    <div>
+      <Header />
+      <div className={styles.container}>
+        <h1 className={styles.titulo}>Selecione a quadra!</h1>
 
-      {etapa === 1 && (
-        <div className={styles.etapa}>
-          <h3>1️⃣ Escolha a quadra</h3>
-          {quadrasDisponiveis.map((q) => (
-            <button key={q} onClick={() => { setQuadra(q); setEtapa(2); } }>
-              {q}
-            </button>
-          ))}
+        {erro && <p className={styles.erro}>{erro}</p>}
+
+        <div className={styles.cardContainer}>
+          {quadras.length === 0 ? (
+            <p>Nenhuma quadra encontrada.</p>
+          ) : (
+            quadras.map((q) => (
+              <div key={q.id} className={styles.card}>
+                <img
+                  src={q.imagem || "/campo3.jpg"}
+                  alt={q.nome}
+                  className={styles.imagem}
+                />
+                <h3 className={styles.nome}>{q.nome}</h3>
+                <p className={styles.endereco}>{q.localizacao}</p>
+                <p className={styles.endereco}>R$ {q.valor_hora}</p>
+                <button
+                  className={styles.botao}
+                  onClick={() => abrirModal(q)}
+                >
+                  Agendar
+                </button>
+              </div>
+            ))
+          )}
         </div>
-      )}
+      </div>
 
-      {etapa === 2 && (
-        <div className={styles.etapa}>
-          <h3>📅 Escolha a data</h3>
-          <input
-            type="date"
-            value={data}
-            onChange={(e) => setData(e.target.value)} />
-          <button disabled={!data} onClick={() => setEtapa(3)}>Avançar</button>
-        </div>
-      )}
+      {/* === MODAL DE RESERVA === */}
+      {modalAberto && quadraSelecionada && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modal}>
+            <h2>Reserva da {quadraSelecionada.nome}</h2>
+            <p>
+              <strong>ID da quadra:</strong> {quadraSelecionada.id}
+            </p>
+            <p>
+              <strong>Endereço:</strong> {quadraSelecionada.localizacao}
+            </p>
+            <p>
+              <strong>Valor:</strong> R$ {quadraSelecionada.valor_hora}
+            </p>
+            <p><strong>Duração (minutos):</strong>{duracao_min} min</p>
+           <br></br>
 
-      {etapa === 3 && (
-        <div className={styles.etapa}>
-          <h3>⏰ Escolha o horário</h3>
-          {horariosDisponiveis.map((h) => (
-            <button key={h} onClick={() => { setHorario(h); setEtapa(4); } }>
-              {h}
-            </button>
-          ))}
-        </div>
-      )}
+           
+            
+         
+            <form onSubmit={handleSubmit}>
+              <label>Data e Hora:</label>
+              <input
+                type="datetime-local"
+                className={styles.input}
+                value={data_hora}
+                onChange={(e) => setData_hora(e.target.value)}
+              />
+            
+            
 
-      {etapa === 4 && (
-        <div className={styles.etapa}>
-          <h3>✅ Confirmar Reserva</h3>
-          <p><strong>Quadra:</strong> {quadra}</p>
-          <p><strong>Data:</strong> {data}</p>
-          <p><strong>Horário:</strong> {horario}</p>
-          <button onClick={handleConfirmar} disabled={loading}>
-            {loading ? 'Confirmando...' : 'Confirmar'}
-          </button>
-        </div>
-      )}
+              <div className={styles.modalButtons}>
+                <button
+                  type="button"
+                  onClick={fecharModal}
+                  className={styles.botaoFechar}
+                >
+                  Cancelar
+                </button>
+                <button type="submit" className={styles.botaoConfirmar}>
+                  Confirmar
+                </button>
+              </div>
+            </form>
+            
 
-      {confirmado && (
-        <div className={styles.confirmado}>
-          <h3>🎉 Reserva Confirmada!</h3>
-          <p>Nos vemos em campo, craque!</p>
+            {mensagem && (
+              <p
+                className={
+                  tipoMensagem === "sucesso"
+                    ? styles.sucesso
+                    : styles.erro
+                }
+              >
+                {mensagem}
+              </p>
+            )}
+          </div>
         </div>
       )}
     </div>
-    <Footer />
-    </>
   );
 }
-

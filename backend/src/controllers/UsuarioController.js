@@ -127,14 +127,14 @@ export async function postUsuario(req, res) {
 export async function putUsuarios(req, res) {
   const { id } = req.params; // o id deve vir como um parâmetro no url
   const { nome, telefone, email, senha } = req.body;
-  try {
+  try { 
     await updateUsuario(id, nome, telefone, email, senha)
     return res.status(200).json({
       id: Number(id),
       message: 'Usuário atualizado com sucesso.'
     });
   } catch (err) {
-    console.error('Erro ao atualizar o parceiro: ', err);
+    console.error('Erro ao atualizar o usuario ', err);
     return res.status(500).json({ error: 'Erro interno ao atualizar o usuário. '})
   }
 }

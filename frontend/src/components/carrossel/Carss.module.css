@@ -32,7 +32,7 @@
   top: 1rem;
   gap: 1rem;
   position: relative;
-  max-width: 1100px;
+  max-width: 1270px;
   margin: 0 auto;
 }
 
@@ -41,7 +41,7 @@
   gap: 1.5rem;
   overflow-x: auto;
   scroll-behavior: smooth;
-  padding: 3.5rem;
+  padding: 3rem 2rem;
   width: 1000%;
   scrollbar-width: none; /* Firefox */
 }
@@ -57,7 +57,7 @@
   padding: 1px;
   width: 100px;
   color: var(--electric);
-  border: none;
+  border-radius: 8px;
   font-size: 4rem;
   font-weight: bold;
   cursor: pointer;

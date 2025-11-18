@@ -9,6 +9,9 @@ import Inicio from './pages/inicio/Inicio'
 import Admin from './admin/Admin'
 import Perfil from './pages/conta/perfil/perfil'
 import Configuracoes from "./pages/conta/config/Configuracoes"
+import Seguranca from "./pages/conta/seguranca/Seguranca"
+import HistoricoReservas from "./pages/conta/historicoReservas/HistoricoReservas"
+import SorteadorTime from "./pages/conta/sorteadorTime/SorteadorTime"
 import Campo from './admin/campos/Campos'
 import Agendamentoadm from './admin/agendamentosadm/Agendamentoadm'
 import GerenciarUsuarios from './admin/gerenciar/Gerenciar-adm'
@@ -31,10 +34,13 @@ function App() {
 
         //rotas protegidas
         <Route path='/home' element={<Protected><Home /></Protected>}></Route>
-        <Route path='/agendamento' element={<Protected><Agendamento/></Protected>}></Route>
+        <Route path='/reserva' element={<Protected><Agendamento/></Protected>}></Route>
         <Route path='/func' element={<Protected><Funcionalidade/></Protected>}></Route>
         <Route path='/conta' element={<Protected><Perfil/></Protected>}></Route>
         <Route path='/conta/configuracoes' element={<Protected><Configuracoes/></Protected>}></Route>
+        <Route path='/conta/seguranca' element={<Protected><Seguranca/></Protected>}></Route>
+        <Route path='/conta/historico' element={<Protected><HistoricoReservas/></Protected>}></Route>
+        <Route path='/conta/sorteador' element={<Protected><SorteadorTime/></Protected>}></Route>
 
         //rota admin
         <Route path='/admin' element={<ProtectedAdmin><Admin/></ProtectedAdmin>}></Route>

@@ -1,6 +1,8 @@
 // ✅ Importações necessárias
-import { useRef, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {useEffect, useState, useRef } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+
+import { quadraConsultar } from "../../services/QuadraService";
 import styles from './Carss.module.css';
 
 // ✅ Lista de campos (dados estáticos)
@@ -11,96 +13,118 @@ const fields = [
   { id: 4, name: 'Campo 4', imageUrl: '/campo3.jpg' }
 ];
 
-const FieldCarousel = () => {
-  // ✅ useRef: cria uma referência para acessar o elemento DOM diretamente
-  const carouselRef = useRef(null);
-
-  // ✅ useNavigate: usado para navegar entre rotas (vem do react-router-dom)
-  const navigate = useNavigate();
-
-  // ✅ useState: cria estados que controlam se pode rolar pra esquerda/direita
+const FieldCarousel = () => { const [quadras, setQuadras] = useState([]);
+  const [erro, setErro] = useState("");
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
-
-  // ✅ Função chamada quando o usuário clica em um campo
-  const handleFieldClick = (fieldId) => {
-    navigate(`/campo/${fieldId}`);
-  };
-
-  // ✅ Atualiza o estado de rolagem (verifica se ainda pode rolar)
-  const checkScrollState = () => {
-    if (carouselRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
-      setCanScrollLeft(scrollLeft > 0);
-      setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 1);
-    }
-  };
-
-  // ✅ Faz o carrossel rolar para a direita ou esquerda
-  const scroll = (direction) => {
-    if (carouselRef.current) {
-      const scrollAmount = carouselRef.current.offsetWidth / 3;
-      carouselRef.current.scrollLeft += direction === 'right' ? scrollAmount : -scrollAmount;
-      setTimeout(checkScrollState, 350);
-    }
-  };
-
-  // ✅ useEffect: executa código assim que o componente é montado
+  const carouselRef = useRef(null);
+  const navigate = useNavigate();
+  // 🔹 Carrega as quadras do backend
   useEffect(() => {
-    const element = carouselRef.current;
-    if (element) {
-      checkScrollState();
-      element.addEventListener('scroll', checkScrollState);
-      return () => element.removeEventListener('scroll', checkScrollState);
+    async function carregarQuadras() {
+      try {
+        const data = await quadraConsultar();
+        setQuadras(data);
+      } catch (err) {
+        setErro("Erro ao carregar quadras.");
+        console.error(err);
+      }
     }
+    carregarQuadras();
   }, []);
 
-  // ✅ JSX: estrutura visual do carrossel
+
+
+
+  // 🔹 Função para rolar o carrossel
+  const scroll = (direction) => {
+    const container = carouselRef.current;
+    if (!container) return;
+
+    const scrollAmount = container.offsetWidth / 1.2;
+    container.scrollBy({
+      left: direction === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth",
+    });
+
+    setTimeout(() => {
+      setCanScrollLeft(container.scrollLeft > 0);
+      setCanScrollRight(
+        container.scrollLeft + container.offsetWidth < container.scrollWidth
+      );
+    }, 400);
+  };
+
+  // 🔹 Atualiza estados dos botões quando o usuário rola manualmente
+  useEffect(() => {
+    const container = carouselRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      setCanScrollLeft(container.scrollLeft > 0);
+      setCanScrollRight(
+        container.scrollLeft + container.offsetWidth < container.scrollWidth
+      );
+    };
+
+    container.addEventListener("scroll", handleScroll);
+    return () => container.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className={styles.carrosselContainer}>
-      <h2>Nossos campos</h2>
-      <div className={styles.carrosselWrapper}>
-        
-        {/* Botão esquerdo */}
-        <button
-          className={styles.navBtn}
-          onClick={() => scroll('left')}
-          disabled={!canScrollLeft}
-        >
-          &lt;
-        </button>
+    <div>
 
-        {/* Faixa do carrossel */}
-        <div className={styles.carrosselTrack} ref={carouselRef}>
-          {fields.map((field) => (
-            <div key={field.id} className={styles.carrosselItem}>
-              <div
-                className={styles.fieldCard}
-                onClick={() => handleFieldClick(field.id)}
-                role="button"
-                tabIndex={0}
-              >
-                <img
-                  src={field.imageUrl}
-                  alt={field.name}
-                  className={styles.fieldImage}
-                />
-                <h3 className={styles.fieldName}>{field.name}</h3>
-                <span className={styles.viewButton}>Ver detalhes</span>
-              </div>
+      <div className={styles.carrosselContainer}>
+        <h2>Quadras disponíveis</h2>
+
+        {erro && <p style={{ color: "red" }}>{erro}</p>}
+
+        {quadras.length === 0 && !erro ? (
+          <p>Nenhuma quadra encontrada.</p>
+        ) : (
+          <div className={styles.carrosselWrapper}>
+            {/* Botão esquerdo */}
+            <button
+              className={styles.navBtn}
+              onClick={() => scroll("left")}
+              disabled={!canScrollLeft}
+              aria-label="Rolar para a esquerda"
+            >
+              &lt;
+            </button>
+
+            {/* Faixa do carrossel */}
+            <div className={styles.carrosselTrack} ref={carouselRef}>
+              {quadras.map((q) => (
+                <div key={q.id} className={styles.carrosselItem}>
+                  <div className={styles.fieldCard}>
+                    <img
+                      src={q.imagem || "/campo3.jpg"}
+                      alt={q.nome}
+                      className={styles.fieldImage}
+                    />
+                    <h3 className={styles.fieldName}>{q.nome}</h3>
+                    <p>{q.endereco}</p>
+                    <span className={styles.viewButton}onClick={() => navigate("/reserva")}>Ver detalhes</span>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
 
-        {/* Botão direito */}
-        <button
-          className={styles.navBtn}
-          onClick={() => scroll('right')}
-          disabled={!canScrollRight}
-        >
-          &gt;
-        </button>
+            {/* Botão direito */}
+            <button
+              className={styles.navBtn}
+              onClick={() => scroll("right")}
+              disabled={!canScrollRight}
+              aria-label="Rolar para a direita"
+            >
+              &gt;
+            </button>
+          </div>
+        )}
       </div>
+
+      
     </div>
   );
 };
