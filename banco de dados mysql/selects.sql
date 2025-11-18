@@ -4,6 +4,10 @@ select * from USUARIO;
 select * from LOG;
 select * from QUADRA;
 
+DESC QUADRA;
+
+alter table QUADRA drop column tipo;
+
 ALTER TABLE QUADRA DROP COLUMN TIPO;
 
 ALTER TABLE QUADRA ADD COLUMN tipo VARCHAR(255) NOT NULL;
