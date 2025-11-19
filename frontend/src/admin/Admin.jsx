@@ -27,7 +27,7 @@ useEffect(() => {
                 <p className={styles["textuser"]}>Usuários cadastrados</p>
             </div>
             <nav className={styles["option_painel"]}>
-                <Btn className={styles["Btnadm"]}/>
+                
             </nav>
         </div>
     </>

@@ -46,3 +46,6 @@ export async function quadraConsultarID(id) {
     throw error;
   }
 }
+export async function QuadraAtualizar(dados){
+  
+}

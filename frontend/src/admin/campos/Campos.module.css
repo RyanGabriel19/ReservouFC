@@ -12,6 +12,7 @@
   padding: 20px;
   box-sizing: border-box;
   color: var(--lemonade);
+
 }
 .h2campo {
   text-align: center;
@@ -25,6 +26,7 @@
   width: 100%;
   max-width: 500px;
   color: var(--electric);
+   box-shadow: 0 8px 20px rgba(184, 255, 0, 0.15);
 }
 
 .campoform label {
@@ -52,21 +54,61 @@
 }
 
 .submitbtn {
-  background-color: var(--electric);
-  color: var(--lemonade);
+  background-color: var(--lemonade);
+  color: var(--electric);
+
   padding: 12px 20px;
   border: none;
   border-radius: 5px;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  font-size: large;
+
+  position: relative;
+  top: 57px;
+  left: 28%;
+
+  border: 1px solid rgba(184, 251, 60, 0.35);
+  box-shadow: 0 4px 10px rgba(184, 255, 0, 0.15);
 }
 
 .submitbtn:hover {
-  background-color: var(--lemonade);
-  color: var(--electric);
+  background-color: var(--electric);
+  color: var(--lemonade);
+
+  /* 🔥 Aqui está a correção: transform combinando ambos os efeitos */
+  transform: scale(1.1) translateX(6px);
+
+  border: 1px solid rgba(184, 251, 60, 0.35);
+  box-shadow:
+    0 0 10px rgba(184, 251, 60, 0.5),
+    0 0 25px rgba(184, 251, 60, 0.3);
 }
 
+.buttonFechar {
+  background-color: red;
+  color: floralwhite;
+
+  padding: 12px 20px;
+  font-size: 25px;
+  font-weight: bold;
+
+  cursor: pointer;
+ transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: absolute;
+  top: 90%;
+  left: 90%;
+
+  border-radius: 10px;
+}
+
+.buttonFechar:hover {
+  transform: scale(1.1);
+  box-shadow:
+  0 4px 10px rgba(120, 0, 0, 0.5),
+  0 0 15px rgba(255, 0, 0, 0.6);
+}
 .quadraCard {
   background-color: var(--electric);
   color: var(--lemonade);
@@ -198,19 +240,24 @@
 }
 .alerta {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  top: 20px;           /* antes era bottom */
+  left: 50%;           /* centraliza horizontalmente */
+  transform: translateX(-50%); /* ajuste para centralizar */
+
   padding: 16px 24px;
   border-radius: 12px;
   color: #fff;
   font-weight: 500;
+
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   animation: aparecer 0.3s ease-in-out;
+
   z-index: 1000;
   max-width: 90%;
   word-wrap: break-word;
   text-align: center;
 }
+
 
 /* Verde (sucesso) */
 .sucesso {
