@@ -1,8 +1,7 @@
 .slider {
   position: relative;
-  /* top: -20rem; */
   width: 100%;
-  height: 30rem;
+  height: 30rem;   /* altura padrão para telas grandes */
   overflow: hidden;
 }
 
@@ -21,4 +20,19 @@
 .active {
   opacity: 1;
   z-index: 0;
+}
+
+/* =========================
+   Responsividade até 430px
+========================= */
+@media (max-width: 430px) {
+  .slider {
+    position: relative;
+    top: -7.9rem;
+    height: 18rem;       /* reduz altura para caber melhor em celular */
+  }
+
+  .slide {
+    object-fit: contain; /* evita cortar a imagem em telas pequenas */
+  }
 }

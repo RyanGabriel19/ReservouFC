@@ -66,7 +66,6 @@
   font-size: large;
 
   position: relative;
-  top: 57px;
   left: 28%;
 
   border: 1px solid rgba(184, 251, 60, 0.35);
@@ -224,18 +223,42 @@
 
 /* 📱 Responsivo para telas até 430px */
 @media (max-width: 430px) {
+
+  /* Ajustes no formulário de cadastro */
   .cadastrocampo {
     padding: 20px;
+    position: relative;
+    top: 19rem;
   }
-
+  .menuFlutuanteNovo {
+    top: 20rem;
+    left: 1.7rem;
+    width: 350px;
+    gap: 12px;
+    padding: 20px;
+  }
   .submitbtn {
+    position:relative;
+    left: 0;
     width: 100%;
     font-size: 16px;
+  }
+  .buttonFechar {
+    position: relative;
+    top: 1rem;
+    left: 0rem;
+    font-size: 20px;
+    padding: 10px 16px;
   }
 
   .campoform input,
   .campoform select {
     font-size: 14px;
+  }
+  /**/
+  .containercampo{
+    position: relative;
+    top: 15rem;
   }
 }
 .alerta {

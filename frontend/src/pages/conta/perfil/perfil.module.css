@@ -1,4 +1,6 @@
-/* Variáveis */
+/* =========================
+   Variáveis de cor
+========================= */
 :root {
   --corum: #1E8449;
   --cordois: #444444;
@@ -10,37 +12,40 @@
   --azulEscuro: #0b0c2a;
 }
 
-
+/* =========================
+   Container principal
+========================= */
 .perfilContainer {
   display: flex;
- 
   background-color: var(--electric);
-  position: relative;
   color: var(--corcinco);
- 
-  padding: 20px; 
+  padding: 20px;
+
+  /* Agora você pode mover livremente */
+  position: absolute;   /* ou fixed, se quiser preso à tela */
+  top: 100px;           /* ajuste como quiser */
+  left: 50px;           /* ajuste como quiser */
+  z-index: 5;
 }
 
+/* =========================
+   Área de informações
+========================= */
 .infoArea {
-  
-
   position: relative;
-  top: -600px; 
-  left: 20px; 
-  
-  /* Estilo do Retângulo */
+  top: -40rem; /* Ajuste conforme necessário */
   background: linear-gradient(145deg, #0b0c2a, #13153d);
   border-left: 4px solid var(--lemonade);
   border-radius: 12px;
   padding: 35px 30px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
 
-   width: 90%;         /* ocupa 90% da largura do container */
-  max-width: 800px;   /* não passa de 800px */
+  width: 90%;
+  max-width: 800px;
   min-width: 320px;
-  min-height: 400px;  /* altura mínima */
-  z-index: 10;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;  
+  min-height: 400px;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .infoArea:hover {
@@ -57,16 +62,13 @@
   text-transform: uppercase;
 }
 
+/* =========================
+   Detalhes do usuário
+========================= */
 .userDetails {
- 
   background: linear-gradient(145deg, #0b0c2a, #13153d);
-  
-  
   padding: 35px 30px;
-  
- 
   min-height: 300px;
-
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -74,38 +76,33 @@
   font-size: 20px;
   margin-bottom: 12px;
   line-height: 1.6;
-  color: #ffffff; /* texto branco para contraste */
+  color: #ffffff;
 }
 
 .userDetails strong {
-  color: var(--lemonade); /* destaque */
+  color: var(--lemonade);
 }
 
-
+/* =========================
+   Responsividade
+========================= */
 @media (max-width: 900px) {
   .perfilContainer {
-   
-    flex-direction: column; 
-    align-items: center; 
+    flex-direction: column;
+    align-items: center;
+    top: 15rem; /* ainda pode mover */
+    left: auto;
+    right: auto;
   }
 
   .infoArea {
-    
-    position: static; 
-    top: auto; 
-    left: auto;
-    
-   
     width: 90%;
-    max-width: 500px; 
-    margin: 20px auto; 
-    
-    
+    max-width: 500px;
+    margin: 20px auto;
     border-left: none;
     border-top: 4px solid var(--lemonade);
-    
-    transition: none;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: none;
   }
 
   .infoArea:hover {
@@ -114,12 +111,15 @@
   }
 }
 
-
 @media (max-width: 430px) {
+ .infoArea{
+    position: relative;
+    top: -20rem;
+ }
+
   .infoArea {
-    
-    width: 95%; 
-    padding: 25px 15px; 
+    width: 95%;
+    padding: 25px 15px;
   }
 
   .infoArea h2 {
@@ -128,7 +128,7 @@
   }
 
   .userDetails {
-    padding: 20px; 
+    padding: 20px;
   }
 
   .userDetails p {

@@ -122,6 +122,10 @@
 
 /* ======== RESPONSIVIDADE ======== */
 @media (max-width: 600px) {
+  .container {
+    padding: 1rem;
+    margin-top: -350px; /* Ajuste o valor conforme quiser */
+  }
   .card {
     width: 100%;
     padding: 1rem;

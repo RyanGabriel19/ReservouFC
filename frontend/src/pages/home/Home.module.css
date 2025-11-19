@@ -162,7 +162,11 @@ img {
     position: relative;
     font-size: 2.2rem;
     line-height: 1.2em;
-    top: 20rem;
+    top: 6rem;
+  }
+  .linkhome{
+    position: relative;
+    top: -3rem;
   }
 
   .btn-home {
