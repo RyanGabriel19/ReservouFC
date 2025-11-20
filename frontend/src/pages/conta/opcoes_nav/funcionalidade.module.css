@@ -79,13 +79,9 @@
   border-radius: 10px;
   transition: all 0.3s ease;
   
-  
   background-color: transparent;
   border: 2px solid transparent; 
   
- 
-
-
   /* Transição suave para hover/active */
   transition: all 0.3s ease;
 }
@@ -97,6 +93,43 @@
   background-color: var(--lemonade);
   font-weight: 800;
 }
+.toggleBtn {
+  width: 120px;
+  height: 45px;
+  background: var(--lemonade);
+  color: var(--electric);
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  position: relative;
+  left: 106rem;
+  top: 1rem;
+}
+
+.toggleBtn:hover {
+  background: var(--azulEscuro);
+}
+
+/* animação de entrada do dropdown */
+.box {
+  animation: dropdownIn 0.4s ease-out;
+}
+
+@keyframes dropdownIn {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 @media (max-width: 430px) {
   .container {
     flex-direction: column;
@@ -121,15 +154,14 @@
   .menuList {
     gap: 10px;
   }
+  .toggleBtn {
+    position: relative;
+    left: 0rem;
+    width: 100%;
+    max-width: 200px;
+    margin: 1rem auto;
+  }
 }
 
 
-/* .active {
-  
- transform: scale(1.02);
-  border: 2px solid var(--electric);
-  box-shadow: 0 0 10px var(--electric);
-  background-color: var(--lemonade);
-  font-weight: 800;
-}
- */
+

@@ -3,18 +3,13 @@ import { useState } from "react";
 import styles from './funcionalidade.module.css'
 import { Logout } from '../../../services/UsuarioService';
 
-
-
 function Funcionalidade(){
-    // hook 'useNavigate' para pegar a função de navegação
     const navigate = useNavigate();
-    const [active, setActive] = useState("/conta"); 
-    
-    // função local para lidar com o clique no botão Sair
+    const [open, setOpen] = useState(false); // controla se o dropdown está aberto
+
     const handleSairClick = (e) => {
         e.preventDefault(); 
         Logout();
-
         setTimeout(() => {
             navigate('/login');
         }, 500);
@@ -22,72 +17,40 @@ function Funcionalidade(){
 
     return(
         <div className={styles.container}> 
-        
-            <div className={styles.box}>
-                
-                <ul className={styles.menuList}> 
-                   
-                    <li className={styles.listItem}>
-                        <NavLink 
-                            to="/conta" 
-                            className={({ isActive }) => (isActive ? styles.active : "")}
-                            end={true}
-                        >
-                            Perfil
-                        </NavLink>
-                    </li>
-                        
-                    <li className={styles.listItem}>
-                        <NavLink 
-                            to="/conta/configuracoes"
-                            className={({ isActive }) => (isActive ? styles.active :"")}
-                            
-                        >
-                            Configurações
-                        </NavLink>
-                    </li>
-                        
-                    <li className={styles.listItem}>
-                        <NavLink 
-                            to="/conta/seguranca" 
-                            className={({ isActive }) => (isActive ? styles.active : "")}
-                            
-                        >
-                            Segurança
-                        </NavLink>
-                    </li>
-                     <li className={styles.listItem}>
-                        <NavLink 
-                            to="/conta/historico" 
-                            className={({ isActive }) => (isActive ? styles.active : "")}
-                            
-                        >
-                            Histórico de Reservas
-                        </NavLink>
-                    </li>
+            
+            {/* Botão para abrir/fechar o dropdown */}
+            <button 
+              className={styles.toggleBtn} 
+              onClick={() => setOpen(!open)}
+            >
+              ☰ Menu
+            </button>
 
-                     <li className={styles.listItem}>
-                        <NavLink 
-                             to="/conta/sorteador"
-                            className={({ isActive }) => (isActive ? styles.active : "")}
-                            
-                        >
-                            Sorteador de time
-                        </NavLink>
+            {/* Dropdown visível apenas quando "open" for true */}
+            {open && (
+              <div className={styles.box}>
+                <ul className={styles.menuList}> 
+                    <li className={styles.listItem}>
+                        <NavLink to="/conta" end>Perfil</NavLink>
                     </li>
-                    
-                        <li className={styles.listItem}>
-                        <NavLink
-                            to="#" 
-                            onClick = {handleSairClick}
-                        >
-                            Sair
-                        </NavLink>
+                    <li className={styles.listItem}>
+                        <NavLink to="/conta/configuracoes">Configurações</NavLink>
+                    </li>
+                    <li className={styles.listItem}>
+                        <NavLink to="/conta/seguranca">Segurança</NavLink>
+                    </li>
+                    <li className={styles.listItem}>
+                        <NavLink to="/conta/historico">Histórico de Reservas</NavLink>
+                    </li>
+                    <li className={styles.listItem}>
+                        <NavLink to="/conta/sorteador">Sorteador de time</NavLink>
+                    </li>
+                    <li className={styles.listItem}>
+                        <NavLink to="#" onClick={handleSairClick}>Sair</NavLink>
                     </li>
                 </ul>
-
-            </div>
-        
+              </div>
+            )}
         </div>
     );
 };

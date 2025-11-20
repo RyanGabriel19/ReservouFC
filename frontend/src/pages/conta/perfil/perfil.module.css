@@ -98,7 +98,7 @@
   .infoArea {
     width: 90%;
     max-width: 500px;
-    margin: 20px auto;
+    margin: -20rem auto;
     border-left: none;
     border-top: 4px solid var(--lemonade);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
