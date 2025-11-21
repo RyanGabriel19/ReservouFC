@@ -18,13 +18,7 @@ function Funcionalidade(){
     return(
         <div className={styles.container}> 
             
-            {/* Botão para abrir/fechar o dropdown */}
-            <button 
-              className={styles.toggleBtn} 
-              onClick={() => setOpen(!open)}
-            >
-              ☰ Menu
-            </button>
+     
 
             {/* Dropdown visível apenas quando "open" for true */}
             {open && (
