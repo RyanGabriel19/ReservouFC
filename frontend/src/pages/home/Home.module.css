@@ -204,3 +204,90 @@ img {
     font-size: 1rem;
   }
 }
+/* === IMAGEM === */
+img {
+  width: 100%;
+  max-height: 30rem;
+  object-fit: cover;
+}
+
+/* === LINK HOME === */
+.linkhome {
+  width: 90%;
+  max-width: 14rem;
+  height: 4rem;
+  font-size: 1.25rem;
+  margin: 1rem auto;
+}
+
+/* === SEÇÃO HOME === */
+.home-container {
+  height: 80vh;
+}
+
+.h1home {
+  font-size: 3rem;
+  line-height: 1.3em;
+  padding: 0 1rem;
+}
+
+/* === BOTÃO HOME === */
+.btnhome {
+  top: 65vh;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+}
+
+/* === SEÇÃO QUEM SOMOS NÓS === */
+.textobox {
+  padding: 2rem;
+  width: 90%;
+  max-width: 900px;
+}
+
+.phome {
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
+
+/* === RESPONSIVIDADE === */
+@media (max-width: 768px) {
+  .h1home {
+    font-size: 2.2rem;
+    top: 6rem;
+  }
+
+  .btnhome {
+    top: 70%;
+    padding: 0.8rem 1.6rem;
+    font-size: 0.9rem;
+  }
+
+  .h2home {
+    font-size: 2rem;
+  }
+
+  .phome {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .h1home {
+    font-size: 1.8rem;
+    top: 5rem;
+  }
+
+  .btnhome {
+    font-size: 0.85rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  .phome {
+    font-size: 1rem;
+  }
+
+  .textobox {
+    padding: 1.5rem;
+  }
+}

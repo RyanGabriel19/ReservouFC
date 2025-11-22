@@ -1,19 +1,33 @@
 /* Sobre.module.css */
 
+
 .societyBox {
-    background-color: #444444; /* Cor cinza claro */
-    padding: 20px; /* Espaço interno */
-    border-radius: 8px; /* Bordas arredondadas */
-    margin-top: 20px; /* Espaço superior */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    max-width: 800px; /* Largura máxima */
-    margin-left: auto; /* Centraliza */
-    margin-right: auto; /* Centraliza */
+    background-color: #444444;
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    margin-top: 1.25rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 90%; /* Adiciona flexibilidade */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .societyBox p {
     font-size: 1rem;
-    color:#ffffff; /* Cor do texto */
-    line-height: 1.6; /* Espaçamento entre linhas */
-    text-align: justify; /* Justifica o texto */
+    color: #ffffff;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 600px) {
+    .societyBox {
+        padding: 1rem;
+        border-radius: 0.4rem;
+    }
+
+    .societyBox p {
+        font-size: 0.95rem;
+    }
 }
