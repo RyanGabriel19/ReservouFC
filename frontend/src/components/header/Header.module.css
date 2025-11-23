@@ -53,14 +53,22 @@
 }
 
 /* Links */
-.navegacao a {
-  color: var(--electric);          /* cor padrão */
+
+.navegacao a,
+.linkButton {
+  background: none;
+  border: none;
+  padding: 0;
+
+  color: var(--electric);
   font-weight: 700;
   text-decoration: none;
   font-size: 1.2rem;
-  position: relative;              /* necessário para o underline animado */
+  position: relative;
   transition: color 0.3s ease;
+  cursor: pointer;
 }
+
 
 /* Hover: muda a cor e underline animado */
 .navegacao a:hover {

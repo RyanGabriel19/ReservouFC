@@ -7,13 +7,11 @@ function Funcionalidade(){
     const navigate = useNavigate();
     const [open, setOpen] = useState(false); // controla se o dropdown está aberto
 
-    const handleSairClick = (e) => {
-        e.preventDefault(); 
-        Logout();
-        setTimeout(() => {
-            navigate('/login');
-        }, 500);
-    }
+  const handleSairClick = async (e) => {
+    e.preventDefault();
+    await Logout();
+    navigate('/login');
+};
 
     return(
         <div className={styles.container}> 
@@ -39,9 +37,15 @@ function Funcionalidade(){
                     <li className={styles.listItem}>
                         <NavLink to="/conta/sorteador">Sorteador de time</NavLink>
                     </li>
-                    <li className={styles.listItem}>
-                        <NavLink to="#" onClick={handleSairClick}>Sair</NavLink>
-                    </li>
+                 <li className={styles.listItem}>
+                    <button 
+                        type="button"
+                        onClick={handleSairClick}
+                        className={styles.linkButton}
+                    >
+                        Sair
+                    </button>
+                </li>
                 </ul>
               </div>
             )}

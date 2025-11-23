@@ -1,9 +1,16 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import styles from './Header.module.css';
-
+import { Logout } from '../../services/UsuarioService';
 function Header() {
+
+  const navigate = useNavigate();
   const [menuAberto, setMenuAberto] = useState(false);
+  const handleSairClick = async (e) => {
+    e.preventDefault();
+    await Logout();
+    navigate('/login');
+};
 
   return (
     <>
@@ -40,7 +47,15 @@ function Header() {
               <NavLink to="/conta/seguranca">Segurança</NavLink>
               <NavLink to="/conta/historico">Histórico de Reservas</NavLink>
               <NavLink to="/conta/sorteador">Sorteador de time</NavLink>
-              <NavLink to="/logout">Sair</NavLink>
+              
+              <button 
+                  type="button"
+                  onClick={handleSairClick}
+                  className={styles.linkButton}
+              >
+                  Sair
+              </button>
+
             </div>
           </div>
         </nav>
