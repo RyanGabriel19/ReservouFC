@@ -1,6 +1,8 @@
 import Footer from "../../../components/footer/Footer";
 import Header from "../../../components/header/Header";
-import { FaUser, FaEnvelope, FaPhone, FaIdBadge } from "react-icons/fa";
+import { FaUser, FaEnvelope, FaPhone, FaIdBadge,FaPencilAlt, FaLock  } from "react-icons/fa";
+import { MdLock } from 'react-icons/md'; 
+import { MdEdit } from 'react-icons/md'; 
 import { useState, useEffect } from "react"; 
 import styles from './perfil.module.css';
 import Funcionalidade from "../opcoes_nav/Funcionalidade";
@@ -54,25 +56,52 @@ const Perfil = () => {
 
     return (
         <>
-            <Header />
-           <Funcionalidade />
-           
-                
-                
-                <div className={styles.infoArea}>
-                    <h2>Informações do Perfil</h2>
-                    {userData ? (
-                        <div className={styles.userDetails}>
-                           
-                            <p><FaUser style={{ marginRight: "8px", color: "#fff" }} /><strong>Nome: </strong>{userData.nome || 'Não definido'}</p>
-                            <p> <FaEnvelope style={{ marginRight: "8px", color: "#fff" }} /><strong>Email: </strong>{userData.email}</p>
-                            <p><FaPhone style={{ marginRight: "8px", color: "#fff" }} /><strong>Telefone: </strong>{userData.telefone}</p>
-                            <p> <FaIdBadge style={{ marginRight: "8px", color: "#fff" }} /><strong>Tipo da Conta: </strong>{TipoUsuario}</p>
+           <Header />
+            <Funcionalidade />
+            
+            <div className={styles.infoArea}>
+                <h2>Informações do Perfil</h2>
+                {userData ? (
+                    <div className={styles.userDetails}>
+                        
+                        {/* APLICAÇÃO DO FLEXBOX PARA ALINHAR ÍCONE E TEXTO */}
+                        <div className={styles.infoLinha}>
+                            <FaUser style={{ marginRight: "8px", color: "#fff" }} />
+                            <p><strong>Nome: </strong>{userData.nome || 'Não definido'}</p>
                         </div>
-                    ) : (
-                        <p>Token não encontrado ou inválido. Faça login novamente.</p>
-                    )}
+                        
+                        <div className={styles.infoLinha}>
+                            <FaEnvelope style={{ marginRight: "8px", color: "#fff" }} />
+                            <p><strong>Email: </strong>{userData.email}</p>
+                        </div>
+                        
+                        <div className={styles.infoLinha}>
+                            <FaPhone style={{ marginRight: "8px", color: "#fff" }} />
+                            <p><strong>Telefone: </strong>{userData.telefone}</p>
+                        </div>
+                        
+                        <div className={styles.infoLinha}>
+                            <FaIdBadge style={{ marginRight: "8px", color: "#fff" }} />
+                            <p><strong>Tipo da Conta: </strong>{TipoUsuario}</p>
+                        </div>
+                        
+                    </div>
+                ) : (
+                    <p>Token não encontrado ou inválido. Faça login novamente.</p>
+                )}
                 
+                {/* O container dos botões já existia, mas vamos garantir o alinhamento vertical dos ícones nos botões */}
+                <div className={styles.botoesAcao}> 
+                    <button className={`${styles.btnAcao} ${styles.senha}`}> 
+                         <MdLock size={18} style={{marginRight: "5px", color: "#03045E" }} />
+                        <strong> ALTERAR SENHA</strong>
+                    </button>
+                        
+                    <button className={`${styles.btnAcao} ${styles.edit}`}> 
+                        <MdEdit size={18} style={{ marginRight: "5px", color: "#03045E" }} />
+                        <strong>EDITAR PERFIL</strong>
+                    </button>
+                </div>
             </div>
             
             

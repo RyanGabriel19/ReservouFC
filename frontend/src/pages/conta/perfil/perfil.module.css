@@ -82,6 +82,53 @@
 .userDetails strong {
   color: var(--lemonade);
 }
+.infoLinha {
+    display: flex; /* Habilita o Flexbox */
+    align-items: center; /* Centraliza verticalmente o ícone e o texto */
+    margin-bottom: 12px; /* Adiciona um pequeno espaçamento entre as linhas */
+}
+
+/* Garante que o texto dentro do Flexbox não tenha margens indesejadas */
+.infoLinha p {
+    margin: 0; 
+    padding: 0;
+}
+
+
+/* --- CORREÇÃO E OTIMIZAÇÃO DOS BOTÕES DE AÇÃO --- */
+
+/* Nova classe base para os botões (unificada) */
+.btnAcao {
+    background-color: var(--lemonade);
+    font-size: 16px;
+    padding: 5px 10px; /* Aumentei o padding para melhor toque/visual */
+    border-radius: 7px;
+    border: none; /* Geralmente botões devem ter borda removida */
+    cursor: pointer;
+    transition: background-color 0.3s;
+    
+    /* Adiciona o Flexbox para garantir que o ícone do botão também esteja alinhado */
+    display: flex;
+    align-items: center;
+
+
+    
+    box-shadow: -4px 4px 12px rgba(0, 0, 0, 0.3), 0 0 10px rgba(3, 4, 94, 0.2);
+}
+
+.btnAcao:hover {
+    background-color: #d4e76a; /* Cor mais clara para feedback visual */
+}
+
+/* Container que envolve os dois botões, ajuda a separá-los */
+.botoesAcao {
+    display: flex;
+    gap: 20px; /* Espaço entre os botões */
+    margin-top: 20px; /* Espaço após as informações do perfil */
+   justify-content: center;
+}
+
+
 
 /* =========================
    Responsividade
