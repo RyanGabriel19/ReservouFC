@@ -21,10 +21,13 @@ export async function UpdateQuadra(id, {nome, localizacao, valor_hora}){
    try{
     const [result] = await db.execute(
         `UPDATE QUADRA SET 
-        nome = COALESCE(?, nome),
-        valor_hora = COALESCE(?, valor_hora), 
-        localizacao = COALESCE(?, localizacao)
-        WHERE ID = ?`, [nome, localizacao, valor_hora, id]);
+        nome = COALESCE(?, nome), 
+        localizacao = COALESCE(?, localizacao),
+        valor_hora = COALESCE(?, valor_hora)
+        WHERE ID = ?`, [ nome ?? null,
+        localizacao ?? null,
+        valor_hora ?? null,
+        id]);
         return result.affectedRows
      } catch(err){
             console.error("erro ao atualizar os dados da quadra", err);

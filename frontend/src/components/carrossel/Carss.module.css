@@ -32,7 +32,7 @@
   top: 1rem;
   gap: 1rem;
   position: relative;
-  max-width: 1270px;
+  max-width: 1290px;
   margin: 0 auto;
 }
 
@@ -55,7 +55,7 @@
   background: var(--lemonade);
   height: 100px;
   padding: 1px;
-  width: 80rem;
+  width: 40rem;
   color: var(--electric);
   border-radius: 8px;
   border:none;

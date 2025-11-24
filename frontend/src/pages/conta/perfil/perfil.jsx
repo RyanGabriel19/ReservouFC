@@ -1,6 +1,6 @@
 import Footer from "../../../components/footer/Footer";
 import Header from "../../../components/header/Header";
-
+import { FaUser, FaEnvelope, FaPhone, FaIdBadge } from "react-icons/fa";
 import { useState, useEffect } from "react"; 
 import styles from './perfil.module.css';
 import Funcionalidade from "../opcoes_nav/Funcionalidade";
@@ -64,10 +64,10 @@ const Perfil = () => {
                     {userData ? (
                         <div className={styles.userDetails}>
                            
-                            <p><strong>Nome: </strong>{userData.nome || 'Não definido'}</p>
-                            <p><strong>Email: </strong>{userData.email}</p>
-                            <p><strong>Telefone: </strong>{userData.telefone}</p>
-                            <p><strong>Tipo da Conta: </strong>{TipoUsuario}</p>
+                            <p><FaUser style={{ marginRight: "8px", color: "#fff" }} /><strong>Nome: </strong>{userData.nome || 'Não definido'}</p>
+                            <p> <FaEnvelope style={{ marginRight: "8px", color: "#fff" }} /><strong>Email: </strong>{userData.email}</p>
+                            <p><FaPhone style={{ marginRight: "8px", color: "#fff" }} /><strong>Telefone: </strong>{userData.telefone}</p>
+                            <p> <FaIdBadge style={{ marginRight: "8px", color: "#fff" }} /><strong>Tipo da Conta: </strong>{TipoUsuario}</p>
                         </div>
                     ) : (
                         <p>Token não encontrado ou inválido. Faça login novamente.</p>

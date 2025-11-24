@@ -1,6 +1,11 @@
 :root {
-  --lemonade: #B8FB3C;   /* Verde neon */
-   --electric: #03045E;   /* Azul escuro */
+  --corum: #1E8449 ;
+  --cordois: #444444;
+  --cortres: #171717;
+  --corquatro: #1CC206;
+  --corcinco: #FFFFFF;
+  --lemonade: #b8ff00;
+  --electric: #03045E;
 }
 
 .containercampo {
@@ -33,6 +38,42 @@
   font-weight: bold;
   color: #fff;
 }
+.itemQuadra {
+  background: var( --electric);
+  padding: 16px;
+  margin-bottom: 14px;
+  border-radius: 16px;
+  border: 1px solid var(--cordois);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.itemQuadra:hover {
+  transform: scale(1.01);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.linha {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 6px 0;
+  font-size: 0.95rem;
+  color: var(--corcinco);
+}
+
+.linha strong {
+  color: var(--lemonade);
+  font-weight: 600;
+}
+
+.info{
+  color: #FFFFFF;
+  font-size: 12px;
+  position: relative;
+  top: 15px;
+}
+
 
 .campoform input,
 .campoform select {
@@ -73,8 +114,7 @@
 }
 
 .submitbtn:hover {
-  background-color: var(--electric);
-  color: var(--lemonade);
+  
 
   /* 🔥 Aqui está a correção: transform combinando ambos os efeitos */
   transform: scale(1.1) translateX(6px);
@@ -218,6 +258,7 @@
     0 0 10px rgba(184, 251, 60, 0.5),
     0 0 25px rgba(184, 251, 60, 0.3);
 }
+/* modal de lista*/
 
 
 

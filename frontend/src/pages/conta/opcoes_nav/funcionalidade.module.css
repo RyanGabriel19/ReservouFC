@@ -118,6 +118,19 @@
 .box {
   animation: dropdownIn 0.4s ease-out;
 }
+ .listItem > a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--electric) !important;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.icon {
+  font-size: 18px;
+  color: var(--electric) !important;
+}
 
 @keyframes dropdownIn {
   from {

@@ -26,17 +26,32 @@ export async function getQuadraID(req, res){
     }
 }
 
-export async function putQuadra(req, res){
-        const {id} = req.params;
-        const {nome, localizacao, valor_hora} = req.body;
-        try{
-            await UpdateQuadra(nome, localizacao, valor_hora)
-            return res.statu(200).json({id:Number(id),  message: "Quadra atualizada com sucesso"})
-        }catch(err){
-            console.error("erro ao atualizar a quadra ", err);
-            return res.status(500).json({error: "erro interno ao tentar atualizar a tabela quadra"})
-        }
-        
+export async function putQuadra(req, res) {
+  try {
+    const { id } = req.params;
+    let { nome, localizacao, valor_hora } = req.body;
+
+    // Converte undefined para null
+    nome = nome ?? null;
+    localizacao = localizacao ?? null;
+    valor_hora = valor_hora ?? null;
+
+    const result = await UpdateQuadra(id, {
+      nome,
+      localizacao,
+      valor_hora
+    });
+
+    if (result === 0) {
+      return res.status(404).json({ error: "Quadra não encontrada" });
+    }
+
+    res.json({ message: "Quadra atualizada com sucesso" });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Erro ao atualizar quadra" });
+  }
 }
 
 export async function postQuadra(req, res){
