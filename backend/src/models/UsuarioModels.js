@@ -36,17 +36,17 @@ export async function insertUsuario(nome, telefone, email, senha){
 
 // Atualizar usuário
 export async function updateUsuario(id, nome, telefone, email, senha) {
-    await db.execute(
-        // Aqui ele vai verificar se a informação está nula. Se o usuário enviar um valor, o campo será atualizado. Se mandar NULL, o campo permanece como está.
-        `UPDATE USUARIO
-        SET
-            NOME = COALESCE(?, NOME),
-            TELEFONE =  COALESCE(?, TELEFONE),
-            EMAIL =  COALESCE(?, EMAIL),
-            SENHA =  COALESCE(?, SENHA)
-        WHERE ID = ?;`, [nome, telefone, email, senha, id] ) 
+  await db.execute(
+    `UPDATE USUARIO
+     SET
+       NOME = COALESCE(?, NOME),
+       TELEFONE = COALESCE(?, TELEFONE),
+       EMAIL = COALESCE(?, EMAIL),
+       SENHA = COALESCE(?, SENHA)
+     WHERE ID = ?`,
+    [nome, telefone, email, senha, id]
+  );
 }
-
 // Deletar um usuário de acordo com seu ID (precisamos que o backend envie o ID do usuário conectado)
 export async function deletarUsuario(id){
     const [result] = await db.execute("DELETE FROM USUARIO WHERE ID = ?", [id]);

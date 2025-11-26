@@ -88,3 +88,23 @@ export async function ConsultarUsuario(id) {
     throw err;
   }
 }
+
+export async function deletarUsuario(id){
+  try{
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/usuarios/deletar/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+   const resultado = await response.json();
+    if (!response.ok)
+      throw new Error(resultado.error || "Erro ao deletar usuário");
+
+    return resultado;
+  }catch (err) {
+    throw err;
+  }
+}
