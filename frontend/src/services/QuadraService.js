@@ -50,7 +50,7 @@ export async function quadraConsultarID(id) {
 export async function QuadraAtualizar(id, dados){
   try{
     const response = await fetch(`${import.meta.env.VITE_API_URL}/quadra/atualizar/${id}`, {
-    method: "PUT",
+      method: "PUT",
       headers:  { "Content-Type": "application/json" },
       body: JSON.stringify(dados)
 

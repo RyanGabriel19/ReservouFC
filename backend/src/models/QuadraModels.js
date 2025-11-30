@@ -9,17 +9,38 @@ export async function SelectQuadraID(id){
     return rows[0];
 }
 
-export async function InsertQuadra(nome, localizacao, valor_hora){
-    const [result] = await db.execute(
+export async function InsertQuadra(nome, localizacao, valor_hora, idUsuarioLogado){
+    let connection;
+    try {
+        connection = await db.getConnection();
+
+        await connection.query('SET @current_user_id = ?', [idUsuarioLogado])
+
+        const [result] = await connection.execute(
         "INSERT INTO QUADRA(nome, localizacao, valor_hora) VALUES(?,?,?)",
         [nome, localizacao, valor_hora]
     );
-    return result.insertId
+
+    await connection.query('SET @current_user_id = NULL');
+
+    return { id: result.insertId };
+
+    } catch (err) {
+        throw err;
+    } finally {
+        if (connection) connection.release();
+    }
+
 }
 
-export async function UpdateQuadra(id, {nome, localizacao, valor_hora}){
-   try{
-    const [result] = await db.execute(
+export async function UpdateQuadra(id, {nome, localizacao, valor_hora}, idUsuarioLogado){
+    let connection;
+    try {
+        connection = await db.getConnection();
+
+        await connection.query('SET @current_user_id = ?', [idUsuarioLogado]);
+
+        const [result] = await connection.execute(
         `UPDATE QUADRA SET 
         nome = COALESCE(?, nome), 
         localizacao = COALESCE(?, localizacao),
@@ -28,15 +49,37 @@ export async function UpdateQuadra(id, {nome, localizacao, valor_hora}){
         localizacao ?? null,
         valor_hora ?? null,
         id]);
+
+        await connection.query('SET @current_user_id = NULL')
+
         return result.affectedRows
-     } catch(err){
-            console.error("erro ao atualizar os dados da quadra", err);
-            throw err;
-        }
+
+    } catch(err){
+        console.error("erro ao atualizar os dados da quadra", err);
+        throw err;
+    } finally {
+        if (connection) connection.release();
+    }
     
 }
 
-export async function DeleteQuadra(id){
-    const [result] = await db.execute("DELETE FROM QUADRA WHERE ID = ?", [id])
-    return result;
+export async function DeleteQuadra(id, idUsuarioLogado){
+    let connection;
+    try {
+        connection = await db.getConnection();
+
+        await connection.query('SET @current_user_id = ?', [idUsuarioLogado])
+
+        const [result] = await db.execute("DELETE FROM QUADRA WHERE ID = ?", [id])
+
+        await connection.query('SET @current_user_id = NULL')
+
+        return result;
+
+    } catch (err){
+        throw err;
+    } finally {
+        if (connection) connection.release();
+    }
+    
 }

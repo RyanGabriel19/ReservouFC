@@ -1,9 +1,9 @@
   import { useState, useEffect } from 'react';
-
   import styles from './Campos.module.css';
   import Headeradm from '../../components/header-adm/headeradm';
   import { quadraConsultar,CadastroQuadra, QuadraAtualizar} from '../../services/QuadraService';
   import { CriarDisponibilidade } from '../../services/Disponibilidade';
+  import { getDecodedToken } from '../../pages/conta/perfil/perfil';
 
   function Campo() {
     const [modalAberto, setModalAberto] = useState(null);
@@ -29,7 +29,8 @@
     const [mensagem, setMensagem] = useState("");
     const [tipoMensagem, setTipoMensagem] = useState("");
 
- 
+    const user = getDecodedToken();
+    const idUsuarioLogado = user ? user.id : null;
 
     // TIMER PARA SUMIR ALERTA
     useEffect(() => {
@@ -49,7 +50,7 @@
       e.preventDefault();
 
       try {
-        await CadastroQuadra({ nome, valor_hora, localizacao });
+        await CadastroQuadra({ nome, valor_hora, localizacao, idUsuarioLogado });
 
         setMensagem("✅ Quadra cadastrada com sucesso!");
         setTipoMensagem("sucesso");
@@ -77,7 +78,8 @@
           dia_semana: diaSemana,
           hora_inicio: horaInicio,
           hora_fim: horaFim,
-          duracao_min: duracao
+          duracao_min: duracao,
+          idUsuarioLogado
         });
 
         setMensagem("✅ Horário cadastrado com sucesso!");
@@ -104,7 +106,8 @@
         await QuadraAtualizar (id, {
         nome: nome || undefined,
         localizacao: localizacao || undefined,
-        valor_hora: valor_hora === "" ? undefined : valor_hora
+        valor_hora: valor_hora === "" ? undefined : valor_hora,
+        idUsuarioLogado
         });
 
         setMensagem("✅ Quadra atualizada com sucesso!");
@@ -366,7 +369,7 @@ async function carregarQuadras() {
                 />
 
                 <button type="submit" className={styles.submitbtn}>
-                  Cadastrar Quadra
+                  Atualizar Quadra
                 </button>
 
                 {mensagem && (
@@ -381,7 +384,7 @@ async function carregarQuadras() {
                   </div>
                 )}
               </form>
-                <h1 className={styles.info}>Só adicione o campo que queira atualiar.</h1>
+                <h1 className={styles.info}>*ADICIONE APENAS OS CAMPOS QUE DESEJA ATUALIZAR.</h1>
               <button className={styles.buttonFechar} onClick={ModalFechado}>
                 Cancelar
               </button>

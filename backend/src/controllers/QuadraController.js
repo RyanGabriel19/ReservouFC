@@ -29,7 +29,7 @@ export async function getQuadraID(req, res){
 export async function putQuadra(req, res) {
   try {
     const { id } = req.params;
-    let { nome, localizacao, valor_hora } = req.body;
+    let { nome, localizacao, valor_hora, idUsuarioLogado } = req.body;
 
     // Converte undefined para null
     nome = nome ?? null;
@@ -40,7 +40,7 @@ export async function putQuadra(req, res) {
       nome,
       localizacao,
       valor_hora
-    });
+    }, idUsuarioLogado);
 
     if (result === 0) {
       return res.status(404).json({ error: "Quadra não encontrada" });
@@ -55,9 +55,9 @@ export async function putQuadra(req, res) {
 }
 
 export async function postQuadra(req, res){
-    const {nome, localizacao, valor_hora} = req.body
+    const {nome, localizacao, valor_hora, idUsuarioLogado} = req.body
     try{
-        const {id} = await InsertQuadra(nome, localizacao, valor_hora);
+        const {id} = await InsertQuadra(nome, localizacao, valor_hora, idUsuarioLogado);
         return res.status(200).json({id, message: `Cadastro realizado com sucesso `})
     
     }catch(err){
