@@ -10,8 +10,16 @@ CREATE TRIGGER trg_usuario_after_insert
 AFTER INSERT ON USUARIO
 FOR EACH ROW
 BEGIN
-  CALL prc_insert_log(
+	
+	INSERT INTO LOG (
+    tipo_evento,
+    id_usuario,
+    detalhes,
+    valores_old,
+    valores_new
+  ) VALUES (
     'INSERT',
+    NEW.id,
     'usuario_criado',
     NULL,
     JSON_OBJECT(
@@ -30,8 +38,15 @@ CREATE TRIGGER trg_usuario_after_update
 AFTER UPDATE ON USUARIO
 FOR EACH ROW
 BEGIN
-  CALL prc_insert_log(
+  INSERT INTO LOG (
+    tipo_evento,
+    id_usuario,
+    detalhes,
+    valores_old,
+    valores_new
+  ) VALUES (
     'UPDATE',
+    OLD.id,
     'usuario_atualizado',
     JSON_OBJECT(
       'id', OLD.id,
@@ -59,8 +74,15 @@ CREATE TRIGGER trg_usuario_after_delete
 AFTER DELETE ON USUARIO
 FOR EACH ROW
 BEGIN
-  CALL prc_insert_log(
+  INSERT INTO LOG (
+    tipo_evento,
+    id_usuario,
+    detalhes,
+    valores_old,
+    valores_new
+  ) VALUES (
     'DELETE',
+    OLD.id,
     'usuario_excluido',
     JSON_OBJECT(
       'id', OLD.id,
