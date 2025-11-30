@@ -48,7 +48,7 @@ export async function ConsultarReservas(){
     throw error;
   }
 }
-export async function ConfirmarReserva(id) {
+export async function ConfirmarReserva(id, idUsuarioLogado) {
   try {
   
     const response = await fetch(`${import.meta.env.VITE_API_URL}/reservas/atualizar/${id}`, {
@@ -56,7 +56,7 @@ export async function ConfirmarReserva(id) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ status: "CONFIRMADO"}),
+      body: JSON.stringify({ status: "CONFIRMADO", idUsuarioLogado: idUsuarioLogado}),
     });
 
     const resultado = await response.json();
@@ -103,15 +103,16 @@ export function HoraCorreta(dataISO){
 }
 
 
-export async function CancelarReserva(id) {
+export async function CancelarReserva(id, idUsuarioLogado) {
   try {
   
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/reservas/atualizar/${id}`, {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/reservas/deletar/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ status: "CANCELADO"}),
+      // body: JSON.stringify({ status: "CANCELADO"}),
+      body: JSON.stringify({ status: "CANCELADO", idUsuarioLogado: idUsuarioLogado }),
     });
 
     const resultado = await response.json();

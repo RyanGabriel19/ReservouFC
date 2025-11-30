@@ -15,6 +15,6 @@ router.get('/reservas/consultar/:id', getReservaId);
 router.get('/reservas/usuario/:usuario_id', getReservaUsuario);
 router.post('/reservas/cadastrar', postReserva);
 router.put('/reservas/atualizar/:id', putReserva);
-router.delete('/reservas/deletar/:id', deleteReserva);
+router.put('/reservas/deletar/:id', deleteReserva);
 
 export default router;

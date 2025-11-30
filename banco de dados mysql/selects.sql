@@ -10,10 +10,6 @@ SELECT * FROM HORARIO_BLOQUEADO;
 
 DESC QUADRA;
 
-alter table QUADRA drop column tipo;
-
-ALTER TABLE QUADRA DROP COLUMN TIPO;
-
 ALTER TABLE QUADRA ADD COLUMN tipo VARCHAR(255) NOT NULL;
 
-update USUARIO set tipo = 'a' where id = 17;
+update USUARIO set tipo = 'a' where id = 1;

@@ -16,19 +16,34 @@ async function QuadraDisponivel(quadra_id, data_hora) {
 }
 
 
-export async function criarReserva({ quadra_id, usuario_id, data_hora, duracao_min, valor }) {
+export async function criarReserva({ quadra_id, usuario_id, data_hora, duracao_min, valor }, idUsuarioLogado) {
     const disponivel = await QuadraDisponivel(quadra_id, data_hora);
     if (!disponivel) {
         throw new Error("Quadra já está reservada nesse horário");
     }
 
-    const [result] = await db.execute(
+    let connection;
+
+    try {
+        connection = await db.getConnection();
+
+        await connection.query('SET @current_user_id = ?', [idUsuarioLogado])
+
+        const [result] = await connection.execute(
         `INSERT INTO RESERVA (quadra_id, usuario_id, data_hora, duracao_min, valor, status)
          VALUES (?, ?, ?, ?, ?, ?)`,
         [quadra_id, usuario_id, data_hora, duracao_min || 60, valor || 0.0, 'PENDENTE']
-    );
+        );
 
-    return result.insertId;
+        await connection.query('SET @current_user_id = NULL')
+
+        return result.insertId;
+    } catch (err) {
+        throw err;
+    } finally {
+        if (connection) connection.release()
+    }
+    
 }
 
 
@@ -43,7 +58,7 @@ export async function BuscarReservaUsuario(usuario_id) {
 }
 
 
-export async function AtualizarReserva(id, { data_hora, duracao_min, status }) {
+export async function AtualizarReserva(id, { data_hora, duracao_min, status }, idUsuarioLogado) {
     if (data_hora) {
         const reserva = await BuscarReservaPorId(id);
         if (!reserva) throw new Error("Reserva não encontrada");
@@ -53,28 +68,59 @@ export async function AtualizarReserva(id, { data_hora, duracao_min, status }) {
             if (!disponivel) throw new Error("Novo horário não disponível");
         }
     }
-    data_hora = data_hora ?? null;
-    duracao_min = duracao_min ?? null;
-    status = status ?? null;
+    const novoDataHora = data_hora ?? null;
+    const novoDuracao = duracao_min ?? null;
+    const novoStatus = status ?? null;
 
-    await db.execute(
-        `UPDATE RESERVA SET 
-            data_hora = COALESCE(?, data_hora),
-            duracao_min = COALESCE(?, duracao_min),
-            status = COALESCE(?, status),
-            atualizado_em = CURRENT_TIMESTAMP
-         WHERE id = ?`,
-        [data_hora, duracao_min, status, id]
-    );
+    let connection;
+    try {
+        connection = await db.getConnection();
+
+        // Define o usuário para o log
+        await connection.query('SET @current_user_id = ?', [idUsuarioLogado]);
+
+        await connection.execute(
+            `UPDATE RESERVA SET 
+                data_hora = COALESCE(?, data_hora),
+                duracao_min = COALESCE(?, duracao_min),
+                status = COALESCE(?, status),
+                atualizado_em = CURRENT_TIMESTAMP
+             WHERE id = ?`,
+            [novoDataHora, novoDuracao, novoStatus, id]
+        );
+
+        await connection.query('SET @current_user_id = NULL');
+
+    } catch (err) {
+        throw err;
+    } finally {
+        if (connection) connection.release();
+    }
 
     return await BuscarReservaPorId(id);
 }
 
 // Cancelar reserva
-export async function CancelarReserva(id) {
-    await db.execute(
-        "UPDATE RESERVA SET STATUS = 'CANCELADO', ATUALIZADO_EM = CURRENT_TIMESTAMP WHERE ID = ?",
+export async function CancelarReserva(id, idUsuarioLogado) {
+    let connection;
+    try {
+        connection = await db.getConnection();
+
+        await connection.query('SET @current_user_id = ?', [idUsuarioLogado]);
+
+        await connection.execute(
+        `UPDATE RESERVA SET STATUS = 'CANCELADO', ATUALIZADO_EM = CURRENT_TIMESTAMP WHERE ID = ?`,
         [id]
-    );
+        );
+
+        await connection.query('SET @current_user_id = NULL');
+                
+    } catch (err) {
+        throw err;
+    } finally {
+        if (connection) connection.release();
+    }
+
     return await BuscarReservaPorId(id);
+    
 }

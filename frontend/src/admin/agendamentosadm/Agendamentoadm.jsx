@@ -4,14 +4,18 @@ import Headeradm from '../../components/header-adm/headeradm';
 import { ConsultarReservas, ConfirmarReserva, formatarData, CancelarReserva } from '../../services/ReservaService';
 import { ConsultarUsuario } from '../../services/UsuarioService';
 import { quadraConsultarID } from '../../services/QuadraService';
+import { getDecodedToken } from '../../pages/conta/perfil/perfil';
 
 
 function Agendamentoadm() {
   const [reservas, setReservas] = useState([]);
+
+  const user = getDecodedToken();
+  const idAdminLogado = user ? user.id : null;
   
   async function handleConfirmarReserva(id) {
     try {
-      await ConfirmarReserva(id);
+      await ConfirmarReserva(id, idAdminLogado);
 
       setReservas((prev) =>
         prev.map((r) =>
@@ -27,7 +31,7 @@ function Agendamentoadm() {
   
   async function handleCancelarReserva(id) {
   try {
-    await CancelarReserva(id);
+    await CancelarReserva(id, idAdminLogado);
 
     setReservas((prev) =>
       prev.map((r) =>

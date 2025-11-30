@@ -48,7 +48,7 @@ export default function Agendamento() {
   // Criar reserva
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const dados = { quadra_id, usuario_id, data_hora, duracao_min, valor };
+    const dados = { quadra_id, usuario_id, data_hora, duracao_min, valor, idUsuarioLogado: user ? user.id : null };
 
     try {
       const resultado = await criarReserva(dados);
