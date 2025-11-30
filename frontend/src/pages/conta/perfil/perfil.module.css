@@ -10,6 +10,7 @@
   --lemonade: #B8FB3C;
   --electric: #03045E;
   --azulEscuro: #0b0c2a;
+  --azulclaro:  #12153f;
 }
 
 /* =========================
@@ -31,7 +32,7 @@
 estatisticas de reserva
 ===================*/
 .opcoes{
-   background: linear-gradient(145deg, #0b0c2a, #13153d);
+  background:  #0d0f32;
   border-left: 4px solid var(--lemonade);
   border-radius: 12px;
   padding: 35px 30px;
@@ -102,21 +103,37 @@ estatisticas de reserva
   estatisticas
 */
 .estatisticas{
-background: linear-gradient(145deg, #0b0c2a, #13153d);
-  
+background: #0d0f32;
+  align-items: center;
   border-radius: 12px;
   padding: 35px 30px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
   position: relative;
   top: -86.5rem; /* Ajuste conforme necessário */
-  left: 900px;
+  left: 750px;
   width: 90%;
- max-width: 700px;
+ max-width: 950px;
   min-width: 320px;
-  min-height: 200px;
+  min-height: 100px;
   height: 250px;
 
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.estatisticas h3 {
+font-size: 18px;
+  margin-bottom: 12px;
+  padding: 3px;
+  line-height: 1.6;
+  color: #898989;
+}
+.numeros{
+  font-size: 30px;
+  margin-bottom: 12px;
+  padding-top: 15px;
+  line-height: 1.6;
+  color: #FFFFFF;
+  
 }
 
 .estatisticas h2 {
@@ -133,6 +150,86 @@ background: linear-gradient(145deg, #0b0c2a, #13153d);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
 }
 
+.totalReservas{
+  
+  background-color: var(--azulclaro);
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  top: -3px;
+  left: -10px;
+  width: 25%;
+}
+.ReservasConfirmadas{
+ background-color: var(--azulclaro);
+ position: relative;
+ top: -246px;
+ left: 450px;
+ border-radius: 10px;
+ text-align: center;
+width: 25%;
+}
+.ReservasCanceladas{
+ background-color: var(--azulclaro);
+ position: relative;
+ top: -124px;
+ left: 220px;
+  border-radius: 10px;
+  text-align: center;
+  width: 25%;
+}
+.ReservasPendentes{
+  background-color: var(--azulclaro);
+  width: 35%;
+   border-radius: 10px;
+  text-align: center;
+  width: 25%;
+  position: relative;
+  left: 680px;
+  top: -368px;
+}
+
+/*
+================================
+  historicas de reservas
+=================================*/
+.HistoricoReserva{
+ position: relative;
+  top: -46rem; /* Ajuste conforme necessário */
+  left: 30px;
+  background:  #0d0f32;
+  
+  border-radius: 12px;
+  padding: 35px 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+
+  position: relative;
+  left: 750px;
+  top: -1350px;
+  width: 90%;
+  max-width: 950px;
+  min-width: 320px;
+  min-height: 100px;
+  height: 400px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.HistoricoReserva:hover{
+ transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+.HistoricoReserva h2{
+  font-size: 28px;
+  margin-bottom: 25px;
+  color: var(--lemonade);
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  
+}
+
 /* =========================
    Área de informações
 ========================= */
@@ -140,7 +237,7 @@ background: linear-gradient(145deg, #0b0c2a, #13153d);
   position: relative;
   top: -46rem; /* Ajuste conforme necessário */
   left: 30px;
-  background: linear-gradient(145deg, #0b0c2a, #13153d);
+  background:  #0d0f32;
   border-left: 4px solid var(--lemonade);
   border-radius: 12px;
   padding: 35px 30px;

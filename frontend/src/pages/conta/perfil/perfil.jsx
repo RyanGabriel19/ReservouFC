@@ -2,11 +2,12 @@
 import Header from "../../../components/header/Header";
 import { FaUser, FaEnvelope, FaPhone, FaIdBadge } from "react-icons/fa";
 import { MdLock, MdEdit } from 'react-icons/md'; 
-import { BsStars, BsFillPersonFill, BsChatLeftDotsFill, BsX, BsReception4 } from "react-icons/bs";
+import { BsStars, BsFillPersonFill, BsChatLeftDotsFill, BsX, BsReception4, BsClockHistory } from "react-icons/bs";
 import { useState, useEffect } from "react"; 
 import styles from './perfil.module.css';
 import Funcionalidade from "../opcoes_nav/Funcionalidade";
 import { jwtDecode } from 'jwt-decode';
+import {quadraConsultarID} from "../../../services/QuadraService";
 import { deletarUsuario, AtualizarUsuario } from "../../../services/UsuarioService";
 import { UsuarioReserva } from "../../../services/ReservaService";
 
@@ -35,6 +36,14 @@ const Perfil = () => {
     const [modalAberto, setModalAberto] = useState("");
     const [modalDadosAberto, setModalDadosAberto] = useState(false);
     const [modalSenhaAberto, setModalSenhaAberto] = useState(false);
+    const [erro, setErro] = useState(null);
+    const [reservas, setReservas] = useState(false);
+    const [contadores, setContadores] = useState({
+        total: 0,
+        pendentes: 0,
+        confirmadas: 0,
+        canceladas: 0
+        });
 
     // Estados dos formulários
     const [nome, setNome] = useState("");
@@ -130,42 +139,44 @@ const Perfil = () => {
     
     //-------------carregar reservas
     useEffect(() => {
-  async function carregarReservas() {
-    try {
-      const data = await UsuarioReserva(userData.id);
+    if (!userData) return;
 
-      const reservasComDetalhes = await Promise.all(
-        data.map(async (r) => {
-          const quadra = await quadraConsultarID(r.quadra_id);
+    async function carregarReservas() {
+        try {
+        const data = await UsuarioReserva(userData.id);
 
-          return {
-            ...r,
-            nome_quadra: quadra.nome,
-          };
-        })
-      );
+        const reservasComDetalhes = await Promise.all(
+            data.map(async (r) => {
+            const quadra = await quadraConsultarID(r.quadra_id);
 
-      const total = reservasComDetalhes.length;
-      const pendentes = reservasComDetalhes.filter(r => r.status === "pendente").length;
-      const confirmadas = reservasComDetalhes.filter(r => r.status === "confirmada").length;
-      const canceladas = reservasComDetalhes.filter(r => r.status === "cancelada").length;
+            return {
+                ...r,
+                nome_quadra: quadra.nome,
+            };
+            })
+        );
 
-      setContadores({
-        total,
-        pendentes,
-        confirmadas,
-        canceladas
-      });
+        const total = reservasComDetalhes.length;
+        const pendentes = reservasComDetalhes.filter(r => r.status === "PENDENTE").length;
+        const confirmadas = reservasComDetalhes.filter(r => r.status === "CONFIRMADO").length;
+        const canceladas = reservasComDetalhes.filter(r => r.status === "CANCELADO").length;
 
-      setReservas(reservasComDetalhes);
-    } catch (err) {
-      console.error(err);
-      setErro("Erro ao consultar reserva");
-    }
-  }
+        setContadores({
+            total,
+            pendentes,
+            confirmadas,
+            canceladas
+        });
 
-  carregarReservas();
-}, [user.id]);
+        setReservas(reservasComDetalhes);
+        } catch (err) {
+        console.error(err);
+        setErro("Erro ao consultra reserva");
+        }
+    } 
+
+    carregarReservas();
+    }, [userData]);
     
     // ---------------- JSX ----------------
 
@@ -251,12 +262,38 @@ const Perfil = () => {
                     </button>
                 </p>
             </div>
+
             <div className={styles.estatisticas}>
-                <h2><BsReception4 size={35} style={{marginRight: "15px", color:" #898989",  verticalAlign: "middle" }} />Suas estatística</h2>
+                <h2><BsReception4 size={35} style={{marginRight: "15px", color:" #898989",  verticalAlign: "middle" }} />
+                Suas estatística</h2>
                 <div className={styles.topicos}>
-                    <h3>reservas feitas</h3>
+
+                    <div className={styles.totalReservas}>
+                    <p className={styles.numeros}><strong>{contadores.total}</strong></p>
+                    <h3>Total de Reservas</h3>
+                    </div>
+
+                    <div className={styles.ReservasCanceladas}>
+                    <p className={styles.numeros}><strong>{contadores.canceladas}</strong></p>
+                    <h3>Reservas Canceladas</h3>
+                    </div>
+
+                    <div className={styles.ReservasConfirmadas}>
+                    <p className={styles.numeros}><strong>{contadores.confirmadas}</strong></p>
+                    <h3>Reservas Confirmadas</h3>
+                    </div>
+
+                    <div className={styles.ReservasPendentes}>
+                    <p className={styles.numeros}><strong>{contadores.pendentes}</strong></p>
+                    <h3>Reservas Pendentes</h3>
+                    </div>
                 </div>
             </div>
+
+            <div className={styles.HistoricoReserva}>
+                <h2><BsClockHistory />Ultimas Reservas</h2>
+            </div>
+
 
             {/* MODAL DELETAR */}
             {modalAberto === "deletar" && (
