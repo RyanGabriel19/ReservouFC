@@ -44,7 +44,7 @@ export async function updateUsuario(id, nome, telefone, email, senha) {
        EMAIL = COALESCE(?, EMAIL),
        SENHA = COALESCE(?, SENHA)
      WHERE ID = ?`,
-    [nome, telefone, email, senha, id]
+    [nome ?? null, telefone ?? null, email ?? null, senha ?? null, id]
   );
 }
 // Deletar um usuário de acordo com seu ID (precisamos que o backend envie o ID do usuário conectado)

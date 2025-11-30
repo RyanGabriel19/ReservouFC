@@ -43,8 +43,7 @@ function Header() {
             </NavLink>
             <div className={styles.dropdownMenu}>
               <NavLink to="/conta" end>Perfil</NavLink>
-              <NavLink to="/conta/configuracoes">Configurações</NavLink>
-              <NavLink to="/conta/seguranca">Segurança</NavLink>
+              
               <NavLink to="/conta/historico">Histórico de Reservas</NavLink>
               <NavLink to="/conta/sorteador">Sorteador de time</NavLink>
               

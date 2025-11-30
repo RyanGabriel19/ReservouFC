@@ -35,6 +35,7 @@ export async function LoginUsuario(req, res){
       JWT_SECRET, //key
       {expiresIn:"2h"}
     ); 
+    
     return res.status(200).json({
       message: "Login realizado com sucesso!",
       token,
@@ -126,7 +127,7 @@ export async function postUsuario(req, res) {
 // Atualização de usuário
 export async function putUsuarios(req, res) {
   const { id } = req.params; // o id deve vir como um parâmetro no url
-  const { nome, telefone, email, senha } = req.body;
+  const { nome, telefone, email, senha } = req.body.dados;
   try { 
     await updateUsuario(id, nome, telefone, email, senha)
     return res.status(200).json({

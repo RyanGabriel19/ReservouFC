@@ -2,35 +2,31 @@
 import Header from "../../../components/header/Header";
 import { FaUser, FaEnvelope, FaPhone, FaIdBadge } from "react-icons/fa";
 import { MdLock, MdEdit } from 'react-icons/md'; 
-import { BsStars, BsFillPersonFill, BsChatLeftDotsFill, BsX } from "react-icons/bs";
+import { BsStars, BsFillPersonFill, BsChatLeftDotsFill, BsX, BsReception4 } from "react-icons/bs";
 import { useState, useEffect } from "react"; 
 import styles from './perfil.module.css';
 import Funcionalidade from "../opcoes_nav/Funcionalidade";
 import { jwtDecode } from 'jwt-decode';
 import { deletarUsuario, AtualizarUsuario } from "../../../services/UsuarioService";
-
+import { UsuarioReserva } from "../../../services/ReservaService";
 const TOKEN_KEY_NAME = import.meta.env.VITE_TOKEN_KEY_NAME;
 
-export const getDecodedToken = () =>{
-    if(!TOKEN_KEY_NAME){
-        console.error("TOKEN_KEY_NAME não está definida nas variáveis de ambiente!");
+export const getDecodedToken = () => {
+    const token = localStorage.getItem(TOKEN_KEY_NAME);
+
+    if (!token) {
+        console.warn("Nenhum token encontrado no localStorage");
         return null;
     }
 
-    const token = localStorage.getItem(TOKEN_KEY_NAME);
-
-    if(token){
-        try{
-            const decoded = jwtDecode(token);
-            return decoded;
-        } catch(error){
-            console.error("erro ao decodificar o token", error);
-            return null;
-        }
+    try {
+        const decoded = jwtDecode(token);
+        return decoded;
+    } catch (error) {
+        console.error("Erro ao decodificar o token", error);
+        return null;
     }
-    return null
-};  
-
+};
 const Perfil = () => {
     const [userData, setUserData] = useState(null);
     const [modalAberto, setModalAberto] = useState("");
@@ -98,10 +94,9 @@ const Perfil = () => {
         e.preventDefault();
 
         try {
-            const dados = { nome, telefone, email };
-
+            const dados = { nome: nome || undefined, telefone: telefone  || undefined, email: email  || undefined, senha: novaSenha };
             await AtualizarUsuario(userData.id, { dados });
-
+            
             alert("Dados atualizados com sucesso!");
             setModalDadosAberto(false);
         } catch (err) {
@@ -117,10 +112,10 @@ const Perfil = () => {
         }
 
         try {
-            const dados = { senha: novaSenha };
+           const dados = { nome: nome || undefined, telefone: telefone  || undefined, email: email  || undefined, senha: novaSenha };
+            await AtualizarUsuario(userData.id,  { dados});
 
-            await AtualizarUsuario(userData.id, { dados });
-
+            getDecodedToken(); 
             alert("Senha atualizada com sucesso!");
             setModalSenhaAberto(false);
             setNovaSenha("");
@@ -129,7 +124,46 @@ const Perfil = () => {
             alert(err.message);
         }
     };
+    
+    //-------------carregar reservas
+    useEffect(() => {
+  async function carregarReservas() {
+    try {
+      const data = await UsuarioReserva(userData.id);
 
+      const reservasComDetalhes = await Promise.all(
+        data.map(async (r) => {
+          const quadra = await quadraConsultarID(r.quadra_id);
+
+          return {
+            ...r,
+            nome_quadra: quadra.nome,
+          };
+        })
+      );
+
+      const total = reservasComDetalhes.length;
+      const pendentes = reservasComDetalhes.filter(r => r.status === "pendente").length;
+      const confirmadas = reservasComDetalhes.filter(r => r.status === "confirmada").length;
+      const canceladas = reservasComDetalhes.filter(r => r.status === "cancelada").length;
+
+      setContadores({
+        total,
+        pendentes,
+        confirmadas,
+        canceladas
+      });
+
+      setReservas(reservasComDetalhes);
+    } catch (err) {
+      console.error(err);
+      setErro("Erro ao consultar reserva");
+    }
+  }
+
+  carregarReservas();
+}, [user.id]);
+    
     // ---------------- JSX ----------------
 
     return (
@@ -188,7 +222,7 @@ const Perfil = () => {
                 </div>
             </div>
 
-            <div className={styles.estatisticas}>
+            <div className={styles.opcoes}>
                 <h2>
                     <BsStars style={{marginRight: "5px", color:" #898989" }} />
                     Mais Opções
@@ -197,22 +231,28 @@ const Perfil = () => {
                 <p className={styles.Help}>
                     <BsChatLeftDotsFill style={{ marginRight: "10px", color: "#898989" }} />
                     <button 
-                        style={{ backgroundColor: "transparent", border: "none", cursor: "pointer"}}
+                        style={{ backgroundColor: "transparent", border: "none", cursor: "pointer", verticalAlign: "middle"}}
                         onClick={enviarAjudaWhatsApp}
                     >
-                        <strong className={styles.estatisticasp}>Ajuda e Suporte</strong>
+                        <strong className={styles.opcoesp}>Ajuda e Suporte</strong>
                     </button>
                 </p>
 
                 <p className={styles.deletar}>
                     <BsX style={{marginRight: "5px", color:" #898989", verticalAlign: "top" }} size={35} />
                     <button 
-                        style={{ backgroundColor: "transparent", border: "none", cursor: "pointer"}}
+                        style={{ backgroundColor: "transparent", border: "none", cursor: "pointer",  verticalAlign: "middle"}}
                         onClick={abrirModalDeletar}
                     >
-                        <strong className={styles.estatisticasp}>Excluir Conta</strong>
+                        <strong className={styles.opcoesp}>Excluir Conta</strong>
                     </button>
                 </p>
+            </div>
+            <div className={styles.estatisticas}>
+                <h2><BsReception4 size={35} style={{marginRight: "15px", color:" #898989",  verticalAlign: "middle" }} />Suas estatística</h2>
+                <div className={styles.topicos}>
+                    <h3>reservas feitas</h3>
+                </div>
             </div>
 
             {/* MODAL DELETAR */}

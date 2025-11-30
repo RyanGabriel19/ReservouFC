@@ -30,7 +30,7 @@
 /*===============================
 estatisticas de reserva
 ===================*/
-.estatisticas{
+.opcoes{
    background: linear-gradient(145deg, #0b0c2a, #13153d);
   border-left: 4px solid var(--lemonade);
   border-radius: 12px;
@@ -48,12 +48,12 @@ estatisticas de reserva
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.estatisticas:hover {
+.opcoes:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
 }
 
- .estatisticas h2 {
+ .opcoes h2 {
   font-size: 28px;
   margin-bottom: 25px;
   color: var(--lemonade);
@@ -61,11 +61,13 @@ estatisticas de reserva
   letter-spacing: 1px;
   text-transform: uppercase;
 }
-  .estatisticasp {
+.opcoesp {
   font-size: 20px;
   margin-bottom: 12px;
   line-height: 1.6;
   color: #898989;
+ 
+
 }
  .deletar {
   font-size: 20px;
@@ -75,22 +77,60 @@ estatisticas de reserva
   position: relative;
   left: 20px;
   padding-top:10px;
+  
+
 }
 .Help{
   position: relative;
   left: 30px;
+ 
+
 }
-.estatisticasp:hover {
-  font-size: 20px;
+
+
+
+.opcoesp:hover {
+   font-size: 20px;
   margin-bottom: 12px;
   line-height: 1.6;
   color: var(--lemonade);
+  
+  
 }
-.deletar:hover {
-  font-size: 20px;
-  margin-bottom: 12px;
-  line-height: 1.6;
+
+/* ==================
+  estatisticas
+*/
+.estatisticas{
+background: linear-gradient(145deg, #0b0c2a, #13153d);
+  
+  border-radius: 12px;
+  padding: 35px 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  position: relative;
+  top: -86.5rem; /* Ajuste conforme necessário */
+  left: 900px;
+  width: 90%;
+ max-width: 700px;
+  min-width: 320px;
+  min-height: 200px;
+  height: 250px;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.estatisticas h2 {
+  font-size: 28px;
+  margin-bottom: 25px;
   color: var(--lemonade);
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.estatisticas:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
 }
 
 /* =========================

@@ -26,12 +26,7 @@ function Funcionalidade(){
                     <li className={styles.listItem}>  
                         <NavLink to="/conta" end><FaUser  style={{ marginRight: "8px", color: "#fff" }} />Perfil</NavLink>
                     </li>
-                    <li className={styles.listItem}>
-                        <NavLink to="/conta/configuracoes"><FaCog  style={{ marginRight: "8px", color: "#fff" }} />Configurações</NavLink>
-                    </li>
-                    <li className={styles.listItem}>
-                        <NavLink to="/conta/seguranca">Segurança</NavLink>
-                    </li>
+                    
                     <li className={styles.listItem}>  
                         <NavLink to="/conta/historico"><FaHistory  style={{ marginRight: "8px", color: "#fff" }} />Histórico de Reservas</NavLink>
                     </li>
