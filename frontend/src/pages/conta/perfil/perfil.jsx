@@ -9,6 +9,7 @@ import Funcionalidade from "../opcoes_nav/Funcionalidade";
 import { jwtDecode } from 'jwt-decode';
 import { deletarUsuario, AtualizarUsuario } from "../../../services/UsuarioService";
 import { UsuarioReserva } from "../../../services/ReservaService";
+
 const TOKEN_KEY_NAME = import.meta.env.VITE_TOKEN_KEY_NAME;
 
 export const getDecodedToken = () => {
@@ -27,6 +28,8 @@ export const getDecodedToken = () => {
         return null;
     }
 };
+
+
 const Perfil = () => {
     const [userData, setUserData] = useState(null);
     const [modalAberto, setModalAberto] = useState("");
