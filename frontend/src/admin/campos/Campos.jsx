@@ -149,10 +149,6 @@ async function carregarQuadras() {
       setModalAberto(null);
     }
 
-    function ModalAbertoData() {
-      setModalAberto("horario");
-    }
-
     function ModalAbertoListarQuadra() {
       setModalAberto("ListarQuadra");
        carregarQuadras()
@@ -170,10 +166,6 @@ async function carregarQuadras() {
         <div className={styles.menuFlutuanteNovo}>
           <button className={styles.botaoMenu} onClick={ModalAbertoCadastro}>
             <span>⚡</span> Cadastrar Quadra
-          </button>
-
-          <button className={styles.botaoMenu} onClick={ModalAbertoData}>
-            <span>📅</span> Gerenciar Datas
           </button>
 
           <button className={styles.botaoMenu} onClick={ModalAbertoAtualizar}>
@@ -246,83 +238,7 @@ async function carregarQuadras() {
         {/* ============================================
             MODAL DE CADASTRO DE HORÁRIOS
         ============================================ */}
-        {modalAberto === "horario" && (
-          <div className={styles.containercampo}>
-            <div className={styles.cadastrocampo}>
-              <h2 className={styles.h2campo}>Cadastrar Horário</h2>
-
-              <form onSubmit={handleSubmitHorario} className={styles.campoform}>
-
-                <label>ID da Quadra:</label>
-                <input
-                  type="number"
-                  value={quadraId}
-                  onChange={(e) => setQuadraId(e.target.value)}
-                  required
-                />
-
-                <label>Dia da Semana:</label>
-                <select
-                  value={diaSemana}
-                  onChange={(e) => setDiaSemana(e.target.value)}
-                  required
-                >
-                  <option value="1">Domingo</option>
-                  <option value="2">Segunda</option>
-                  <option value="3">Terça</option>
-                  <option value="4">Quarta</option>
-                  <option value="5">Quinta</option>
-                  <option value="6">Sexta</option>
-                  <option value="7">Sábado</option>
-                </select>
-
-                <label>Hora Início:</label>
-                <input
-                  type="time"
-                  value={horaInicio}
-                  onChange={(e) => setHoraInicio(e.target.value)}
-                  required
-                />
-
-                <label>Hora Fim:</label>
-                <input
-                  type="time"
-                  value={horaFim}
-                  onChange={(e) => setHoraFim(e.target.value)}
-                  required
-                />
-
-                <label>Duração (min):</label>
-                <input
-                  type="number"
-                  value={duracao}
-                  onChange={(e) => setDuracao(e.target.value)}
-                  required
-                />
-
-                <button type="submit" className={styles.submitbtn}>
-                  Salvar Horário
-                </button>
-
-                {mensagem && (
-                  <div
-                    className={`${styles.alerta} ${
-                      tipoMensagem === "sucesso"
-                        ? styles.sucesso
-                        : styles.erro
-                    }`}
-                  >
-                    {mensagem}
-                  </div>
-                )}
-              </form>
-
-              <button className={styles.buttonFechar} onClick={ModalFechado}>
-                Fechar
-              </button>
-            </div>
-          </div>
-        )}
+        
 
 
         {/* ========================
