@@ -1,17 +1,74 @@
-
 import Header from "../../../components/header/Header";
+import { Navigate, useNavigate } from "react-router-dom";
 import { FaUser, FaEnvelope, FaPhone, FaIdBadge } from "react-icons/fa";
 import { MdLock, MdEdit } from 'react-icons/md'; 
-import { BsStars, BsFillPersonFill, BsChatLeftDotsFill, BsX, BsReception4, BsClockHistory } from "react-icons/bs";
+import { BsStars, BsFillPersonFill, BsChatLeftDotsFill, BsX, BsReception4, BsFillCalendarWeekFill, BsFillCartPlusFill,BsList } from "react-icons/bs";
 import { useState, useEffect } from "react"; 
 import styles from './perfil.module.css';
 import Funcionalidade from "../opcoes_nav/Funcionalidade";
-import { jwtDecode } from 'jwt-decode';
+// A importação correta de 'jwt-decode' é geralmente assim:
+import { jwtDecode } from 'jwt-decode'; 
 import {quadraConsultarID} from "../../../services/QuadraService";
 import { deletarUsuario, AtualizarUsuario } from "../../../services/UsuarioService";
-import { UsuarioReserva } from "../../../services/ReservaService";
+import { HoraCorreta, UsuarioReserva, formatarData, } from "../../../services/ReservaService";
+
 
 const TOKEN_KEY_NAME = import.meta.env.VITE_TOKEN_KEY_NAME;
+
+// --- FUNÇÕES AUXILIARES FALTANTES OU MELHORADAS ---
+
+/**
+ * Define um componente simples para exibir o status da reserva com cores/estilos.
+ * Você pode expandir o CSS no módulo de estilos.
+ */
+const StatusLabel = ({ status }) => {
+    let style = {};
+    let text = status;
+
+    switch (status) {
+        case "CONFIRMADO":
+            style = { color: 'green', fontWeight: 'bold' };
+            break;
+        case "PENDENTE":
+            style = { color: 'orange', fontWeight: 'bold' };
+            break;
+        case "CANCELADO":
+            style = { color: 'red', fontWeight: 'bold' };
+            break;
+        default:
+            style = { color: 'gray' };
+            text = "INDEFINIDO";
+    }
+
+    return <span style={style}>{text}</span>;
+};
+
+/**
+ * Função utilitária para formatar datas (e.g., para data e hora de criação)
+ */
+const formatarDataCriacao = (isoString) => {
+    if (!isoString) return 'N/A';
+    try {
+        const date = new Date(isoString);
+        return date.toLocaleDateString('pt-BR') + ' às ' + date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+    } catch (e) {
+        return 'Data inválida';
+    }
+};
+
+/**
+ * Função utilitária para formatar a data/hora da reserva
+ */
+const formatarDataReserva = (isoString) => {
+    if (!isoString) return 'N/A';
+    try {
+        const date = new new Date(isoString);
+        return date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long' }) + ' - ' + date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+    } catch (e) {
+        return 'Data inválida';
+    }
+};
+
 
 export const getDecodedToken = () => {
     const token = localStorage.getItem(TOKEN_KEY_NAME);
@@ -37,13 +94,13 @@ const Perfil = () => {
     const [modalDadosAberto, setModalDadosAberto] = useState(false);
     const [modalSenhaAberto, setModalSenhaAberto] = useState(false);
     const [erro, setErro] = useState(null);
-    const [reservas, setReservas] = useState(false);
+    const [reservas, setReservas] = useState([]); // Inicializado como array vazio para evitar .length em null
     const [contadores, setContadores] = useState({
         total: 0,
         pendentes: 0,
         confirmadas: 0,
         canceladas: 0
-        });
+    });
 
     // Estados dos formulários
     const [nome, setNome] = useState("");
@@ -52,7 +109,9 @@ const Perfil = () => {
 
     const [novaSenha, setNovaSenha] = useState("");
     const [confirmarSenha, setConfirmarSenha] = useState("");
-
+    const navigate = useNavigate(); 
+    
+    // Efeito para carregar o token na montagem
     useEffect(() => {
         const data = getDecodedToken(); 
         if (data) {
@@ -60,15 +119,18 @@ const Perfil = () => {
             setNome(data.nome || "");
             setEmail(data.email || "");
             setTelefone(data.telefone || "");
+        } else {
+            // Opcional: Redirecionar para o login se o token for inválido/ausente
+            // navigate('/login'); 
         }
     }, []);
 
-    let TipoUsuario;
+    // Determina o tipo de usuário para exibição
+    let TipoUsuario = "Carregando...";
     if(userData){
         if(userData.tipo === "c"){
             TipoUsuario = "Cliente";
-        }
-        if(userData.tipo === "a"){
+        } else if(userData.tipo === "a"){
             TipoUsuario = "Administrador";
         }
     }
@@ -77,7 +139,8 @@ const Perfil = () => {
 
     function enviarAjudaWhatsApp() {
         const mensagem = "Olá, estou enfrentando um problema no sistema e preciso de suporte.";
-        const url = `https://wa.me/5581999999?text=${encodeURIComponent(mensagem)}`;
+        // Número de telefone deve ser no formato internacional (55 81 99999-9999)
+        const url = `https://wa.me/5581999999999?text=${encodeURIComponent(mensagem)}`;
         window.open(url, "_blank");
     }
 
@@ -90,10 +153,14 @@ const Perfil = () => {
     }
 
     async function confirmarDelete() {
+        if (!userData || !userData.id) {
+            alert("Erro: ID de usuário não encontrado.");
+            return;
+        }
         try {
             await deletarUsuario(userData.id);
             localStorage.removeItem(TOKEN_KEY_NAME);
-            window.location.href = "/login";
+            window.location.href = "/login"; // Redireciona de forma forçada para garantir a limpeza
         } catch (error) {
             alert("Erro ao excluir a conta.");
             console.error(error);
@@ -105,14 +172,32 @@ const Perfil = () => {
     const handleSubmitDados = async (e) => {
         e.preventDefault();
 
+        if (!userData || !userData.id) {
+             alert("Erro: ID de usuário não encontrado.");
+            return;
+        }
+
         try {
-            const dados = { nome: nome || undefined, telefone: telefone  || undefined, email: email  || undefined, senha: novaSenha };
-            await AtualizarUsuario(userData.id, { dados });
+            // A API espera um objeto com os campos a serem atualizados, não um objeto 'dados' aninhado.
+            // Aqui, enviamos apenas os campos que podem ser atualizados.
+            const dadosParaAtualizar = { 
+                nome: nome, 
+                telefone: telefone, 
+                email: email
+            };
             
-            alert("Dados atualizados com sucesso!");
+            const response = await AtualizarUsuario(userData.id, dadosParaAtualizar);
+            
+            alert("Dados atualizados com sucesso! Você precisará logar novamente.");
             setModalDadosAberto(false);
+            
+            // Para garantir que o token seja atualizado com os novos dados:
+            localStorage.removeItem(TOKEN_KEY_NAME);
+            navigate('/login'); // Redireciona para forçar novo login com dados atualizados
+
         } catch (err) {
-            alert(err.message);
+            // Em caso de erro de email já cadastrado, etc.
+            alert(`Erro ao atualizar dados: ${err.message || "Tente novamente."}`);
         }
     };
 
@@ -122,24 +207,34 @@ const Perfil = () => {
         if (novaSenha !== confirmarSenha) {
             return alert("As senhas não coincidem");
         }
+        
+        if (!userData || !userData.id) {
+             return alert("Erro: ID de usuário não encontrado.");
+        }
 
         try {
-           const dados = { nome: nome || undefined, telefone: telefone  || undefined, email: email  || undefined, senha: novaSenha };
-            await AtualizarUsuario(userData.id,  { dados});
+            // A API de atualização de senha provavelmente espera o campo 'senha'.
+            const dadosParaAtualizar = { senha: novaSenha };
+            
+            await AtualizarUsuario(userData.id, dadosParaAtualizar);
 
-            getDecodedToken(); 
-            alert("Senha atualizada com sucesso!");
+            alert("Senha atualizada com sucesso! Você será desconectado para logar com a nova senha.");
             setModalSenhaAberto(false);
             setNovaSenha("");
             setConfirmarSenha("");
+
+            // Após a troca de senha, o usuário deve ser forçado a logar novamente.
+            localStorage.removeItem(TOKEN_KEY_NAME);
+            navigate('/login');
+
         } catch (err) {
-            alert(err.message);
+            alert(`Erro ao atualizar senha: ${err.message || "Tente novamente."}`);
         }
     };
     
     //-------------carregar reservas
     useEffect(() => {
-    if (!userData) return;
+    if (!userData || !userData.id) return;
 
     async function carregarReservas() {
         try {
@@ -147,11 +242,17 @@ const Perfil = () => {
 
         const reservasComDetalhes = await Promise.all(
             data.map(async (r) => {
-            const quadra = await quadraConsultarID(r.quadra_id);
+            let nome_quadra = "Quadra Desconhecida";
+            try {
+                const quadra = await quadraConsultarID(r.quadra_id);
+                nome_quadra = quadra.nome;
+            } catch(e) {
+                console.error("Erro ao buscar detalhes da quadra:", r.quadra_id, e);
+            }
 
             return {
                 ...r,
-                nome_quadra: quadra.nome,
+                nome_quadra: nome_quadra,
             };
             })
         );
@@ -170,13 +271,14 @@ const Perfil = () => {
 
         setReservas(reservasComDetalhes);
         } catch (err) {
-        console.error(err);
-        setErro("Erro ao consultra reserva");
+        console.error("Erro ao carregar reservas:", err);
+        setErro("Erro ao consultar reservas");
         }
     } 
 
     carregarReservas();
-    }, [userData]);
+    // Dependência de userData.id garante que carrega apenas após o token ser decodificado
+    }, [userData]); 
     
     // ---------------- JSX ----------------
 
@@ -255,7 +357,7 @@ const Perfil = () => {
                 <p className={styles.deletar}>
                     <BsX style={{marginRight: "5px", color:" #898989", verticalAlign: "top" }} size={35} />
                     <button 
-                        style={{ backgroundColor: "transparent", border: "none", cursor: "pointer",  verticalAlign: "middle"}}
+                        style={{ backgroundColor: "transparent", border: "none", cursor: "pointer",  verticalAlign: "middle"}}
                         onClick={abrirModalDeletar}
                     >
                         <strong className={styles.opcoesp}>Excluir Conta</strong>
@@ -264,8 +366,8 @@ const Perfil = () => {
             </div>
 
             <div className={styles.estatisticas}>
-                <h2><BsReception4 size={35} style={{marginRight: "15px", color:" #898989",  verticalAlign: "middle" }} />
-                Suas estatística</h2>
+                <h2><BsReception4 size={35} style={{marginRight: "15px", color:" #898989",  verticalAlign: "middle" }} />
+                Suas estatísticas</h2>
                 <div className={styles.topicos}>
 
                     <div className={styles.totalReservas}>
@@ -291,9 +393,49 @@ const Perfil = () => {
             </div>
 
             <div className={styles.HistoricoReserva}>
-                <h2><BsClockHistory />Ultimas Reservas</h2>
-            </div>
 
+                <h2>
+                    <BsFillCalendarWeekFill 
+                        size={30} 
+                        style={{ marginRight: "15px", color: "#898989", verticalAlign: "middle" }} 
+                    />
+                    Ultima Reserva
+                </h2>
+
+                <p className={styles.ProximaReservas}>
+                    <button onClick={() => navigate('/reserva')} className={styles.botaoReserva}>
+                        <BsFillCartPlusFill size={25} style={{ marginRight: "10px",verticalAlign: "middle"   }} />
+                        <strong>Nova Reserva</strong> 
+                    </button>
+
+                    <button onClick={() => navigate('/conta/historico')} className={styles.botaoHistorico}>
+                        <BsList size={25} style={{ marginRight: "10px",verticalAlign: "middle"   }} />
+                        <strong>Ver Histórico</strong> 
+                    </button>
+                </p>
+
+                <div className={styles.ListReserva}>
+                    {reservas.length === 0 ? (
+                            <p className={styles.erro}>Nenhuma reserva encontrada</p>
+                        ) : (
+                            reservas
+                            .slice(-1)
+                            .reverse()
+                            .map((r) => (
+                                <div key={r.id} className={styles.card}>
+                                <h3 className={styles.cardH3}>Reserva da: {r.nome_quadra}</h3>
+
+                                <p className={styles.data}>RESERVA CRIADA EM: {HoraCorreta(r.criado_em)}</p>
+                                <p className={styles.data}>DATA E HORA DA RESERVA: {formatarData(r.data_hora)}</p>
+
+                                <p className={styles.data}>
+                                    STATUS DA RESERVA:  < StatusLabel status= {r.status}/>
+                                </p>
+                                </div>
+                            ))
+                        )}
+                </div>
+            </div>
 
             {/* MODAL DELETAR */}
             {modalAberto === "deletar" && (
@@ -309,11 +451,11 @@ const Perfil = () => {
                         </p>
 
                         <div className={styles.modalBotoes}>
-                            <button onClick={confirmarDelete} type="submit">
+                            <button onClick={confirmarDelete} type="button">
                                 Confirmar
                             </button>
 
-                            <button onClick={fecharModal}  type="button">
+                            <button onClick={fecharModal}  type="button">
                                 Cancelar
                             </button>
                         </div>
@@ -324,7 +466,7 @@ const Perfil = () => {
             {/* MODAL EDITAR DADOS */}
             {modalDadosAberto && (
                 <div className={styles.modalOverlay}>
-                    <div className={styles.modalBox}>
+                    <div className={styles.modalBox} onClick={(e) => e.stopPropagation()}>
                         <h2>Editar Dados</h2>
 
                         <form onSubmit={handleSubmitDados}>
@@ -363,7 +505,7 @@ const Perfil = () => {
             {/* MODAL ALTERAR SENHA */}
             {modalSenhaAberto && (
                 <div className={styles.modalOverlay}>
-                    <div className={styles.modalBox}>
+                    <div className={styles.modalBox} onClick={(e) => e.stopPropagation()}>
                         <h2>Alterar Senha</h2>
 
                         <form onSubmit={handleSubmitSenha}>
@@ -391,8 +533,6 @@ const Perfil = () => {
                     </div>
                 </div>
             )}
-
-          
         </>
     );
 };

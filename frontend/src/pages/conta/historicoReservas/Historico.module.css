@@ -12,24 +12,20 @@
 /* ======== CONTAINER PRINCIPAL ======== */
 .container {
   background-color: transparent;
-
-  /* Mantém o conteúdo centralizado */
   min-height: auto;
   padding: 1rem 2rem;
   color: var(--corcinco);
-
   display: flex;
   flex-direction: column;
-  align-items: left;
-
-  /* Sobe o conteúdo suavemente */
-  margin-top: -600px; /* Ajuste o valor conforme quiser */
-
+  align-items: flex-start;
+  margin-top: -600px; /* Ajuste conforme necessário */
 }
+
+
 /* ======== CARD DE RESERVA ======== */
 .card {
-  background:  linear-gradient(145deg, #0b0c2a, #13153d);
- border-left: 4px solid var(--lemonade);
+  background: linear-gradient(145deg, var(--azulEscuro), #13153d);
+  border-left: 4px solid var(--lemonade);
   border-radius: 12px;
   width: 90%;
   max-width: 600px;
@@ -39,77 +35,38 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.55);
+}
 
 
 /* ======== TÍTULOS E TEXTOS ======== */
 .card h3 {
-  color: #FFFFFF;
+  color: var(--corcinco);
   margin-bottom: 0.5rem;
   font-size: 1.3rem;
-  
 }
 
-.data{
+.data {
   color: var(--lemonade);
-   font-size: 1.1rem;
+  font-size: 1.1rem;
   margin: 0.3rem 0;
-  display: flex;
   text-align: left;
 }
 
-/* ======== STATUS ======== */
+
+/* ======== STATUS GERAl ======== */
 .status {
-   font-size: 1.1rem;
-  display: flex;
-  align-items: center;
+  font-size: 1.1rem;
   font-weight: 600;
   color: var(--lemonade);
   margin-top: 0.7rem;
+  display: flex;
+  align-items: center;
 }
 
-.confirmado {
-  color: var(--corquatro);
- 
-  font-size: 1.1rem;
-  padding: 5px;
-}
-.confirmado::before {
-  background: var(--corquatro);
-  font-size: 1.1rem;
-  padding: 5px;
-}
-
-.cancelado {
-  color: #f44336;
-  font-size: 1.1rem;
-  
-  padding: 5px;
-}
-.cancelado::before {
-  background: #f44336;
- 
-  font-size: 1.1rem;
-  padding: 5px;
-
-}
-
-.pendente {
-  color: var(--lemonade);
- 
-  font-size: 1.1rem;
-  padding: 5px;
-}
-.pendente::before {
-  background: var(--lemonade);
-  
-  padding: 5px;
-}
-/* ======== MENSAGEM DE ERRO ======== */
-.erro  {
-  font-size: 1.1rem;
-  color: var(--lemonade);
-  text-align: center;
-}
+/* bolinha padrão antes do texto */
 .status::before {
   content: "";
   width: 10px;
@@ -120,22 +77,96 @@
   box-shadow: 0 0 6px var(--corquatro);
 }
 
+
+/* ======== STATUS ESPECÍFICOS ======== */
+.confirmado {
+  color: var(--corquatro);
+}
+
+.cancelado {
+  color: #f44336;
+}
+
+.pendente {
+  color: var(--lemonade);
+}
+
+/* bolinhas personalizadas */
+.confirmado::before {
+  background: var(--corquatro);
+  box-shadow: 0 0 6px var(--corquatro);
+}
+
+.cancelado::before {
+  background: #f44336;
+  box-shadow: 0 0 6px #f44336;
+}
+
+.pendente::before {
+  background: var(--lemonade);
+  box-shadow: 0 0 6px var(--lemonade);
+}
+
+
+/* ======== MENSAGEM DE ERRO ======== */
+.erro {
+  font-size: 1.1rem;
+  color: var(--lemonade);
+  text-align: center;
+}
+
+
+/* ======== BOTÃO MOSTRAR MAIS ======== */
+.botaoMostrar {
+    /* Cores */
+    background-color: var(--electric);
+    color: var(--corcinco); /* Assumindo que --corcinco é a cor do texto */
+    
+    /* Layout */
+    display: inline-block;
+    
+    /* Aparência e Espaçamento */
+    padding: 10px 20px; /* Padding único e claro */
+    border-radius: 8px;
+    border: none; /* Correção: use 'border: none;' em vez de 'border-color: none;' */
+    font-weight: bold; /* Adiciona negrito para maior legibilidade */
+    
+    /* Comportamento */
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    /* 'pointer-events: auto;' é padrão e pode ser omitido, mas mantido para consistência */
+    pointer-events: auto;
+}
+
+.botaoMostrar:hover {
+    /* Simples efeito de hover: escurece a cor de fundo */
+    background-color: color-mix(in srgb, var(--electric) 90%, black);
+}
 /* ======== RESPONSIVIDADE ======== */
 @media (max-width: 600px) {
   .container {
     padding: 1rem;
-    margin-top: -650px; /* Ajuste o valor conforme quiser */
+    margin-top: -650px;
   }
+
   .card {
     width: 100%;
     padding: 1rem;
   }
 
   .card h3 {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
   }
 
-  .card p {
-    font-size: 0.9rem;
+  .card p,
+  .data,
+  .status {
+    font-size: 0.95rem;
+  }
+
+  .botaoMostrar {
+    width: 100%;
+    text-align: center;
   }
 }

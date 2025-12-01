@@ -38,13 +38,13 @@ estatisticas de reserva
   padding: 35px 30px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
   position: relative;
-  top: -44rem; /* Ajuste conforme necessário */
+  top: -40.6rem; /* Ajuste conforme necessário */
   left: 30px;
   width: 90%;
  max-width: 700px;
   min-width: 320px;
   min-height: 200px;
-  height: 250px;
+  height: 240px;
 
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -81,6 +81,7 @@ estatisticas de reserva
   
 
 }
+
 .Help{
   position: relative;
   left: 30px;
@@ -109,9 +110,9 @@ background: #0d0f32;
   padding: 35px 30px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
   position: relative;
-  top: -86.5rem; /* Ajuste conforme necessário */
+  top: -82rem; /* Ajuste conforme necessário */
   left: 750px;
-  width: 90%;
+  width: 50%;
  max-width: 950px;
   min-width: 320px;
   min-height: 100px;
@@ -121,7 +122,7 @@ background: #0d0f32;
 }
 
 .estatisticas h3 {
-font-size: 18px;
+font-size: 12px;
   margin-bottom: 12px;
   padding: 3px;
   line-height: 1.6;
@@ -157,36 +158,37 @@ font-size: 18px;
   text-align: center;
   position: relative;
   top: -3px;
-  left: -10px;
-  width: 25%;
+  left: 20px;
+ width: 22%;
 }
 .ReservasConfirmadas{
  background-color: var(--azulclaro);
  position: relative;
- top: -246px;
- left: 450px;
+ top: -227px;
+ left: 370px;
  border-radius: 10px;
  text-align: center;
-width: 25%;
+width: 22%;
 }
 .ReservasCanceladas{
  background-color: var(--azulclaro);
  position: relative;
- top: -124px;
- left: 220px;
+ top: -115px;
+ left: 195px;
   border-radius: 10px;
   text-align: center;
-  width: 25%;
+  width: 22%;
 }
 .ReservasPendentes{
   background-color: var(--azulclaro);
-  width: 35%;
+ width: 25%;
    border-radius: 10px;
   text-align: center;
-  width: 25%;
+  width: 22%;
   position: relative;
-  left: 680px;
-  top: -368px;
+  left: 545px;
+  top: -340px;
+  
 }
 
 /*
@@ -205,12 +207,12 @@ width: 25%;
 
   position: relative;
   left: 750px;
-  top: -1350px;
-  width: 90%;
-  max-width: 950px;
+  top: -1290px;
+  width: 50%;
+  max-width: 850px;
   min-width: 320px;
   min-height: 100px;
-  height: 400px;
+  height: 390px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -227,15 +229,80 @@ width: 25%;
   letter-spacing: 1px;
   text-transform: uppercase;
 
-  
+}
+.botaoReserva{
+  font-size: 15px;
+  padding: 7px;
+  color: var(--azulclaro);
+  border-radius: 8px;
+  position:absolute;
+  left: 220px;
+   background-color: var(--lemonade);
+  border: none;
+  border: none; /* Geralmente botões devem ter borda removida */
+    cursor: pointer;
 }
 
+.botaoHistorico{
+  font-size: 15px;
+  padding: 7px;
+  color: var(--azulclaro);
+  border-radius: 8px;
+  position: relative;
+  left: 20px;
+  
+   background-color: var(--lemonade);
+  border: none;
+  border: none; /* Geralmente botões devem ter borda removida */
+    cursor: pointer;
+}
+
+.botaoReserva:hover,
+.botaoHistorico:hover{
+  background-color: #d4e76a;
+}
+
+
+
+.card {
+  position: relative;
+  top: 20px;
+  left: -40px;
+  background: var(--azulclaro);
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto 24px auto;
+  
+  padding: 24px;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ======== TÍTULOS E TEXTOS ======== */
+.cardH3 {
+  color: #FFFFFF;
+  font-size: 20px;
+  margin-bottom: 8px;
+  font-size: 20px;
+   display: flex;
+  text-align: left;
+}
+
+.data {
+  color: var(--lemonade);
+  font-size: 15px;
+  /* 0.3rem = 4.8px (arredondado para 5px) */
+  margin: 5px 0;
+  display: flex;
+  text-align: left;
+}
 /* =========================
    Área de informações
 ========================= */
 .infoArea {
   position: relative;
-  top: -46rem; /* Ajuste conforme necessário */
+  top: -42rem; /* Ajuste conforme necessário */
   left: 30px;
   background:  #0d0f32;
   border-left: 4px solid var(--lemonade);
@@ -461,51 +528,115 @@ width: 25%;
    Responsividade
 ========================= */
 @media (max-width: 900px) {
+
+  /* Container geral */
   .perfilContainer {
+    position: relative;
+    top: 20px;
+    left: 0;
     flex-direction: column;
-    align-items: center;
-    top: 15rem; /* ainda pode mover */
-    left: auto;
-    right: auto;
+    width: 100%;
+    padding: 10px;
   }
 
+  /* INFO DO USUÁRIO */
   .infoArea {
-    width: 90%;
-    max-width: 500px;
-    margin: -20rem auto;
-    border-left: none;
-    border-top: 4px solid var(--lemonade);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    transition: none;
+    position: relative;
+    top: 0;
+    left: 0;
+    margin: 20px auto;
+    width: 95%;
+    height: auto;
   }
 
-  .infoArea:hover {
-    transform: none;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  /* OPÇÕES */
+  .opcoes {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 95%;
+    margin: 20px auto;
+    height: auto;
+  }
+
+  /* ESTATÍSTICAS */
+  .estatisticas {
+    position: relative;
+    top: 0;
+    left: 0;
+    margin: 20px auto;
+    width: 95%;
+    height: auto;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .totalReservas,
+  .ReservasConfirmadas,
+  .ReservasCanceladas,
+  .ReservasPendentes {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  /* HISTÓRICO */
+  .HistoricoReserva {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 95%;
+    margin: 20px auto;
+    height: auto;
+  }
+
+  /* CARDS */
+  .card {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 95%;
+    margin: 20px auto;
+  }
+
+  /* BOTÕES */
+  .botoesAcao {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .btnAcao {
+    top: 0;
   }
 }
 
 @media (max-width: 430px) {
- .infoArea{
-    position: relative;
-    top: -20rem;
- }
 
-  .infoArea {
-    width: 95%;
-    padding: 25px 15px;
+  .infoArea,
+  .opcoes,
+  .estatisticas,
+  .HistoricoReserva {
+    position: static !important;   /* remove top/left */
+    top: 0 !important;
+    left: 0 !important;
+    width: 95% !important;
+    margin: 10px auto !important;
+    height: auto !important;
   }
 
-  .infoArea h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
+  .estatisticas {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px !important;
   }
 
-  .userDetails {
-    padding: 20px;
-  }
-
-  .userDetails p {
-    margin-bottom: 10px;
+  .card {
+    margin-top: 15px !important;
+    top: 0 !important;
+    left: 0 !important;
+    position: relative !important;
   }
 }

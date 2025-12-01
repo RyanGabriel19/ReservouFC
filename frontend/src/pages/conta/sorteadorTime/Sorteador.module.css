@@ -1,0 +1,202 @@
+:root {
+  --corum: #1E8449;
+  --cordois: #444444;
+  --cortres: #171717;
+  --corquatro: #1CC206;
+  --corcinco: #FFFFFF;
+  --lemonade: #B8FB3C;
+  --electric: #03045E;
+  --azulEscuro: #0b0c2a;
+  --azulclaro: #12153f;
+}
+
+/* CONTAINER GERAL */
+.sorteadorContainer {
+  background-color: var(--azulEscuro);
+  position: relative;
+  top: -650px;
+  width: 85%;
+  margin: 40px auto;
+  padding: 20px 30px; /* padding superior menor para subir os cards */
+  border-radius: 14px;
+  border: 1px solid rgba(184, 251, 60, 0.3);
+  box-shadow: 0 0 8px rgba(184, 251, 60, 0.1);
+  color: var(--corcinco);
+}
+
+.titulo {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--lemonade);
+}
+
+/* GRUPOS */
+.grupo {
+  background: var(--azulclaro);
+  padding: 18px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  border-left: 3px solid var(--lemonade);
+}
+
+.grupo h2 {
+  margin-bottom: 12px;
+  font-size: 1.3rem;
+  color: var(--lemonade);
+}
+
+/* INSERIR ÁREA */
+.inserirArea {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.inserirArea input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(184, 251, 60, 0.4);
+  background: #0f1136;
+  color: var(--corcinco);
+  outline: none;
+  font-size: 0.95rem;
+}
+
+.inserirArea input:focus {
+  border-color: var(--lemonade);
+}
+
+.inserirArea button {
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: none;
+  background: var(--lemonade);
+  color: var(--cortres);
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.95rem;
+  transition: 0.15s;
+}
+
+.inserirArea button:hover {
+  filter: brightness(1.07);
+}
+
+/* LISTAS */
+.lista {
+  list-style: none;
+  padding: 0;
+  margin-top: 8px;
+}
+
+.lista li {
+  background: #0d1030;
+  padding: 9px;
+  margin-bottom: 6px;
+  border-radius: 8px;
+  border: 1px solid rgba(184, 251, 60, 0.3);
+  color: var(--corcinco);
+  font-size: 0.95rem;
+}
+
+/* BOTÕES DE AÇÃO */
+.botoesAcoes {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.sortear,
+.limpar {
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.sortear {
+  background: var(--lemonade);
+  color: var(--cortres);
+}
+
+.sortear:hover {
+  filter: brightness(1.1);
+}
+
+.limpar {
+  background: #0d1145;
+  color: var(--corcinco);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.limpar:hover {
+  background: #0a0d3a;
+}
+
+/* RESULTADO */
+.resultado {
+  margin-top: 10px; /* diminui a distância para subir os cards */
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cardTime {
+  background: var(--azulclaro);
+  border-radius: 12px;
+  padding: 18px;
+  width: 290px;
+  border: 1px solid rgba(184, 251, 60, 0.3);
+  box-shadow: 0 0 10px rgba(184, 251, 60, 0.08);
+}
+
+.cardTime h2 {
+  text-align: center;
+  color: var(--lemonade);
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.cardTime li {
+  background: #0b0e2a;
+  padding: 9px;
+  border-radius: 6px;
+  border: 1px solid rgba(184, 251, 60, 0.25);
+  margin-bottom: 7px;
+  font-size: 0.95rem;
+}
+
+/* RESERVAS */
+.reservas {
+  background: #1a1c46;
+}
+
+/* RESPONSIVO */
+@media (max-width: 900px) {
+  .sorteadorContainer {
+    width: 95%;
+    padding: 15px 20px;
+  }
+  
+  .resultado {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 8px;
+  }
+
+  .inserirArea {
+    flex-direction: column;
+  }
+
+  .inserirArea button {
+    width: 100%;
+  }
+}
