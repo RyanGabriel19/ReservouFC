@@ -5,7 +5,7 @@ function Btn () {
     return (
     <>
         <div className={styles["btn-painel"]}>
-            <NavLink to="#" className={styles["gerenciar_adm_btn"]}>Gerenciar Usuários</NavLink>
+            
             <NavLink to="/admin/agendamento" className={styles["agendamento_adm_btn"]}>Reservas</NavLink>
             <NavLink to="/admin/campo" className={styles["campos_adm_btn"]}>Quadras</NavLink>
             

@@ -620,7 +620,7 @@ width: 22%;
   .estatisticas,
   .HistoricoReserva {
     position: static !important;   /* remove top/left */
-    top: 0 !important;
+    top: -500;
     left: 0 !important;
     width: 95% !important;
     margin: 10px auto !important;

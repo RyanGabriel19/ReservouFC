@@ -45,7 +45,7 @@ function Login() {
       if(user.tipo === "c"){
         setTimeout(() => navigate("/home"), 1000);
       }if(user.tipo === "a"){
-      setTimeout(() => navigate("/admin"), 1000);
+      setTimeout(() => navigate("/admin/agendamento"), 1000);
       }
 
     } catch (err) {

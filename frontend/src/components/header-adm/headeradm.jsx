@@ -26,7 +26,7 @@ function Headeradm() {
       </div>
       <nav className={styles["navegacao"]}>
         {/* <NavLink to="/home" className={({ isActive }) => isActive ? styles.active : ''}>Home-ADM</NavLink> */}
-        <NavLink to="/admin" className={({ isActive }) => isActive ? styles.active : ''} end= {true}>Painel de Controle</NavLink>
+       
         <NavLink to="/admin/agendamento" className={({ isActive }) => isActive ? styles.active : ''}>Gerenciar Reservas</NavLink>
         <NavLink to="/admin/campo" className={({ isActive }) => isActive ? styles.active : ''}>Gerenciar Quadras</NavLink>
        {/* O botão agora chama a nova função 'handleSairClick' */}
